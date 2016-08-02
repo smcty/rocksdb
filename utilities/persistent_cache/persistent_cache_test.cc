@@ -44,7 +44,7 @@ static void OnOpenForWrite(void* arg) {
 class ConsoleLogger : public Logger {
  public:
   using Logger::Logv;
-  ConsoleLogger() : Logger(InfoLogLevel::ERROR_LEVEL) {}
+  ConsoleLogger() : Logger(InfoLogLevel::DEBUG_LEVEL) {}
 
   void Logv(const char* format, va_list ap) override {
     MutexLock _(&lock_);
