@@ -154,7 +154,7 @@ TEST_F(PersistentCacheTierTest, BlockCacheInsert) {
 
 TEST_F(PersistentCacheTierTest, BlockCacheInsertWithEviction) {
   for (auto nthreads : {1, 5}) {
-    for (auto max_keys : {1 * 1024 * 1024 * kStressFactor}) {
+    for (auto max_keys : {1 * 1024 * 1024 * (kStressFactor / 2)}) {
       cache_ = NewBlockCache(Env::Default(), path_,
                              /*max_size=*/200 * 1024 * 1024 * kStressFactor);
       RunInsertTestWithEviction(nthreads, max_keys);
