@@ -553,7 +553,11 @@ void ThreadedWriter::ThreadMain() {
       // We can fail to reserve space if every file in the system
       // is being currently accessed
       /* sleep override */
-      Env::Default()->SleepForMicroseconds(1000000);
+#ifdef OS_WIN
+      Sleep(1000);
+#else
+      sleep(1);
+#endif
     }
 
     DispatchIO(io);
