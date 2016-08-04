@@ -5,20 +5,20 @@
 
 #ifndef ROCKSDB_LITE
 
-#include "rocksdb/utilities/document_db.h"
+#include "rocksdb3131/utilities/document_db.h"
 
-#include "rocksdb/cache.h"
-#include "rocksdb/table.h"
-#include "rocksdb/filter_policy.h"
-#include "rocksdb/comparator.h"
-#include "rocksdb/db.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/utilities/json_document.h"
+#include "rocksdb3131/cache.h"
+#include "rocksdb3131/table.h"
+#include "rocksdb3131/filter_policy.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/utilities/json_document.h"
 #include "util/coding.h"
 #include "util/mutexlock.h"
 #include "port/port.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // IMPORTANT NOTE: Secondary index column families should be very small and
 // generally fit in memory. Assume that accessing secondary index column
@@ -1188,5 +1188,5 @@ Status DocumentDB::Open(const DocumentDBOptions& options,
   return Status::OK();
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

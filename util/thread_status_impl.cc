@@ -6,12 +6,12 @@
 
 #include <sstream>
 
-#include "rocksdb/env.h"
-#include "rocksdb/thread_status.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/thread_status.h"
 #include "util/logging.h"
 #include "util/thread_operation.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 #if ROCKSDB_USING_THREAD_STATUS
 const std::string& ThreadStatus::GetThreadTypeName(
@@ -164,4 +164,4 @@ std::map<std::string, uint64_t>
 }
 
 #endif  // ROCKSDB_USING_THREAD_STATUS
-}  // namespace rocksdb
+}  // namespace rocksdb3131

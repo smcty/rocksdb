@@ -13,11 +13,11 @@
 
 #pragma once
 
-#include "rocksdb/thread_status.h"
+#include "rocksdb3131/thread_status.h"
 
 #include <string>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 #if ROCKSDB_USING_THREAD_STATUS
 
@@ -118,4 +118,4 @@ struct StateInfo {
 };
 
 #endif  // ROCKSDB_USING_THREAD_STATUS
-}  // namespace rocksdb
+}  // namespace rocksdb3131

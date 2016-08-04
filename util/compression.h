@@ -12,7 +12,7 @@
 #include <algorithm>
 #include <limits>
 
-#include "rocksdb/options.h"
+#include "rocksdb3131/options.h"
 #include "util/coding.h"
 
 #ifdef SNAPPY
@@ -32,7 +32,7 @@
 #include <lz4hc.h>
 #endif
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 inline bool Snappy_Supported() {
 #ifdef SNAPPY
@@ -590,4 +590,4 @@ inline bool LZ4HC_Compress(const CompressionOptions& opts,
   return false;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

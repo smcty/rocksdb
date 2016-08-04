@@ -7,7 +7,7 @@
 #include "util/instrumented_mutex.h"
 #include "util/thread_status_util.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 void InstrumentedMutex::Lock() {
   PERF_TIMER_GUARD(db_mutex_lock_nanos);
   uint64_t wait_time_micros = 0;
@@ -73,4 +73,4 @@ bool InstrumentedCondVar::TimedWaitInternal(uint64_t abs_time_us) {
   return cond_.TimedWait(abs_time_us);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

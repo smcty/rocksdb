@@ -32,8 +32,8 @@
 #endif
 #include <signal.h>
 #include <algorithm>
-#include "rocksdb/env.h"
-#include "rocksdb/slice.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/slice.h"
 #include "port/port.h"
 #include "util/coding.h"
 #include "util/logging.h"
@@ -75,7 +75,7 @@
 #endif
 
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 
@@ -1816,4 +1816,4 @@ Env* Env::Default() {
   return &default_env;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

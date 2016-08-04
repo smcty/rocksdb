@@ -4,15 +4,15 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 // This file implements the callback "bridge" between Java and C++ for
-// rocksdb::WriteBatch::Handler.
+// rocksdb3131::WriteBatch::Handler.
 
 #ifndef JAVA_ROCKSJNI_WRITEBATCHHANDLERJNICALLBACK_H_
 #define JAVA_ROCKSJNI_WRITEBATCHHANDLERJNICALLBACK_H_
 
 #include <jni.h>
-#include "rocksdb/write_batch.h"
+#include "rocksdb3131/write_batch.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 /**
  * This class acts as a bridge between C++
  * and Java. The methods in this class will be
@@ -41,6 +41,6 @@ class WriteBatchHandlerJniCallback : public WriteBatch::Handler {
     jmethodID m_jLogDataMethodId;
     jmethodID m_jContinueMethodId;
 };
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // JAVA_ROCKSJNI_WRITEBATCHHANDLERJNICALLBACK_H_

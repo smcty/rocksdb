@@ -4,10 +4,10 @@
 //  of patent rights can be found in the PATENTS file in the same directory.
 //
 #ifndef ROCKSDB_LITE
-#include "rocksdb/ldb_tool.h"
+#include "rocksdb3131/ldb_tool.h"
 #include "util/ldb_cmd.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class DefaultSliceFormatter : public SliceFormatter {
  public:
@@ -120,6 +120,6 @@ void LDBTool::Run(int argc, char** argv, Options options,
                   const LDBOptions& ldb_options) {
   LDBCommandRunner::RunCommand(argc, argv, options, ldb_options);
 }
-} // namespace rocksdb
+} // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

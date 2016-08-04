@@ -15,16 +15,16 @@
 #include <string>
 #include <vector>
 
-#include "rocksdb/db.h"
-#include "rocksdb/filter_policy.h"
-#include "rocksdb/status.h"
-#include "rocksdb/utilities/backupable_db.h"
-#include "rocksdb/utilities/write_batch_with_index.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/filter_policy.h"
+#include "rocksdb3131/status.h"
+#include "rocksdb3131/utilities/backupable_db.h"
+#include "rocksdb3131/utilities/write_batch_with_index.h"
 #include "rocksjni/comparatorjnicallback.h"
 #include "rocksjni/loggerjnicallback.h"
 #include "rocksjni/writebatchhandlerjnicallback.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // Detect if jlong overflows size_t
 inline Status check_if_jlong_fits_size_t(const jlong& jvalue) {
@@ -99,7 +99,7 @@ template<class DERIVED> class RocksDBJavaException {
 };
 
 // The portal class for org.rocksdb.RocksDB
-class RocksDBJni : public RocksDBNativeClass<rocksdb::DB*, RocksDBJni> {
+class RocksDBJni : public RocksDBNativeClass<rocksdb3131::DB*, RocksDBJni> {
  public:
   // Get the java class id of org.rocksdb.RocksDB.
   static jclass getJClass(JNIEnv* env) {
@@ -132,7 +132,7 @@ class IllegalArgumentExceptionJni :
 
 // The portal class for org.rocksdb.Options
 class OptionsJni : public RocksDBNativeClass<
-    rocksdb::Options*, OptionsJni> {
+    rocksdb3131::Options*, OptionsJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env, "org/rocksdb/Options");
@@ -141,7 +141,7 @@ class OptionsJni : public RocksDBNativeClass<
 
 // The portal class for org.rocksdb.DBOptions
 class DBOptionsJni : public RocksDBNativeClass<
-    rocksdb::DBOptions*, DBOptionsJni> {
+    rocksdb3131::DBOptions*, DBOptionsJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env, "org/rocksdb/DBOptions");
@@ -178,7 +178,7 @@ class ColumnFamilyDescriptorJni {
 
 // The portal class for org.rocksdb.ColumnFamilyOptions
 class ColumnFamilyOptionsJni : public RocksDBNativeClass<
-    rocksdb::ColumnFamilyOptions*, ColumnFamilyOptionsJni> {
+    rocksdb3131::ColumnFamilyOptions*, ColumnFamilyOptionsJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env,
@@ -188,7 +188,7 @@ class ColumnFamilyOptionsJni : public RocksDBNativeClass<
 
 // The portal class for org.rocksdb.WriteOptions
 class WriteOptionsJni : public RocksDBNativeClass<
-    rocksdb::WriteOptions*, WriteOptionsJni> {
+    rocksdb3131::WriteOptions*, WriteOptionsJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env,
@@ -198,7 +198,7 @@ class WriteOptionsJni : public RocksDBNativeClass<
 
 // The portal class for org.rocksdb.ReadOptions
 class ReadOptionsJni : public RocksDBNativeClass<
-    rocksdb::ReadOptions*, ReadOptionsJni> {
+    rocksdb3131::ReadOptions*, ReadOptionsJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env,
@@ -208,7 +208,7 @@ class ReadOptionsJni : public RocksDBNativeClass<
 
 // The portal class for org.rocksdb.ReadOptions
 class WriteBatchJni : public RocksDBNativeClass<
-    rocksdb::WriteBatch*, WriteBatchJni> {
+    rocksdb3131::WriteBatch*, WriteBatchJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env,
@@ -218,7 +218,7 @@ class WriteBatchJni : public RocksDBNativeClass<
 
 // The portal class for org.rocksdb.WriteBatch.Handler
 class WriteBatchHandlerJni : public RocksDBNativeClass<
-    const rocksdb::WriteBatchHandlerJniCallback*,
+    const rocksdb3131::WriteBatchHandlerJniCallback*,
     WriteBatchHandlerJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
@@ -269,7 +269,7 @@ class WriteBatchHandlerJni : public RocksDBNativeClass<
 
 // The portal class for org.rocksdb.WriteBatchWithIndex
 class WriteBatchWithIndexJni : public RocksDBNativeClass<
-    rocksdb::WriteBatchWithIndex*, WriteBatchWithIndexJni> {
+    rocksdb3131::WriteBatchWithIndex*, WriteBatchWithIndexJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env,
@@ -288,7 +288,7 @@ class HistogramDataJni {
 
 // The portal class for org.rocksdb.WriteBatchWithIndex
 class BackupableDBOptionsJni : public RocksDBNativeClass<
-    rocksdb::BackupableDBOptions*, BackupableDBOptionsJni> {
+    rocksdb3131::BackupableDBOptions*, BackupableDBOptionsJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env,
@@ -297,7 +297,7 @@ class BackupableDBOptionsJni : public RocksDBNativeClass<
 };
 
 class BackupEngineJni : public RocksDBNativeClass<
-    rocksdb::BackupEngine*, BackupEngineJni> {
+    rocksdb3131::BackupEngine*, BackupEngineJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env,
@@ -307,7 +307,7 @@ class BackupEngineJni : public RocksDBNativeClass<
 
 // The portal class for org.rocksdb.RocksIterator
 class IteratorJni : public RocksDBNativeClass<
-    rocksdb::Iterator*, IteratorJni> {
+    rocksdb3131::Iterator*, IteratorJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env,
@@ -317,7 +317,7 @@ class IteratorJni : public RocksDBNativeClass<
 
 // The portal class for org.rocksdb.Filter
 class FilterJni : public RocksDBNativeClass<
-    std::shared_ptr<rocksdb::FilterPolicy>*, FilterJni> {
+    std::shared_ptr<rocksdb3131::FilterPolicy>*, FilterJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env,
@@ -327,7 +327,7 @@ class FilterJni : public RocksDBNativeClass<
 
 // The portal class for org.rocksdb.ColumnFamilyHandle
 class ColumnFamilyHandleJni : public RocksDBNativeClass<
-    rocksdb::ColumnFamilyHandle*, ColumnFamilyHandleJni> {
+    rocksdb3131::ColumnFamilyHandle*, ColumnFamilyHandleJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env,
@@ -337,7 +337,7 @@ class ColumnFamilyHandleJni : public RocksDBNativeClass<
 
 // The portal class for org.rocksdb.FlushOptions
 class FlushOptionsJni : public RocksDBNativeClass<
-    rocksdb::FlushOptions*, FlushOptionsJni> {
+    rocksdb3131::FlushOptions*, FlushOptionsJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env,
@@ -347,7 +347,7 @@ class FlushOptionsJni : public RocksDBNativeClass<
 
 // The portal class for org.rocksdb.ComparatorOptions
 class ComparatorOptionsJni : public RocksDBNativeClass<
-    rocksdb::ComparatorJniCallbackOptions*, ComparatorOptionsJni> {
+    rocksdb3131::ComparatorJniCallbackOptions*, ComparatorOptionsJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env,
@@ -357,7 +357,7 @@ class ComparatorOptionsJni : public RocksDBNativeClass<
 
 // The portal class for org.rocksdb.AbstractComparator
 class AbstractComparatorJni : public RocksDBNativeClass<
-    const rocksdb::BaseComparatorJniCallback*,
+    const rocksdb3131::BaseComparatorJniCallback*,
     AbstractComparatorJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
@@ -403,7 +403,7 @@ class AbstractComparatorJni : public RocksDBNativeClass<
 
 // The portal class for org.rocksdb.AbstractSlice
 class AbstractSliceJni : public RocksDBNativeClass<
-    const rocksdb::Slice*, AbstractSliceJni> {
+    const rocksdb3131::Slice*, AbstractSliceJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env,
@@ -549,21 +549,21 @@ class BackupInfoListJni {
   static jobject getBackupInfo(JNIEnv* env,
       std::vector<BackupInfo> backup_infos) {
     jclass jclazz = env->FindClass("java/util/ArrayList");
-    jmethodID mid = rocksdb::ListJni::getArrayListConstructorMethodId(
+    jmethodID mid = rocksdb3131::ListJni::getArrayListConstructorMethodId(
         env, jclazz);
     jobject jbackup_info_handle_list = env->NewObject(jclazz, mid,
         backup_infos.size());
     // insert in java list
-    for (std::vector<rocksdb::BackupInfo>::size_type i = 0;
+    for (std::vector<rocksdb3131::BackupInfo>::size_type i = 0;
         i != backup_infos.size(); i++) {
-      rocksdb::BackupInfo backup_info = backup_infos[i];
-      jobject obj = rocksdb::BackupInfoJni::construct0(env,
+      rocksdb3131::BackupInfo backup_info = backup_infos[i];
+      jobject obj = rocksdb3131::BackupInfoJni::construct0(env,
           backup_info.backup_id,
           backup_info.timestamp,
           backup_info.size,
           backup_info.number_files);
       env->CallBooleanMethod(jbackup_info_handle_list,
-          rocksdb::ListJni::getListAddMethodId(env), obj);
+          rocksdb3131::ListJni::getListAddMethodId(env), obj);
     }
     return jbackup_info_handle_list;
   }
@@ -673,13 +673,13 @@ class WriteEntryJni {
     }
 
     static void setKey(JNIEnv* env, jobject jwrite_entry,
-        const rocksdb::Slice* slice) {
+        const rocksdb3131::Slice* slice) {
       jobject jkey = env->GetObjectField(jwrite_entry, getKeyField(env));
       AbstractSliceJni::setHandle(env, jkey, slice);
     }
 
     static void setValue(JNIEnv* env, jobject jwrite_entry,
-        const rocksdb::Slice* slice) {
+        const rocksdb3131::Slice* slice) {
       jobject jvalue = env->GetObjectField(jwrite_entry, getValueField(env));
       AbstractSliceJni::setHandle(env, jvalue, slice);
     }
@@ -755,7 +755,7 @@ class InfoLogLevelJni {
 
 // The portal class for org.rocksdb.Logger
 class LoggerJni : public RocksDBNativeClass<
-    std::shared_ptr<rocksdb::LoggerJniCallback>*, LoggerJni> {
+    std::shared_ptr<rocksdb3131::LoggerJniCallback>*, LoggerJni> {
  public:
   static jclass getJClass(JNIEnv* env) {
     return RocksDBNativeClass::getJClass(env,
@@ -789,18 +789,18 @@ class JniUtil {
      * Helper for operations on a key and value
      * for example WriteBatch->Put
      *
-     * TODO(AR) could be extended to cover returning rocksdb::Status
+     * TODO(AR) could be extended to cover returning rocksdb3131::Status
      * from `op` and used for RocksDB->Put etc.
      */
     static void kv_op(
-        std::function<void(rocksdb::Slice, rocksdb::Slice)> op,
+        std::function<void(rocksdb3131::Slice, rocksdb3131::Slice)> op,
         JNIEnv* env, jobject jobj,
         jbyteArray jkey, jint jkey_len,
         jbyteArray jentry_value, jint jentry_value_len) {
       jbyte* key = env->GetByteArrayElements(jkey, nullptr);
       jbyte* value = env->GetByteArrayElements(jentry_value, nullptr);
-      rocksdb::Slice key_slice(reinterpret_cast<char*>(key), jkey_len);
-      rocksdb::Slice value_slice(reinterpret_cast<char*>(value),
+      rocksdb3131::Slice key_slice(reinterpret_cast<char*>(key), jkey_len);
+      rocksdb3131::Slice value_slice(reinterpret_cast<char*>(value),
           jentry_value_len);
 
       op(key_slice, value_slice);
@@ -813,15 +813,15 @@ class JniUtil {
      * Helper for operations on a key
      * for example WriteBatch->Delete
      *
-     * TODO(AR) could be extended to cover returning rocksdb::Status
+     * TODO(AR) could be extended to cover returning rocksdb3131::Status
      * from `op` and used for RocksDB->Delete etc.
      */
     static void k_op(
-        std::function<void(rocksdb::Slice)> op,
+        std::function<void(rocksdb3131::Slice)> op,
         JNIEnv* env, jobject jobj,
         jbyteArray jkey, jint jkey_len) {
       jbyte* key = env->GetByteArrayElements(jkey, nullptr);
-      rocksdb::Slice key_slice(reinterpret_cast<char*>(key), jkey_len);
+      rocksdb3131::Slice key_slice(reinterpret_cast<char*>(key), jkey_len);
 
       op(key_slice);
 
@@ -829,5 +829,5 @@ class JniUtil {
     }
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // JAVA_ROCKSJNI_PORTAL_H_

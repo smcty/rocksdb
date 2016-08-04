@@ -4,7 +4,7 @@
 //  of patent rights can be found in the PATENTS file in the same directory.
 //
 #ifndef ROCKSDB_LITE
-#include "rocksdb/memtablerep.h"
+#include "rocksdb3131/memtablerep.h"
 
 #include <unordered_set>
 #include <set>
@@ -18,7 +18,7 @@
 #include "util/mutexlock.h"
 #include "util/stl_wrappers.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace {
 
 using namespace stl_wrappers;
@@ -288,5 +288,5 @@ MemTableRep* VectorRepFactory::CreateMemTableRep(
     const SliceTransform*, Logger* logger) {
   return new VectorRep(compare, allocator, count_);
 }
-} // namespace rocksdb
+} // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

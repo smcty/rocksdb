@@ -13,8 +13,8 @@
 #include <vector>
 
 #include "db/dbformat.h"
-#include "rocksdb/env.h"
-#include "rocksdb/table.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/table.h"
 #include "table/block_builder.h"
 #include "table/cuckoo_table_factory.h"
 #include "table/format.h"
@@ -24,7 +24,7 @@
 #include "util/random.h"
 #include "util/string_util.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 const std::string CuckooTablePropertyNames::kEmptyKey =
       "rocksdb.cuckoo.bucket.empty.key";
 const std::string CuckooTablePropertyNames::kNumHashFunc =
@@ -508,5 +508,5 @@ bool CuckooTableBuilder::MakeSpaceForKey(
   return null_found;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

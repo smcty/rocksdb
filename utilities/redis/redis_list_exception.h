@@ -9,7 +9,7 @@
 #pragma once
 #include <exception>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class RedisListException: public std::exception {
  public:
@@ -18,5 +18,5 @@ class RedisListException: public std::exception {
   }
 };
 
-} // namespace rocksdb
+} // namespace rocksdb3131
 #endif

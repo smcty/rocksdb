@@ -10,7 +10,7 @@
 #include <functional>
 #include "util/autovector.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // Binary heap implementation optimized for use in multi-way merge sort.
 // Comparison to std::priority_queue:
@@ -137,4 +137,4 @@ class BinaryHeap {
   autovector<T> data_;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

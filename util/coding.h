@@ -18,10 +18,10 @@
 #include <string.h>
 #include <string>
 
-#include "rocksdb/write_batch.h"
+#include "rocksdb3131/write_batch.h"
 #include "port/port.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // The maximum length of a varint in bytes for 32 and 64 bits respectively.
 const unsigned int kMaxVarint32Length = 5;
@@ -265,4 +265,4 @@ inline Slice GetSliceUntil(Slice* slice, char delimiter) {
   return ret;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

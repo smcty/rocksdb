@@ -12,15 +12,15 @@
 #include <vector>
 
 #include "db/write_callback.h"
-#include "rocksdb/db.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/status.h"
-#include "rocksdb/types.h"
-#include "rocksdb/utilities/optimistic_transaction.h"
-#include "rocksdb/utilities/optimistic_transaction_db.h"
-#include "rocksdb/utilities/write_batch_with_index.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/status.h"
+#include "rocksdb3131/types.h"
+#include "rocksdb3131/utilities/optimistic_transaction.h"
+#include "rocksdb3131/utilities/optimistic_transaction_db.h"
+#include "rocksdb3131/utilities/write_batch_with_index.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 using TransactionKeyMap =
     std::unordered_map<uint32_t,
@@ -191,6 +191,6 @@ class OptimisticTransactionCallback : public WriteCallback {
   OptimisticTransactionImpl* txn_;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

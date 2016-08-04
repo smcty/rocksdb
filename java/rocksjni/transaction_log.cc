@@ -4,14 +4,14 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 // This file implements the "bridge" between Java and C++ and enables
-// calling c++ rocksdb::Iterator methods from Java side.
+// calling c++ rocksdb3131::Iterator methods from Java side.
 
 #include <jni.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "include/org_rocksdb_TransactionLogIterator.h"
-#include "rocksdb/transaction_log.h"
+#include "rocksdb3131/transaction_log.h"
 #include "rocksjni/portal.h"
 
 /*
@@ -21,7 +21,7 @@
  */
 void Java_org_rocksdb_TransactionLogIterator_disposeInternal(
     JNIEnv* env, jobject jobj, jlong handle) {
-  delete reinterpret_cast<rocksdb::TransactionLogIterator*>(handle);
+  delete reinterpret_cast<rocksdb3131::TransactionLogIterator*>(handle);
 }
 
 /*
@@ -31,7 +31,7 @@ void Java_org_rocksdb_TransactionLogIterator_disposeInternal(
  */
 jboolean Java_org_rocksdb_TransactionLogIterator_isValid(
     JNIEnv* env, jobject jobj, jlong handle) {
-  return reinterpret_cast<rocksdb::TransactionLogIterator*>(handle)->Valid();
+  return reinterpret_cast<rocksdb3131::TransactionLogIterator*>(handle)->Valid();
 }
 
 /*
@@ -41,7 +41,7 @@ jboolean Java_org_rocksdb_TransactionLogIterator_isValid(
  */
 void Java_org_rocksdb_TransactionLogIterator_next(
     JNIEnv* env, jobject jobj, jlong handle) {
-  reinterpret_cast<rocksdb::TransactionLogIterator*>(handle)->Next();
+  reinterpret_cast<rocksdb3131::TransactionLogIterator*>(handle)->Next();
 }
 
 /*
@@ -51,10 +51,10 @@ void Java_org_rocksdb_TransactionLogIterator_next(
  */
 void Java_org_rocksdb_TransactionLogIterator_status(
     JNIEnv* env, jobject jobj, jlong handle) {
-  rocksdb::Status s = reinterpret_cast<
-      rocksdb::TransactionLogIterator*>(handle)->status();
+  rocksdb3131::Status s = reinterpret_cast<
+      rocksdb3131::TransactionLogIterator*>(handle)->status();
   if (!s.ok()) {
-    rocksdb::RocksDBExceptionJni::ThrowNew(env, s);
+    rocksdb3131::RocksDBExceptionJni::ThrowNew(env, s);
   }
 }
 
@@ -65,8 +65,8 @@ void Java_org_rocksdb_TransactionLogIterator_status(
  */
 jobject Java_org_rocksdb_TransactionLogIterator_getBatch(
     JNIEnv* env, jobject jobj, jlong handle) {
-  rocksdb::BatchResult batch_result =
-      reinterpret_cast<rocksdb::TransactionLogIterator*>(handle)->GetBatch();
+  rocksdb3131::BatchResult batch_result =
+      reinterpret_cast<rocksdb3131::TransactionLogIterator*>(handle)->GetBatch();
   jclass jclazz = env->FindClass(
       "org/rocksdb/TransactionLogIterator$BatchResult");
   assert(jclazz != nullptr);

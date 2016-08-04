@@ -10,10 +10,10 @@
 #include <string>
 
 #include "db/dbformat.h"
-#include "rocksdb/env.h"
-#include "rocksdb/slice.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/slice.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class Comparator;
 class Iterator;
@@ -114,6 +114,6 @@ class MergeHelper {
   bool success_;
 };
 
-} // namespace rocksdb
+} // namespace rocksdb3131
 
 #endif

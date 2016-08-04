@@ -14,8 +14,8 @@
 #include <cmath>
 #include <vector>
 
-#include "rocksdb/table.h"
-#include "rocksdb/utilities/table_properties_collectors.h"
+#include "rocksdb3131/table.h"
+#include "rocksdb3131/utilities/table_properties_collectors.h"
 #include "util/random.h"
 #include "utilities/table_properties_collectors/compact_on_deletion_collector.h"
 
@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
   }
 
   // randomize tests
-  rocksdb::Random rnd(301);
+  rocksdb3131::Random rnd(301);
   const int kMaxTestSize = 100000l;
   for (int random_test = 0; random_test < 100; random_test++) {
     int window_size = rnd.Uniform(kMaxTestSize) + 1;
@@ -54,8 +54,8 @@ int main(int argc, char** argv) {
     const int kBias = (kNumDeletionTrigger + kBucketSize - 1) / kBucketSize;
     // Simple test
     {
-      std::unique_ptr<rocksdb::TablePropertiesCollector> collector;
-      auto factory = rocksdb::NewCompactOnDeletionCollectorFactory(
+      std::unique_ptr<rocksdb3131::TablePropertiesCollector> collector;
+      auto factory = rocksdb3131::NewCompactOnDeletionCollectorFactory(
           kWindowSize, kNumDeletionTrigger);
       collector.reset(
           factory->CreateTablePropertiesCollector());
@@ -65,11 +65,11 @@ int main(int argc, char** argv) {
         for (int i = 0; i < kPaddedWindowSize; ++i) {
           if (i % kSample < delete_rate) {
             collector->AddUserKey("hello", "rocksdb",
-                                  rocksdb::kEntryDelete, 0, 0);
+                                  rocksdb3131::kEntryDelete, 0, 0);
             deletions++;
           } else {
             collector->AddUserKey("hello", "rocksdb",
-                                  rocksdb::kEntryPut, 0, 0);
+                                  rocksdb3131::kEntryPut, 0, 0);
           }
         }
         if (collector->NeedCompact() !=
@@ -87,8 +87,8 @@ int main(int argc, char** argv) {
 
     // Only one section of a file satisfies the compaction trigger
     {
-      std::unique_ptr<rocksdb::TablePropertiesCollector> collector;
-      auto factory = rocksdb::NewCompactOnDeletionCollectorFactory(
+      std::unique_ptr<rocksdb3131::TablePropertiesCollector> collector;
+      auto factory = rocksdb3131::NewCompactOnDeletionCollectorFactory(
           kWindowSize, kNumDeletionTrigger);
       collector.reset(
           factory->CreateTablePropertiesCollector());
@@ -99,24 +99,24 @@ int main(int argc, char** argv) {
           int initial_entries = rnd.Uniform(kWindowSize) + kWindowSize;
           for (int i = 0; i < initial_entries; ++i) {
             collector->AddUserKey("hello", "rocksdb",
-                                  rocksdb::kEntryPut, 0, 0);
+                                  rocksdb3131::kEntryPut, 0, 0);
           }
         }
         for (int i = 0; i < kPaddedWindowSize; ++i) {
           if (i % kSample < delete_rate) {
             collector->AddUserKey("hello", "rocksdb",
-                                  rocksdb::kEntryDelete, 0, 0);
+                                  rocksdb3131::kEntryDelete, 0, 0);
             deletions++;
           } else {
             collector->AddUserKey("hello", "rocksdb",
-                                  rocksdb::kEntryPut, 0, 0);
+                                  rocksdb3131::kEntryPut, 0, 0);
           }
         }
         for (int section = 0; section < 5; ++section) {
           int ending_entries = rnd.Uniform(kWindowSize) + kWindowSize;
           for (int i = 0; i < ending_entries; ++i) {
             collector->AddUserKey("hello", "rocksdb",
-                                  rocksdb::kEntryPut, 0, 0);
+                                  rocksdb3131::kEntryPut, 0, 0);
           }
         }
         if (collector->NeedCompact() != (deletions >= kNumDeletionTrigger) &&
@@ -135,8 +135,8 @@ int main(int argc, char** argv) {
     // TEST 3:  Issues a lots of deletes, but their density is not
     // high enough to trigger compaction.
     {
-      std::unique_ptr<rocksdb::TablePropertiesCollector> collector;
-      auto factory = rocksdb::NewCompactOnDeletionCollectorFactory(
+      std::unique_ptr<rocksdb3131::TablePropertiesCollector> collector;
+      auto factory = rocksdb3131::NewCompactOnDeletionCollectorFactory(
           kWindowSize, kNumDeletionTrigger);
       collector.reset(
           factory->CreateTablePropertiesCollector());
@@ -149,10 +149,10 @@ int main(int argc, char** argv) {
           for (int i = 0; i < kPaddedWindowSize; ++i) {
             if (i < kDeletionsPerSection) {
               collector->AddUserKey("hello", "rocksdb",
-                                    rocksdb::kEntryDelete, 0, 0);
+                                    rocksdb3131::kEntryDelete, 0, 0);
             } else {
               collector->AddUserKey("hello", "rocksdb",
-                                    rocksdb::kEntryPut, 0, 0);
+                                    rocksdb3131::kEntryPut, 0, 0);
             }
           }
         }

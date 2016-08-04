@@ -7,9 +7,9 @@
  * Back-end implementation details specific to the Merge Operator.
  */
 
-#include "rocksdb/merge_operator.h"
+#include "rocksdb3131/merge_operator.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // The default implementation of PartialMergeMulti, which invokes
 // PartialMerge multiple times internally and merges two operands at
@@ -74,4 +74,4 @@ bool AssociativeMergeOperator::PartialMerge(
   return Merge(key, &left_operand, right_operand, new_value, logger);
 }
 
-} // namespace rocksdb
+} // namespace rocksdb3131

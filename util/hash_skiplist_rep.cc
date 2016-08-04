@@ -9,16 +9,16 @@
 
 #include <atomic>
 
-#include "rocksdb/memtablerep.h"
+#include "rocksdb3131/memtablerep.h"
 #include "util/arena.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/slice_transform.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/slice_transform.h"
 #include "port/port.h"
 #include "util/murmurhash.h"
 #include "db/memtable.h"
 #include "db/skiplist.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace {
 
 class HashSkipListRep : public MemTableRep {
@@ -338,5 +338,5 @@ MemTableRepFactory* NewHashSkipListRepFactory(
       skiplist_branching_factor);
 }
 
-} // namespace rocksdb
+} // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

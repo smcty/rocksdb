@@ -38,10 +38,10 @@
 #include "db/log_reader.h"
 #include "db/file_indexer.h"
 #include "db/write_controller.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/env.h"
 #include "util/instrumented_mutex.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace log {
 class Writer;
@@ -216,7 +216,7 @@ class VersionStorageInfo {
     return files_[level];
   }
 
-  const rocksdb::LevelFilesBrief& LevelFilesBrief(int level) const {
+  const rocksdb3131::LevelFilesBrief& LevelFilesBrief(int level) const {
     assert(level < static_cast<int>(level_files_brief_.size()));
     return level_files_brief_[level];
   }
@@ -325,7 +325,7 @@ class VersionStorageInfo {
   std::vector<uint64_t> level_max_bytes_;
 
   // A short brief metadata of files per level
-  autovector<rocksdb::LevelFilesBrief> level_files_brief_;
+  autovector<rocksdb3131::LevelFilesBrief> level_files_brief_;
   FileIndexer file_indexer_;
   Arena arena_;  // Used to allocate space for file_levels_
 
@@ -723,4 +723,4 @@ class VersionSet {
                          VersionEdit* edit, InstrumentedMutex* mu);
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

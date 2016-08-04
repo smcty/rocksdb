@@ -15,7 +15,7 @@
 #include "port/stack_trace.h"
 #include "util/db_test_util.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class DBTestXactLogIterator : public DBTestBase {
  public:
@@ -98,14 +98,14 @@ TEST_F(DBTestXactLogIterator, TransactionLogIteratorRace) {
   for (int test = 0; test < LOG_ITERATOR_RACE_TEST_COUNT; ++test) {
     // Setup sync point dependency to reproduce the race condition of
     // a log file moved to archived dir, in the middle of GetSortedWalFiles
-    rocksdb::SyncPoint::GetInstance()->LoadDependency(
+    rocksdb3131::SyncPoint::GetInstance()->LoadDependency(
       { { sync_points[test][0], sync_points[test][1] },
         { sync_points[test][2], sync_points[test][3] },
       });
 
     do {
-      rocksdb::SyncPoint::GetInstance()->ClearTrace();
-      rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+      rocksdb3131::SyncPoint::GetInstance()->ClearTrace();
+      rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
       Options options = OptionsForLogIterTest();
       DestroyAndReopen(options);
       Put("key1", DummyString(1024));
@@ -122,7 +122,7 @@ TEST_F(DBTestXactLogIterator, TransactionLogIteratorRace) {
         ExpectRecords(4, iter);
       }
 
-      rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+      rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
       // trigger async flush, and log move. Well, log move will
       // wait until the GetSortedWalFiles:1 to reproduce the race
       // condition
@@ -182,7 +182,7 @@ TEST_F(DBTestXactLogIterator, TransactionLogIteratorCorruptedLog) {
     }
     dbfull()->Flush(FlushOptions());
     // Corrupt this log to create a gap
-    rocksdb::VectorLogPtr wal_files;
+    rocksdb3131::VectorLogPtr wal_files;
     ASSERT_OK(dbfull()->GetSortedWalFiles(wal_files));
     const auto logfile_path = dbname_ + "/" + wal_files.front()->PathName();
     if (mem_env_) {
@@ -275,13 +275,13 @@ TEST_F(DBTestXactLogIterator, TransactionLogIteratorBlobs) {
       "Delete(0, key2)",
       handler.seen);
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // !(defined NDEBUG) || !defined(OS_WIN)
 
 int main(int argc, char** argv) {
 #if !(defined NDEBUG) || !defined(OS_WIN)
-  rocksdb::port::InstallStackTraceHandler();
+  rocksdb3131::port::InstallStackTraceHandler();
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 #else

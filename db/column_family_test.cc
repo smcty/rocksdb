@@ -12,16 +12,16 @@
 #include <string>
 
 #include "db/db_impl.h"
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
-#include "rocksdb/iterator.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/iterator.h"
 #include "util/string_util.h"
 #include "util/testharness.h"
 #include "util/testutil.h"
 #include "util/coding.h"
 #include "utilities/merge_operators.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 std::string RandomString(Random* rnd, int len) {
@@ -1172,7 +1172,7 @@ TEST_F(ColumnFamilyTest, ReadDroppedColumnFamily) {
   }
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

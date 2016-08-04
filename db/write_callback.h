@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "rocksdb/status.h"
+#include "rocksdb3131/status.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class DB;
 
@@ -21,4 +21,4 @@ class WriteCallback {
   virtual Status Callback(DB* db) = 0;
 };
 
-}  //  namespace rocksdb
+}  //  namespace rocksdb3131

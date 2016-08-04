@@ -18,11 +18,11 @@ int main() {
 #include <vector>
 
 #include <gflags/gflags.h>
-#include "rocksdb/comparator.h"
-#include "rocksdb/db.h"
-#include "rocksdb/perf_context.h"
-#include "rocksdb/slice_transform.h"
-#include "rocksdb/memtablerep.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/perf_context.h"
+#include "rocksdb3131/slice_transform.h"
+#include "rocksdb3131/memtablerep.h"
 #include "util/histogram.h"
 #include "util/stop_watch.h"
 #include "util/string_util.h"
@@ -47,9 +47,9 @@ DEFINE_int32(memtable_prefix_bloom_huge_page_tlb_size, 2 * 1024 * 1024, "");
 DEFINE_int32(value_size, 40, "");
 
 // Path to the database on file system
-const std::string kDbName = rocksdb::test::TmpDir() + "/prefix_test";
+const std::string kDbName = rocksdb3131::test::TmpDir() + "/prefix_test";
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 struct TestKey {
   uint64_t prefix;

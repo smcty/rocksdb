@@ -4,10 +4,10 @@
 //  of patent rights can be found in the PATENTS file in the same directory.
 
 #ifndef ROCKSDB_LITE
-#include "rocksdb/utilities/json_document.h"
+#include "rocksdb3131/utilities/json_document.h"
 #include "third-party/fbson/FbsonWriter.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 JSONDocumentBuilder::JSONDocumentBuilder()
 : writer_(new fbson::FbsonWriter()) {
 }
@@ -110,6 +110,6 @@ JSONDocument JSONDocumentBuilder::GetJSONDocument() {
 JSONDocumentBuilder::~JSONDocumentBuilder() {
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

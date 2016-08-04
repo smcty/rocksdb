@@ -4,7 +4,7 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 // This file implements the "bridge" between Java and C++ and enables
-// calling c++ rocksdb::TtlDB methods.
+// calling c++ rocksdb3131::TtlDB methods.
 // from Java side.
 
 #include <jni.h>
@@ -14,7 +14,7 @@
 #include <vector>
 
 #include "include/org_rocksdb_TtlDB.h"
-#include "rocksdb/utilities/db_ttl.h"
+#include "rocksdb3131/utilities/db_ttl.h"
 #include "rocksjni/portal.h"
 
 /*
@@ -25,20 +25,20 @@
 void Java_org_rocksdb_TtlDB_open(JNIEnv* env,
     jobject jttldb, jlong joptions_handle, jstring jdb_path,
     jint jttl, jboolean jread_only) {
-  auto* opt = reinterpret_cast<rocksdb::Options*>(joptions_handle);
-  rocksdb::DBWithTTL* db = nullptr;
+  auto* opt = reinterpret_cast<rocksdb3131::Options*>(joptions_handle);
+  rocksdb3131::DBWithTTL* db = nullptr;
   const char* db_path = env->GetStringUTFChars(jdb_path, 0);
-  rocksdb::Status s = rocksdb::DBWithTTL::Open(*opt, db_path, &db,
+  rocksdb3131::Status s = rocksdb3131::DBWithTTL::Open(*opt, db_path, &db,
       jttl, jread_only);
   env->ReleaseStringUTFChars(jdb_path, db_path);
 
   // as TTLDB extends RocksDB on the java side, we can reuse
   // the RocksDB portal here.
   if (s.ok()) {
-      rocksdb::RocksDBJni::setHandle(env, jttldb, db);
+      rocksdb3131::RocksDBJni::setHandle(env, jttldb, db);
       return;
   }
-  rocksdb::RocksDBExceptionJni::ThrowNew(env, s);
+  rocksdb3131::RocksDBExceptionJni::ThrowNew(env, s);
 }
 
 /*
@@ -52,37 +52,37 @@ jobject
     JNIEnv* env, jobject jdb, jlong jopt_handle, jstring jdb_path,
     jobject jcfdesc_list, jint jcfdesc_count, jobject jttl_list,
     jboolean jread_only) {
-  auto* opt = reinterpret_cast<rocksdb::Options*>(jopt_handle);
-  rocksdb::DBWithTTL* db = nullptr;
+  auto* opt = reinterpret_cast<rocksdb3131::Options*>(jopt_handle);
+  rocksdb3131::DBWithTTL* db = nullptr;
   const char* db_path = env->GetStringUTFChars(jdb_path, 0);
 
   std::vector<jbyte*> cfnames_to_free;
   std::vector<jbyteArray> jcfnames_for_free;
 
-  std::vector<rocksdb::ColumnFamilyDescriptor> column_families;
+  std::vector<rocksdb3131::ColumnFamilyDescriptor> column_families;
   std::vector<int32_t> ttl_values;
-  std::vector<rocksdb::ColumnFamilyHandle* > handles;
+  std::vector<rocksdb3131::ColumnFamilyHandle* > handles;
   // get iterator for ColumnFamilyDescriptors
   jobject iteratorObj = env->CallObjectMethod(
-      jcfdesc_list, rocksdb::ListJni::getIteratorMethod(env));
+      jcfdesc_list, rocksdb3131::ListJni::getIteratorMethod(env));
 
   // iterate over ColumnFamilyDescriptors
   while (env->CallBooleanMethod(
-      iteratorObj, rocksdb::ListJni::getHasNextMethod(env)) == JNI_TRUE) {
+      iteratorObj, rocksdb3131::ListJni::getHasNextMethod(env)) == JNI_TRUE) {
       // get ColumnFamilyDescriptor
       jobject jcf_descriptor = env->CallObjectMethod(iteratorObj,
-          rocksdb::ListJni::getNextMethod(env));
+          rocksdb3131::ListJni::getNextMethod(env));
       // get ColumnFamilyName
       jbyteArray byteArray = static_cast<jbyteArray>(env->CallObjectMethod(
           jcf_descriptor,
-          rocksdb::ColumnFamilyDescriptorJni::getColumnFamilyNameMethod(
+          rocksdb3131::ColumnFamilyDescriptorJni::getColumnFamilyNameMethod(
               env)));
       // get CF Options
       jobject jcf_opt_obj = env->CallObjectMethod(jcf_descriptor,
-          rocksdb::ColumnFamilyDescriptorJni::getColumnFamilyOptionsMethod(
+          rocksdb3131::ColumnFamilyDescriptorJni::getColumnFamilyOptionsMethod(
               env));
-      rocksdb::ColumnFamilyOptions* cfOptions =
-          rocksdb::ColumnFamilyOptionsJni::getHandle(env, jcf_opt_obj);
+      rocksdb3131::ColumnFamilyOptions* cfOptions =
+          rocksdb3131::ColumnFamilyOptionsJni::getHandle(env, jcf_opt_obj);
 
       jbyte* cfname = env->GetByteArrayElements(byteArray, 0);
       const int len = env->GetArrayLength(byteArray);
@@ -90,24 +90,24 @@ jobject
       // free allocated cfnames after call to open
       cfnames_to_free.push_back(cfname);
       jcfnames_for_free.push_back(byteArray);
-      column_families.push_back(rocksdb::ColumnFamilyDescriptor(
+      column_families.push_back(rocksdb3131::ColumnFamilyDescriptor(
           std::string(reinterpret_cast<char *>(cfname), len), *cfOptions));
   }
   // get iterator for TTL values
   iteratorObj = env->CallObjectMethod(
-        jttl_list, rocksdb::ListJni::getIteratorMethod(env));
+        jttl_list, rocksdb3131::ListJni::getIteratorMethod(env));
   // iterate over TTL values
   while (env->CallBooleanMethod(
-      iteratorObj, rocksdb::ListJni::getHasNextMethod(env)) == JNI_TRUE) {
+      iteratorObj, rocksdb3131::ListJni::getHasNextMethod(env)) == JNI_TRUE) {
      // get TTL object
      jobject jttl_object = env->CallObjectMethod(iteratorObj,
-       rocksdb::ListJni::getNextMethod(env));
+       rocksdb3131::ListJni::getNextMethod(env));
      // get Integer value
      jclass jIntClazz = env->FindClass("java/lang/Integer");
      jmethodID getVal = env->GetMethodID(jIntClazz, "intValue", "()I");
      ttl_values.push_back(env->CallIntMethod(jttl_object, getVal));
   }
-  rocksdb::Status s = rocksdb::DBWithTTL::Open(*opt, db_path, column_families,
+  rocksdb3131::Status s = rocksdb3131::DBWithTTL::Open(*opt, db_path, column_families,
       &handles, &db, ttl_values, jread_only);
 
   env->ReleaseStringUTFChars(jdb_path, db_path);
@@ -120,14 +120,14 @@ jobject
 
   // check if open operation was successful
   if (s.ok()) {
-    rocksdb::RocksDBJni::setHandle(env, jdb, db);
+    rocksdb3131::RocksDBJni::setHandle(env, jdb, db);
     jclass jListClazz = env->FindClass("java/util/ArrayList");
-    jmethodID midList = rocksdb::ListJni::getArrayListConstructorMethodId(
+    jmethodID midList = rocksdb3131::ListJni::getArrayListConstructorMethodId(
         env, jListClazz);
     jobject jcfhandle_list = env->NewObject(jListClazz,
         midList, handles.size());
     // insert in java list
-    for (std::vector<rocksdb::ColumnFamilyHandle*>::size_type i = 0;
+    for (std::vector<rocksdb3131::ColumnFamilyHandle*>::size_type i = 0;
         i != handles.size(); i++) {
       // jlong must be converted to Long due to collections restrictions
       jclass jLongClazz = env->FindClass("java/lang/Long");
@@ -135,12 +135,12 @@ jobject
       jobject obj = env->NewObject(jLongClazz, midLong,
           reinterpret_cast<jlong>(handles[i]));
       env->CallBooleanMethod(jcfhandle_list,
-          rocksdb::ListJni::getListAddMethodId(env), obj);
+          rocksdb3131::ListJni::getListAddMethodId(env), obj);
     }
 
     return jcfhandle_list;
   }
-  rocksdb::RocksDBExceptionJni::ThrowNew(env, s);
+  rocksdb3131::RocksDBExceptionJni::ThrowNew(env, s);
   return nullptr;
 }
 
@@ -152,25 +152,25 @@ jobject
 jlong Java_org_rocksdb_TtlDB_createColumnFamilyWithTtl(
     JNIEnv* env, jobject jobj, jlong jdb_handle,
     jobject jcf_descriptor, jint jttl) {
-  rocksdb::ColumnFamilyHandle* handle;
-  auto* db_handle = reinterpret_cast<rocksdb::DBWithTTL*>(jdb_handle);
+  rocksdb3131::ColumnFamilyHandle* handle;
+  auto* db_handle = reinterpret_cast<rocksdb3131::DBWithTTL*>(jdb_handle);
 
   // get ColumnFamilyName
   jbyteArray byteArray = static_cast<jbyteArray>(env->CallObjectMethod(
       jcf_descriptor,
-      rocksdb::ColumnFamilyDescriptorJni::getColumnFamilyNameMethod(
+      rocksdb3131::ColumnFamilyDescriptorJni::getColumnFamilyNameMethod(
           env)));
   // get CF Options
   jobject jcf_opt_obj = env->CallObjectMethod(jcf_descriptor,
-      rocksdb::ColumnFamilyDescriptorJni::getColumnFamilyOptionsMethod(
+      rocksdb3131::ColumnFamilyDescriptorJni::getColumnFamilyOptionsMethod(
       env));
-  rocksdb::ColumnFamilyOptions* cfOptions =
-      rocksdb::ColumnFamilyOptionsJni::getHandle(env, jcf_opt_obj);
+  rocksdb3131::ColumnFamilyOptions* cfOptions =
+      rocksdb3131::ColumnFamilyOptionsJni::getHandle(env, jcf_opt_obj);
 
   jbyte* cfname = env->GetByteArrayElements(byteArray, 0);
   const int len = env->GetArrayLength(byteArray);
 
-  rocksdb::Status s = db_handle->CreateColumnFamilyWithTtl(
+  rocksdb3131::Status s = db_handle->CreateColumnFamilyWithTtl(
       *cfOptions, std::string(reinterpret_cast<char *>(cfname),
           len), &handle, jttl);
   env->ReleaseByteArrayElements(byteArray, cfname, 0);
@@ -178,6 +178,6 @@ jlong Java_org_rocksdb_TtlDB_createColumnFamilyWithTtl(
   if (s.ok()) {
     return reinterpret_cast<jlong>(handle);
   }
-  rocksdb::RocksDBExceptionJni::ThrowNew(env, s);
+  rocksdb3131::RocksDBExceptionJni::ThrowNew(env, s);
   return 0;
 }

@@ -4,12 +4,12 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 // This file implements the callback "bridge" between Java and C++ for
-// rocksdb::Comparator.
+// rocksdb3131::Comparator.
 
 #include "rocksjni/comparatorjnicallback.h"
 #include "rocksjni/portal.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 BaseComparatorJniCallback::BaseComparatorJniCallback(
     JNIEnv* env, jobject jComparator,
     const ComparatorJniCallbackOptions* copt)
@@ -172,4 +172,4 @@ DirectComparatorJniCallback::~DirectComparatorJniCallback() {
   m_env->DeleteGlobalRef(m_jSliceB);
   m_env->DeleteGlobalRef(m_jSliceLimit);
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131

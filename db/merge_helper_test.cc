@@ -8,13 +8,13 @@
 #include <vector>
 
 #include "db/merge_helper.h"
-#include "rocksdb/comparator.h"
+#include "rocksdb3131/comparator.h"
 #include "util/coding.h"
 #include "util/testharness.h"
 #include "util/testutil.h"
 #include "utilities/merge_operators.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class MergeHelperTest : public testing::Test {
  public:
@@ -145,7 +145,7 @@ TEST_F(MergeHelperTest, MergeDeletion) {
   ASSERT_EQ(EncodeInt(3U), merge_helper_->value());
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

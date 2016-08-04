@@ -4,11 +4,11 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 // This file implements the "bridge" between Java and C++ for
-// rocksdb::CompactionFilter.
+// rocksdb3131::CompactionFilter.
 
 #include <jni.h>
 
-#include "rocksdb/compaction_filter.h"
+#include "rocksdb3131/compaction_filter.h"
 
 // <editor-fold desc="org.rocksdb.AbstractCompactionFilter">
 
@@ -19,6 +19,6 @@
  */
 void Java_org_rocksdb_AbstractCompactionFilter_disposeInternal(
     JNIEnv* env, jobject jobj, jlong handle) {
-  delete reinterpret_cast<rocksdb::CompactionFilter*>(handle);
+  delete reinterpret_cast<rocksdb3131::CompactionFilter*>(handle);
 }
 // </editor-fold>

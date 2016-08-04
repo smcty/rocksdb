@@ -12,7 +12,7 @@
 #include "table/plain_table_reader.h"
 #include "port/port.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 Status PlainTableFactory::NewTableReader(
     const ImmutableCFOptions& ioptions, const EnvOptions& env_options,
@@ -88,5 +88,5 @@ const std::string PlainTablePropertyNames::kBloomVersion =
 const std::string PlainTablePropertyNames::kNumBloomBlocks =
     "rocksdb.plain.table.bloom.numblocks";
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

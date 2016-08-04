@@ -4,18 +4,18 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 // This file implements the callback "bridge" between Java and C++ for
-// rocksdb::Comparator and rocksdb::DirectComparator.
+// rocksdb3131::Comparator and rocksdb3131::DirectComparator.
 
 #ifndef JAVA_ROCKSJNI_COMPARATORJNICALLBACK_H_
 #define JAVA_ROCKSJNI_COMPARATORJNICALLBACK_H_
 
 #include <jni.h>
 #include <string>
-#include "rocksdb/comparator.h"
-#include "rocksdb/slice.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/slice.h"
 #include "port/port.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 struct ComparatorJniCallbackOptions {
   // Use adaptive mutex, which spins in the user space before resorting
@@ -90,6 +90,6 @@ class DirectComparatorJniCallback : public BaseComparatorJniCallback {
         const ComparatorJniCallbackOptions* copt);
       ~DirectComparatorJniCallback();
 };
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // JAVA_ROCKSJNI_COMPARATORJNICALLBACK_H_

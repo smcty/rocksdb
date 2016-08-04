@@ -8,7 +8,7 @@
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 
 #pragma once
-#include "rocksdb/statistics.h"
+#include "rocksdb3131/statistics.h"
 
 #include <cassert>
 #include <string>
@@ -17,7 +17,7 @@
 
 #include <string.h>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class HistogramBucketMapper {
  public:
@@ -81,4 +81,4 @@ class HistogramImpl {
   uint64_t buckets_[138];  // this is BucketMapper::BucketCount()
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

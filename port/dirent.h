@@ -17,7 +17,7 @@
 #include <sys/types.h>
 #elif defined(OS_WIN)
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace port {
 
 struct dirent {
@@ -40,7 +40,7 @@ using port::opendir;
 using port::readdir;
 using port::closedir;
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // OS_WIN
 

@@ -11,8 +11,8 @@
 #include "db/db_impl.h"
 #include "db/dbformat.h"
 #include "db/table_properties_collector.h"
-#include "rocksdb/table.h"
-#include "rocksdb/immutable_options.h"
+#include "rocksdb3131/table.h"
+#include "rocksdb3131/immutable_options.h"
 #include "table/block_based_table_factory.h"
 #include "table/meta_blocks.h"
 #include "table/plain_table_factory.h"
@@ -22,7 +22,7 @@
 #include "util/testharness.h"
 #include "util/testutil.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class TablePropertiesTest : public testing::Test,
                             public testing::WithParamInterface<bool> {
@@ -458,7 +458,7 @@ INSTANTIATE_TEST_CASE_P(InternalKeyPropertiesCollector, TablePropertiesTest,
 INSTANTIATE_TEST_CASE_P(CustomizedTablePropertiesCollector, TablePropertiesTest,
                         ::testing::Bool());
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

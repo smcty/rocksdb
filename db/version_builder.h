@@ -8,9 +8,9 @@
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 //
 #pragma once
-#include "rocksdb/env.h"
+#include "rocksdb3131/env.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class TableCache;
 class VersionStorageInfo;
@@ -39,4 +39,4 @@ class VersionBuilder {
 };
 
 extern bool NewestFirstBySeqNo(FileMetaData* a, FileMetaData* b);
-}  // namespace rocksdb
+}  // namespace rocksdb3131

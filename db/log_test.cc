@@ -9,7 +9,7 @@
 
 #include "db/log_reader.h"
 #include "db/log_writer.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/env.h"
 #include "util/coding.h"
 #include "util/crc32c.h"
 #include "util/file_reader_writer.h"
@@ -17,7 +17,7 @@
 #include "util/testharness.h"
 #include "util/testutil.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace log {
 
 // Construct a string of the specified length made out of the supplied
@@ -667,7 +667,7 @@ TEST_F(LogTest, ClearEofError2) {
 }
 
 }  // namespace log
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

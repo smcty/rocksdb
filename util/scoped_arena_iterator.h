@@ -7,9 +7,9 @@
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 #pragma once
 
-#include "rocksdb/iterator.h"
+#include "rocksdb3131/iterator.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 class ScopedArenaIterator {
  public:
   explicit ScopedArenaIterator(Iterator* iter = nullptr) : iter_(iter) {}
@@ -25,4 +25,4 @@ class ScopedArenaIterator {
  private:
   Iterator* iter_;
 };
-}  // namespace rocksdb
+}  // namespace rocksdb3131

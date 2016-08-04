@@ -14,15 +14,15 @@
 
 #include "db/dbformat.h"
 
-#include "rocksdb/cache.h"
-#include "rocksdb/comparator.h"
-#include "rocksdb/env.h"
-#include "rocksdb/filter_policy.h"
-#include "rocksdb/iterator.h"
-#include "rocksdb/options.h"
-#include "rocksdb/statistics.h"
-#include "rocksdb/table.h"
-#include "rocksdb/table_properties.h"
+#include "rocksdb3131/cache.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/filter_policy.h"
+#include "rocksdb3131/iterator.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/statistics.h"
+#include "rocksdb3131/table.h"
+#include "rocksdb3131/table_properties.h"
 
 #include "table/block.h"
 #include "table/filter_block.h"
@@ -42,7 +42,7 @@
 #include "util/stop_watch.h"
 #include "util/string_util.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 extern const uint64_t kBlockBasedTableMagicNumber;
 extern const std::string kHashIndexPrefixesBlock;
@@ -1468,7 +1468,7 @@ Status BlockBasedTable::DumpTable(WritableFile* out_file) {
       if (!s.ok()) {
         return s;
       }
-      if (meta_iter->key() == rocksdb::kPropertiesBlock) {
+      if (meta_iter->key() == rocksdb3131::kPropertiesBlock) {
         out_file->Append("  Properties block handle: ");
         out_file->Append(meta_iter->value().ToString(true).c_str());
         out_file->Append("\n");
@@ -1485,7 +1485,7 @@ Status BlockBasedTable::DumpTable(WritableFile* out_file) {
   }
 
   // Output TableProperties
-  const rocksdb::TableProperties* table_properties;
+  const rocksdb3131::TableProperties* table_properties;
   table_properties = rep_->table_properties.get();
 
   if (table_properties != nullptr) {
@@ -1500,8 +1500,8 @@ Status BlockBasedTable::DumpTable(WritableFile* out_file) {
   // Output Filter blocks
   if (!rep_->filter && !table_properties->filter_policy_name.empty()) {
     // Support only BloomFilter as off now
-    rocksdb::BlockBasedTableOptions table_options;
-    table_options.filter_policy.reset(rocksdb::NewBloomFilterPolicy(1));
+    rocksdb3131::BlockBasedTableOptions table_options;
+    table_options.filter_policy.reset(rocksdb3131::NewBloomFilterPolicy(1));
     if (table_properties->filter_policy_name.compare(
             table_options.filter_policy->Name()) == 0) {
       std::string filter_block_key = kFilterBlockPrefix;
@@ -1600,7 +1600,7 @@ Status BlockBasedTable::DumpDataBlocks(WritableFile* out_file) {
     }
 
     out_file->Append("Data Block # ");
-    out_file->Append(rocksdb::ToString(block_id));
+    out_file->Append(rocksdb3131::ToString(block_id));
     out_file->Append(" @ ");
     out_file->Append(blockhandles_iter->value().ToString(true).c_str());
     out_file->Append("\n");
@@ -1659,4 +1659,4 @@ Status BlockBasedTable::DumpDataBlocks(WritableFile* out_file) {
   return Status::OK();
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

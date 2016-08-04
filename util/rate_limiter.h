@@ -14,10 +14,10 @@
 #include "port/port.h"
 #include "util/mutexlock.h"
 #include "util/random.h"
-#include "rocksdb/env.h"
-#include "rocksdb/rate_limiter.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/rate_limiter.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class GenericRateLimiter : public RateLimiter {
  public:
@@ -88,4 +88,4 @@ class GenericRateLimiter : public RateLimiter {
   std::deque<Req*> queue_[Env::IO_TOTAL];
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

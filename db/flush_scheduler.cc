@@ -9,7 +9,7 @@
 
 #include "db/column_family.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 void FlushScheduler::ScheduleFlush(ColumnFamilyData* cfd) {
 #ifndef NDEBUG
@@ -60,4 +60,4 @@ void FlushScheduler::Clear() {
   column_families_.clear();
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

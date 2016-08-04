@@ -5,10 +5,10 @@
  */
 
 #pragma once
-#include "rocksdb/merge_operator.h"
-#include "rocksdb/slice.h"
+#include "rocksdb3131/merge_operator.h"
+#include "rocksdb3131/slice.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class StringAppendOperator : public AssociativeMergeOperator {
  public:
@@ -27,5 +27,5 @@ class StringAppendOperator : public AssociativeMergeOperator {
 
 };
 
-} // namespace rocksdb
+} // namespace rocksdb3131
 

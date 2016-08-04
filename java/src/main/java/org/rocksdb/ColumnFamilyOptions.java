@@ -26,7 +26,7 @@ public class ColumnFamilyOptions extends RocksObject
    * Construct ColumnFamilyOptions.
    *
    * This constructor will create (by allocating a block of memory)
-   * an {@code rocksdb::DBOptions} in the c++ side.
+   * an {@code rocksdb3131::DBOptions} in the c++ side.
    */
   public ColumnFamilyOptions() {
     super();

@@ -10,7 +10,7 @@
 #include "table/plain_table_factory.h"
 #include "util/file_reader_writer.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 
@@ -321,5 +321,5 @@ Status PlainTableKeyDecoder::NextKey(const char* start, const char* limit,
   }
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

@@ -9,7 +9,7 @@
 
 #ifndef ROCKSDB_LITE
 
-#include "rocksdb/db.h"
+#include "rocksdb3131/db.h"
 #include "db/db_impl.h"
 #include "db/filename.h"
 #include "db/version_set.h"
@@ -17,14 +17,14 @@
 #include "util/string_util.h"
 #include "util/testharness.h"
 #include "util/testutil.h"
-#include "rocksdb/env.h"
-#include "rocksdb/transaction_log.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/transaction_log.h"
 #include <vector>
 #include <stdlib.h>
 #include <map>
 #include <string>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class DeleteFileTest : public testing::Test {
  public:
@@ -306,8 +306,8 @@ TEST_F(DeleteFileTest, DeleteNonDefaultColumnFamily) {
   column_families.emplace_back();
   column_families.emplace_back("new_cf", ColumnFamilyOptions());
 
-  std::vector<rocksdb::ColumnFamilyHandle*> handles;
-  rocksdb::DB* db;
+  std::vector<rocksdb3131::ColumnFamilyHandle*> handles;
+  rocksdb3131::DB* db;
   ASSERT_OK(DB::Open(db_options, dbname_, column_families, &handles, &db));
 
   Random rnd(5);
@@ -366,7 +366,7 @@ TEST_F(DeleteFileTest, DeleteNonDefaultColumnFamily) {
   delete db;
 }
 
-} //namespace rocksdb
+} //namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

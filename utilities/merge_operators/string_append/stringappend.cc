@@ -9,11 +9,11 @@
 #include <memory>
 #include <assert.h>
 
-#include "rocksdb/slice.h"
-#include "rocksdb/merge_operator.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/merge_operator.h"
 #include "utilities/merge_operators.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // Constructor: also specify the delimiter character.
 StringAppendOperator::StringAppendOperator(char delim_char)
@@ -54,7 +54,7 @@ std::shared_ptr<MergeOperator> MergeOperators::CreateStringAppendOperator() {
   return std::make_shared<StringAppendOperator>(',');
 }
 
-} // namespace rocksdb
+} // namespace rocksdb3131
 
 
 

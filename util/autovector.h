@@ -10,7 +10,7 @@
 #include <iterator>
 #include <vector>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 #ifdef ROCKSDB_LITE
 template <class T, size_t kSize = 8>
@@ -318,4 +318,4 @@ autovector<T, kSize>& autovector<T, kSize>::assign(const autovector& other) {
   return *this;
 }
 #endif  // ROCKSDB_LITE
-}  // namespace rocksdb
+}  // namespace rocksdb3131

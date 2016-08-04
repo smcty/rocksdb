@@ -11,13 +11,13 @@
 #include <utility>
 #include <vector>
 #include "port/port.h"
-#include "rocksdb/status.h"
+#include "rocksdb3131/status.h"
 #include "table/table_builder.h"
-#include "rocksdb/table.h"
-#include "rocksdb/table_properties.h"
+#include "rocksdb3131/table.h"
+#include "rocksdb3131/table_properties.h"
 #include "util/autovector.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class CuckooTableBuilder: public TableBuilder {
  public:
@@ -120,6 +120,6 @@ class CuckooTableBuilder: public TableBuilder {
   void operator=(const CuckooTableBuilder&) = delete;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

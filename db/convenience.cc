@@ -9,15 +9,15 @@
 
 #ifndef ROCKSDB_LITE
 
-#include "rocksdb/convenience.h"
+#include "rocksdb3131/convenience.h"
 
 #include "db/db_impl.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 void CancelAllBackgroundWork(DB* db, bool wait) {
   (dynamic_cast<DBImpl*>(db))->CancelAllBackgroundWork(wait);
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

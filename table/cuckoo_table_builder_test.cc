@@ -16,7 +16,7 @@
 #include "util/testharness.h"
 #include "util/testutil.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 extern const uint64_t kCuckooTableMagicNumber;
 
 namespace {
@@ -588,7 +588,7 @@ TEST_F(CuckooBuilderTest, FailWhenSameKeyInserted) {
   ASSERT_TRUE(builder.Finish().IsNotSupported());
   ASSERT_OK(file_writer->Close());
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

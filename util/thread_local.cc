@@ -12,7 +12,7 @@
 #include "port/likely.h"
 #include <stdlib.h>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 port::Mutex ThreadLocalPtr::StaticMeta::mutex_;
 #if !defined(OS_MACOSX) && !defined(OS_WIN)
@@ -329,4 +329,4 @@ void ThreadLocalPtr::Scrape(autovector<void*>* ptrs, void* const replacement) {
   Instance()->Scrape(id_, ptrs, replacement);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

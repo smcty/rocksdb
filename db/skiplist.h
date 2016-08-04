@@ -38,7 +38,7 @@
 #include "util/allocator.h"
 #include "util/random.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 template<typename Key, class Comparator>
 class SkipList {
@@ -453,4 +453,4 @@ bool SkipList<Key, Comparator>::Contains(const Key& key) const {
   }
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

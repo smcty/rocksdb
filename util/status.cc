@@ -9,9 +9,9 @@
 
 #include <stdio.h>
 #include "port/port.h"
-#include "rocksdb/status.h"
+#include "rocksdb3131/status.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 const char* Status::CopyState(const char* state) {
   uint32_t size;
@@ -88,4 +88,4 @@ std::string Status::ToString() const {
   return result;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

@@ -10,7 +10,7 @@
 int rocksdb_kill_odds = 0;
 
 #ifndef NDEBUG
-namespace rocksdb {
+namespace rocksdb3131 {
 
 void TestKillRandom(int odds, const std::string& srcfile, int srcline) {
   time_t curtime = time(nullptr);
@@ -100,5 +100,5 @@ void SyncPoint::Process(const std::string& point, void* cb_arg) {
   cleared_points_.insert(point);
   cv_.notify_all();
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // NDEBUG

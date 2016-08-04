@@ -7,10 +7,10 @@
 #ifndef ROCKSDB_LITE
 
 #include <string>
-#include "rocksdb/options.h"
-#include "rocksdb/table.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/table.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 struct EnvOptions;
 
@@ -63,5 +63,5 @@ class AdaptiveTableFactory : public TableFactory {
   std::shared_ptr<TableFactory> cuckoo_table_factory_;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

@@ -8,7 +8,7 @@
 #include "util/thread_status_updater.h"
 #include "db/column_family.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 #ifndef NDEBUG
 #if ROCKSDB_USING_THREAD_STATUS
@@ -43,4 +43,4 @@ void ThreadStatusUpdater::TEST_VerifyColumnFamilyInfoMap(
 #endif  // !NDEBUG
 
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

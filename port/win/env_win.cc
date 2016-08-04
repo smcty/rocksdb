@@ -19,8 +19,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#include "rocksdb/env.h"
-#include "rocksdb/slice.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/slice.h"
 
 #include "port/port.h"
 #include "port/dirent.h"
@@ -37,7 +37,7 @@
 #include <Rpc.h>  // For UUID generation
 #include <Windows.h>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 std::string GetWindowsErrSz(DWORD err) {
   LPSTR lpMsgBuf;
@@ -2510,4 +2510,4 @@ Env* Env::Default() {
   return envptr;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

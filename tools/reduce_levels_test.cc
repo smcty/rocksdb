@@ -6,7 +6,7 @@
 
 #ifndef ROCKSDB_LITE
 
-#include "rocksdb/db.h"
+#include "rocksdb3131/db.h"
 #include "db/db_impl.h"
 #include "db/version_set.h"
 #include "util/logging.h"
@@ -14,7 +14,7 @@
 #include "util/testharness.h"
 #include "util/ldb_cmd.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class ReduceLevelTest : public testing::Test {
 public:
@@ -79,10 +79,10 @@ private:
 };
 
 Status ReduceLevelTest::OpenDB(bool create_if_missing, int num_levels) {
-  rocksdb::Options opt;
+  rocksdb3131::Options opt;
   opt.num_levels = num_levels;
   opt.create_if_missing = create_if_missing;
-  rocksdb::Status st = rocksdb::DB::Open(opt, dbname_, &db_);
+  rocksdb3131::Status st = rocksdb3131::DB::Open(opt, dbname_, &db_);
   if (!st.ok()) {
     fprintf(stderr, "Can't open the db:%s\n", st.ToString().c_str());
   }
@@ -90,7 +90,7 @@ Status ReduceLevelTest::OpenDB(bool create_if_missing, int num_levels) {
 }
 
 bool ReduceLevelTest::ReduceLevels(int target_level) {
-  std::vector<std::string> args = rocksdb::ReduceDBLevelsCommand::PrepareArgs(
+  std::vector<std::string> args = rocksdb3131::ReduceDBLevelsCommand::PrepareArgs(
       dbname_, target_level, false);
   LDBCommand* level_reducer = LDBCommand::InitFromCmdLineArgs(
       args, Options(), LDBOptions());

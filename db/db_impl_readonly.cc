@@ -12,7 +12,7 @@
 #include "db/db_iter.h"
 #include "util/perf_context_imp.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 #ifndef ROCKSDB_LITE
 
@@ -184,4 +184,4 @@ Status DB::OpenForReadOnly(
 }
 #endif  // !ROCKSDB_LITE
 
-}   // namespace rocksdb
+}   // namespace rocksdb3131

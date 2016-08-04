@@ -7,11 +7,11 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 
-#include "rocksdb/iterator.h"
+#include "rocksdb3131/iterator.h"
 #include "table/iterator_wrapper.h"
 #include "util/arena.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 Iterator::Iterator() {
   cleanup_.function = nullptr;
@@ -96,4 +96,4 @@ Iterator* NewErrorIterator(const Status& status, Arena* arena) {
   }
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

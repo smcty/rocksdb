@@ -8,10 +8,10 @@
 
 #ifndef ROCKSDB_LITE
 #pragma once
-#include "rocksdb/slice_transform.h"
-#include "rocksdb/memtablerep.h"
+#include "rocksdb3131/slice_transform.h"
+#include "rocksdb3131/memtablerep.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class HashCuckooRepFactory : public MemTableRepFactory {
  public:
@@ -38,5 +38,5 @@ class HashCuckooRepFactory : public MemTableRepFactory {
   size_t average_data_size_;
   const unsigned int hash_function_count_;
 };
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

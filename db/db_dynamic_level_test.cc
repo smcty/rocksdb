@@ -15,7 +15,7 @@
 #include "port/stack_trace.h"
 #include "util/db_test_util.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 class DBTestDynamicLevel : public DBTestBase {
  public:
   DBTestDynamicLevel() : DBTestBase("/db_dynamic_level_test") {}
@@ -192,10 +192,10 @@ TEST_F(DBTestDynamicLevel, DynamicLevelMaxBytesBase2) {
   // Trigger parallel compaction, and the first one would change the base
   // level.
   // Hold compaction jobs to make sure
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "CompactionJob::Run():Start",
       [&](void* arg) { env_->SleepForMicroseconds(100000); });
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
   ASSERT_OK(dbfull()->SetOptions({
       {"disable_auto_compactions", "true"},
   }));
@@ -214,7 +214,7 @@ TEST_F(DBTestDynamicLevel, DynamicLevelMaxBytesBase2) {
   dbfull()->TEST_WaitForCompact();
   ASSERT_TRUE(db_->GetIntProperty("rocksdb.base-level", &int_prop));
   ASSERT_EQ(3U, int_prop);
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
 
   // Trigger a condition that the compaction changes base level and L0->Lbase
   // happens at the same time.
@@ -238,7 +238,7 @@ TEST_F(DBTestDynamicLevel, DynamicLevelMaxBytesBase2) {
 
   // Keep Writing data until base level changed 2->1. There will be L0->L2
   // compaction going on at the same time.
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
   for (int attempt = 0; attempt <= 20; attempt++) {
     // Write about 5K more data with two flushes. It should be flush to level 2
     // but when it is applied, base level is already 1.
@@ -255,8 +255,8 @@ TEST_F(DBTestDynamicLevel, DynamicLevelMaxBytesBase2) {
       break;
     }
   }
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
-  rocksdb::SyncPoint::GetInstance()->ClearAllCallBacks();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->ClearAllCallBacks();
 
   env_->SleepForMicroseconds(200000);
 
@@ -322,16 +322,16 @@ TEST_F(DBTestDynamicLevel, DynamicLevelMaxBytesCompactRange) {
   ASSERT_TRUE(db_->GetProperty("rocksdb.num-files-at-level2", &str_prop));
   ASSERT_EQ("0", str_prop);
 
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
-  rocksdb::SyncPoint::GetInstance()->ClearAllCallBacks();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->ClearAllCallBacks();
 
   std::set<int> output_levels;
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "CompactionPicker::CompactRange:Return", [&](void* arg) {
         Compaction* compaction = reinterpret_cast<Compaction*>(arg);
         output_levels.insert(compaction->output_level());
       });
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   dbfull()->CompactRange(CompactRangeOptions(), nullptr, nullptr);
   ASSERT_EQ(output_levels.size(), 2);
@@ -366,10 +366,10 @@ TEST_F(DBTestDynamicLevel, DynamicLevelMaxBytesBaseInc) {
   DestroyAndReopen(options);
 
   int non_trivial = 0;
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "DBImpl::BackgroundCompaction:NonTrivial",
       [&](void* arg) { non_trivial++; });
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   Random rnd(301);
   const int total_keys = 3000;
@@ -381,7 +381,7 @@ TEST_F(DBTestDynamicLevel, DynamicLevelMaxBytesBaseInc) {
   }
   Flush();
   dbfull()->TEST_WaitForCompact();
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
 
   ASSERT_EQ(non_trivial, 0);
 
@@ -482,13 +482,13 @@ TEST_F(DBTestDynamicLevel, MigrateToDynamicLevelMaxBytesBase) {
   ASSERT_EQ(NumTableFilesAtLevel(1), 0);
   ASSERT_EQ(NumTableFilesAtLevel(2), 0);
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // !(defined NDEBUG) || !defined(OS_WIN)
 
 int main(int argc, char** argv) {
 #if !(defined NDEBUG) || !defined(OS_WIN)
-  rocksdb::port::InstallStackTraceHandler();
+  rocksdb3131::port::InstallStackTraceHandler();
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 #else

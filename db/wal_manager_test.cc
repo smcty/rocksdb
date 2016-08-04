@@ -8,8 +8,8 @@
 #include <map>
 #include <string>
 
-#include "rocksdb/cache.h"
-#include "rocksdb/write_batch.h"
+#include "rocksdb3131/cache.h"
+#include "rocksdb3131/write_batch.h"
 
 #include "db/wal_manager.h"
 #include "db/log_writer.h"
@@ -24,7 +24,7 @@
 #include "table/mock_table.h"
 #include "db/db_impl.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // TODO(icanadi) mock out VersionSet
 // TODO(icanadi) move other WalManager-specific tests from db_test here
@@ -288,7 +288,7 @@ TEST_F(WalManagerTest, TransactionLogIteratorJustEmptyFile) {
   ASSERT_TRUE(!iter->Valid());
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

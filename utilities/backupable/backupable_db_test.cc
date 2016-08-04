@@ -15,9 +15,9 @@
 
 #include "port/port.h"
 #include "port/stack_trace.h"
-#include "rocksdb/types.h"
-#include "rocksdb/transaction_log.h"
-#include "rocksdb/utilities/backupable_db.h"
+#include "rocksdb3131/types.h"
+#include "rocksdb3131/transaction_log.h"
+#include "rocksdb3131/utilities/backupable_db.h"
 #include "util/file_reader_writer.h"
 #include "util/testharness.h"
 #include "util/random.h"
@@ -27,7 +27,7 @@
 #include "util/auto_roll_logger.h"
 #include "util/mock_env.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 
@@ -1175,10 +1175,10 @@ TEST_F(BackupableDBTest, EnvFailures) {
 
 }  // anon namespace
 
-} //  namespace rocksdb
+} //  namespace rocksdb3131
 
 int main(int argc, char** argv) {
-  rocksdb::port::InstallStackTraceHandler();
+  rocksdb3131::port::InstallStackTraceHandler();
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }

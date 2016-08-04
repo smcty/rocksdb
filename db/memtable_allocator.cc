@@ -13,7 +13,7 @@
 #include "db/writebuffer.h"
 #include "util/arena.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 MemTableAllocator::MemTableAllocator(Arena* arena, WriteBuffer* write_buffer)
     : arena_(arena), write_buffer_(write_buffer), bytes_allocated_(0) {
@@ -49,4 +49,4 @@ size_t MemTableAllocator::BlockSize() const {
   return arena_->BlockSize();
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

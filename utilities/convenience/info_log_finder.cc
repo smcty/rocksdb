@@ -8,10 +8,10 @@
 // found in the LICENSE file.
 
 #include "db/filename.h"
-#include "rocksdb/env.h"
-#include "rocksdb/utilities/info_log_finder.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/utilities/info_log_finder.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 Status GetInfoLogList(DB* db, std::vector<std::string>* info_log_list) {
   uint64_t number = 0;
@@ -45,4 +45,4 @@ Status GetInfoLogList(DB* db, std::vector<std::string>* info_log_list) {
   }
   return Status::OK();
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131

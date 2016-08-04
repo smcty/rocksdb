@@ -28,7 +28,7 @@
 
 #include "util/logging.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace port {
 
 void gettimeofday(struct timeval* tv, struct timezone* /* tz */) {
@@ -235,13 +235,13 @@ void Crash(const std::string& srcfile, int srcline) {
 
 
 }  // namespace port
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #ifdef JEMALLOC
 
 #include "jemalloc/jemalloc.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace port {
 
@@ -269,7 +269,7 @@ typedef void(WINAPI* CRT_Startup_Routine)(void);
 #pragma const_seg(".CRT$XCT")
 extern const CRT_Startup_Routine p_rocksdb_init_jemalloc;
 const CRT_Startup_Routine p_rocksdb_init_jemalloc =
-    rocksdb::port::InitializeJemalloc;
+    rocksdb3131::port::InitializeJemalloc;
 #pragma const_seg()
 
 #else  // _WIN64
@@ -280,7 +280,7 @@ const CRT_Startup_Routine p_rocksdb_init_jemalloc =
 
 #pragma section(".CRT$XCT", read)
 JEMALLOC_SECTION(".CRT$XCT") JEMALLOC_ATTR(used) static const void(
-    WINAPI* p_rocksdb_init_jemalloc)(void) = rocksdb::port::InitializeJemalloc;
+    WINAPI* p_rocksdb_init_jemalloc)(void) = rocksdb3131::port::InitializeJemalloc;
 
 #endif  // _WIN64
 

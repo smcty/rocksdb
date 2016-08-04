@@ -19,10 +19,10 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "rocksdb/env.h"
-#include "rocksdb/slice.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/slice.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // for micros < 10ms, print "XX us".
 // for micros < 10sec, print "XX ms".
@@ -142,4 +142,4 @@ bool ConsumeDecimalNumber(Slice* in, uint64_t* val) {
   return (digits > 0);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

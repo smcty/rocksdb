@@ -14,13 +14,13 @@
 #include "db/db_iter.h"
 #include "db/dbformat.h"
 #include "db/managed_iterator.h"
-#include "rocksdb/env.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/slice_transform.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/slice_transform.h"
 #include "table/merger.h"
 #include "util/xfunc.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 // Helper class that locks a mutex on construction and unlocks the mutex when
@@ -252,6 +252,6 @@ void ManagedIterator::UnLock() {
              xf_manage_release, this);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

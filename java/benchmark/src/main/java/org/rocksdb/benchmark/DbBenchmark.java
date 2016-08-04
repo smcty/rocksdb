@@ -1412,7 +1412,7 @@ public class DbBenchmark {
       }
     },
     /* TODO(yhchiang): enable the following
-    bufferedio(rocksdb::EnvOptions().use_os_buffer,
+    bufferedio(rocksdb3131::EnvOptions().use_os_buffer,
         "Allow buffered io using OS buffers.") {
       @Override public Object parseValue(String value) {
         return parseBoolean(value);

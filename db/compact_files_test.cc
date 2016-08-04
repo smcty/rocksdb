@@ -9,12 +9,12 @@
 #include <string>
 #include <vector>
 
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
 #include "util/string_util.h"
 #include "util/testharness.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class CompactFilesTest : public testing::Test {
  public:
@@ -96,7 +96,7 @@ TEST_F(CompactFilesTest, ObsoleteFiles) {
   delete db;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

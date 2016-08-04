@@ -10,7 +10,7 @@
 #pragma once
 #include "port/port.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // Helper class that locks a mutex on construction and unlocks the mutex when
 // the destructor of the MutexLock object is invoked.
@@ -75,4 +75,4 @@ class WriteLock {
   void operator=(const WriteLock&);
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

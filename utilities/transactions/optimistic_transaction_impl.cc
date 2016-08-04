@@ -17,13 +17,13 @@
 
 #include "db/column_family.h"
 #include "db/db_impl.h"
-#include "rocksdb/comparator.h"
-#include "rocksdb/db.h"
-#include "rocksdb/status.h"
-#include "rocksdb/utilities/optimistic_transaction_db.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/status.h"
+#include "rocksdb3131/utilities/optimistic_transaction_db.h"
 #include "util/string_util.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 struct WriteOptions;
 
@@ -345,6 +345,6 @@ Status OptimisticTransactionImpl::CheckTransactionForConflicts(DB* db) {
   return result;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

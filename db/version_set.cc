@@ -32,8 +32,8 @@
 #include "db/compaction.h"
 #include "db/version_builder.h"
 #include "db/writebuffer.h"
-#include "rocksdb/env.h"
-#include "rocksdb/merge_operator.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/merge_operator.h"
 #include "table/table_reader.h"
 #include "table/merger.h"
 #include "table/two_level_iterator.h"
@@ -47,7 +47,7 @@
 #include "util/stop_watch.h"
 #include "util/sync_point.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 
@@ -1468,7 +1468,7 @@ bool VersionStorageInfo::HasOverlappingUserKey(
   }
 
   const Comparator* user_cmp = user_comparator_;
-  const rocksdb::LevelFilesBrief& file_level = level_files_brief_[level];
+  const rocksdb3131::LevelFilesBrief& file_level = level_files_brief_[level];
   const FdWithKeyRange* files = level_files_brief_[level].files;
   const size_t kNumFiles = file_level.num_files;
 
@@ -3226,4 +3226,4 @@ uint64_t VersionSet::GetNumLiveVersions(Version* dummy_versions) {
   return count;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

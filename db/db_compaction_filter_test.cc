@@ -10,7 +10,7 @@
 #include "port/stack_trace.h"
 #include "util/db_test_util.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 static int cfilter_count = 0;
 
@@ -535,11 +535,11 @@ TEST_F(DBTestCompactionFilter, CompactionFilterContextManual) {
   }
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
 #if !(defined NDEBUG) || !defined(OS_WIN)
-  rocksdb::port::InstallStackTraceHandler();
+  rocksdb3131::port::InstallStackTraceHandler();
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 #else

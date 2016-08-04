@@ -11,9 +11,9 @@
 
 #include <vector>
 
-#include "rocksdb/comparator.h"
-#include "rocksdb/iterator.h"
-#include "rocksdb/options.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/iterator.h"
+#include "rocksdb3131/options.h"
 #include "table/iter_heap.h"
 #include "table/iterator_wrapper.h"
 #include "util/arena.h"
@@ -22,7 +22,7 @@
 #include "util/perf_context_imp.h"
 #include "util/autovector.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 // Without anonymous namespace here, we fail the warning -Wmissing-prototypes
 namespace {
 typedef BinaryHeap<IteratorWrapper*, MaxIteratorComparator> MergerMaxIterHeap;
@@ -333,4 +333,4 @@ Iterator* MergeIteratorBuilder::Finish() {
   }
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

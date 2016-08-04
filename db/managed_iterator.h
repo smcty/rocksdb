@@ -12,12 +12,12 @@
 #include <vector>
 
 #include "db/column_family.h"
-#include "rocksdb/db.h"
-#include "rocksdb/iterator.h"
-#include "rocksdb/options.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/iterator.h"
+#include "rocksdb3131/options.h"
 #include "util/arena.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class DBImpl;
 struct SuperVersion;
@@ -80,5 +80,5 @@ class ManagedIterator : public Iterator {
   std::mutex in_use_;  // is managed iterator in use
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // !ROCKSDB_LITE

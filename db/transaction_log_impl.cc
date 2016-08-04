@@ -13,7 +13,7 @@
 #include "db/write_batch_internal.h"
 #include "util/file_reader_writer.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 TransactionLogIteratorImpl::TransactionLogIteratorImpl(
     const std::string& dir, const DBOptions* options,
@@ -266,5 +266,5 @@ Status TransactionLogIteratorImpl::OpenLogReader(const LogFile* logFile) {
                                           read_options_.verify_checksums_, 0));
   return Status::OK();
 }
-}  //  namespace rocksdb
+}  //  namespace rocksdb3131
 #endif  // ROCKSDB_LITE

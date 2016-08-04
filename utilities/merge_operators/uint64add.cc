@@ -5,13 +5,13 @@
 
 #include <memory>
 
-#include "rocksdb/env.h"
-#include "rocksdb/merge_operator.h"
-#include "rocksdb/slice.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/merge_operator.h"
+#include "rocksdb3131/slice.h"
 #include "util/coding.h"
 #include "utilities/merge_operators.h"
 
-using namespace rocksdb;
+using namespace rocksdb3131;
 
 namespace { // anonymous namespace
 
@@ -64,7 +64,7 @@ class UInt64AddOperator : public AssociativeMergeOperator {
 
 }
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 std::shared_ptr<MergeOperator> MergeOperators::CreateUInt64AddOperator() {
   return std::make_shared<UInt64AddOperator>();

@@ -14,10 +14,10 @@
 #include <deque>
 #include <string>
 
-#include "rocksdb/merge_operator.h"
-#include "rocksdb/slice.h"
+#include "rocksdb3131/merge_operator.h"
+#include "rocksdb3131/slice.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class StringAppendTESTOperator : public MergeOperator {
  public:
@@ -48,4 +48,4 @@ class StringAppendTESTOperator : public MergeOperator {
 
 };
 
-} // namespace rocksdb
+} // namespace rocksdb3131

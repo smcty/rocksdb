@@ -18,13 +18,13 @@
 #include "db/filename.h"
 #include "db/version_set.h"
 #include "db/write_batch_internal.h"
-#include "rocksdb/cache.h"
-#include "rocksdb/compaction_filter.h"
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
-#include "rocksdb/filter_policy.h"
-#include "rocksdb/slice_transform.h"
-#include "rocksdb/table.h"
+#include "rocksdb3131/cache.h"
+#include "rocksdb3131/compaction_filter.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/filter_policy.h"
+#include "rocksdb3131/slice_transform.h"
+#include "rocksdb3131/table.h"
 #include "table/meta_blocks.h"
 #include "table/bloom_block.h"
 #include "table/plain_table_factory.h"
@@ -39,7 +39,7 @@
 
 using std::unique_ptr;
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class PlainTableDBTest : public testing::Test {
  protected:
@@ -1086,7 +1086,7 @@ TEST_F(PlainTableDBTest, AdaptiveTable) {
   ASSERT_NE("v5", Get("3000000000000bar"));
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

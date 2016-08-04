@@ -3,9 +3,9 @@
 // LICENSE file in the root directory of this source tree. An additional grant
 // of patent rights can be found in the PATENTS file in the same directory.
 
-#include "rocksdb/compaction_job_stats.h"
+#include "rocksdb3131/compaction_job_stats.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 #ifndef ROCKSDB_LITE
 
@@ -41,4 +41,4 @@ void CompactionJobStats::Reset() {}
 
 #endif  // !ROCKSDB_LITE
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

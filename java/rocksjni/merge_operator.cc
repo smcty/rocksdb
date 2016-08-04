@@ -4,7 +4,7 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 // This file implements the "bridge" between Java and C++
-// for rocksdb::MergeOperator.
+// for rocksdb3131::MergeOperator.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,13 +14,13 @@
 
 #include "include/org_rocksdb_StringAppendOperator.h"
 #include "rocksjni/portal.h"
-#include "rocksdb/db.h"
-#include "rocksdb/options.h"
-#include "rocksdb/statistics.h"
-#include "rocksdb/memtablerep.h"
-#include "rocksdb/table.h"
-#include "rocksdb/slice_transform.h"
-#include "rocksdb/merge_operator.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/statistics.h"
+#include "rocksdb3131/memtablerep.h"
+#include "rocksdb3131/table.h"
+#include "rocksdb3131/slice_transform.h"
+#include "rocksdb3131/merge_operator.h"
 #include "utilities/merge_operators.h"
 
 /*
@@ -30,8 +30,8 @@
  */
 jlong Java_org_rocksdb_StringAppendOperator_newMergeOperatorHandleImpl
 (JNIEnv* env, jobject jobj) {
-  std::shared_ptr<rocksdb::MergeOperator> *op =
-    new std::shared_ptr<rocksdb::MergeOperator>();
-  *op = rocksdb::MergeOperators::CreateFromStringId("stringappend");
+  std::shared_ptr<rocksdb3131::MergeOperator> *op =
+    new std::shared_ptr<rocksdb3131::MergeOperator>();
+  *op = rocksdb3131::MergeOperators::CreateFromStringId("stringappend");
   return reinterpret_cast<jlong>(op);
 }

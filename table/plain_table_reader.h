@@ -12,11 +12,11 @@
 #include <stdint.h>
 
 #include "db/dbformat.h"
-#include "rocksdb/env.h"
-#include "rocksdb/iterator.h"
-#include "rocksdb/slice_transform.h"
-#include "rocksdb/table.h"
-#include "rocksdb/table_properties.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/iterator.h"
+#include "rocksdb3131/slice_transform.h"
+#include "rocksdb3131/table.h"
+#include "rocksdb3131/table_properties.h"
 #include "table/table_reader.h"
 #include "table/plain_table_factory.h"
 #include "table/plain_table_index.h"
@@ -24,7 +24,7 @@
 #include "util/dynamic_bloom.h"
 #include "util/file_reader_writer.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class Block;
 struct BlockContents;
@@ -213,5 +213,5 @@ class PlainTableReader: public TableReader {
   explicit PlainTableReader(const TableReader&) = delete;
   void operator=(const TableReader&) = delete;
 };
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

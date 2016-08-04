@@ -9,17 +9,17 @@
 
 #include <algorithm>
 #include <atomic>
-#include "rocksdb/memtablerep.h"
+#include "rocksdb3131/memtablerep.h"
 #include "util/arena.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/slice_transform.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/slice_transform.h"
 #include "port/port.h"
 #include "util/histogram.h"
 #include "util/murmurhash.h"
 #include "db/memtable.h"
 #include "db/skiplist.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace {
 
 typedef const char* Key;
@@ -817,5 +817,5 @@ MemTableRepFactory* NewHashLinkListRepFactory(
       bucket_entries_logging_threshold, if_log_bucket_dist_when_flash);
 }
 
-} // namespace rocksdb
+} // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

@@ -13,7 +13,7 @@
 #include "util/file_reader_writer.h"
 #include "util/random.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace test {
 
 Slice RandomString(Random* rnd, int len, std::string* dst) {
@@ -124,4 +124,4 @@ SequentialFileReader* GetSequentialFileReader(SequentialFile* se) {
 }
 
 }  // namespace test
-}  // namespace rocksdb
+}  // namespace rocksdb3131

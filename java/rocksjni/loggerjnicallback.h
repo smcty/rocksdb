@@ -4,7 +4,7 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 // This file implements the callback "bridge" between Java and C++ for
-// rocksdb::Logger
+// rocksdb3131::Logger
 
 #ifndef JAVA_ROCKSJNI_LOGGERJNICALLBACK_H_
 #define JAVA_ROCKSJNI_LOGGERJNICALLBACK_H_
@@ -12,9 +12,9 @@
 #include <jni.h>
 #include <string>
 #include "port/port.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/env.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
   class LoggerJniCallback : public Logger {
    public:
@@ -39,6 +39,6 @@ namespace rocksdb {
      jobject m_jLogger;
      jmethodID m_jLogMethodId;
   };
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // JAVA_ROCKSJNI_LOGGERJNICALLBACK_H_

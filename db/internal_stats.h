@@ -16,7 +16,7 @@
 
 class ColumnFamilyData;
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class MemTableList;
 class DBImpl;
@@ -404,4 +404,4 @@ class InternalStats {
 };
 #endif  // !ROCKSDB_LITE
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

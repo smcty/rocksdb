@@ -4,7 +4,7 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 // This file implements the "bridge" between Java and C++ and enables
-// calling c++ rocksdb::BackupableDB and rocksdb::BackupableDBOptions methods
+// calling c++ rocksdb3131::BackupableDB and rocksdb3131::BackupableDBOptions methods
 // from Java side.
 
 #include <stdio.h>
@@ -16,7 +16,7 @@
 #include "include/org_rocksdb_BackupableDB.h"
 #include "include/org_rocksdb_BackupableDBOptions.h"
 #include "rocksjni/portal.h"
-#include "rocksdb/utilities/backupable_db.h"
+#include "rocksdb3131/utilities/backupable_db.h"
 
 /*
  * Class:     org_rocksdb_BackupableDB
@@ -25,13 +25,13 @@
  */
 void Java_org_rocksdb_BackupableDB_open(
     JNIEnv* env, jobject jbdb, jlong jdb_handle, jlong jopt_handle) {
-  auto db = reinterpret_cast<rocksdb::DB*>(jdb_handle);
-  auto opt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jopt_handle);
-  auto bdb = new rocksdb::BackupableDB(db, *opt);
+  auto db = reinterpret_cast<rocksdb3131::DB*>(jdb_handle);
+  auto opt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jopt_handle);
+  auto bdb = new rocksdb3131::BackupableDB(db, *opt);
 
   // as BackupableDB extends RocksDB on the java side, we can reuse
   // the RocksDB portal here.
-  rocksdb::RocksDBJni::setHandle(env, jbdb, bdb);
+  rocksdb3131::RocksDBJni::setHandle(env, jbdb, bdb);
 }
 
 /*
@@ -41,10 +41,10 @@ void Java_org_rocksdb_BackupableDB_open(
  */
 void Java_org_rocksdb_BackupableDB_createNewBackup(
     JNIEnv* env, jobject jbdb, jlong jhandle, jboolean jflag) {
-  rocksdb::Status s =
-      reinterpret_cast<rocksdb::BackupableDB*>(jhandle)->CreateNewBackup(jflag);
+  rocksdb3131::Status s =
+      reinterpret_cast<rocksdb3131::BackupableDB*>(jhandle)->CreateNewBackup(jflag);
   if (!s.ok()) {
-    rocksdb::RocksDBExceptionJni::ThrowNew(env, s);
+    rocksdb3131::RocksDBExceptionJni::ThrowNew(env, s);
   }
 }
 
@@ -55,11 +55,11 @@ void Java_org_rocksdb_BackupableDB_createNewBackup(
  */
 void Java_org_rocksdb_BackupableDB_purgeOldBackups(
     JNIEnv* env, jobject jbdb, jlong jhandle, jint jnumBackupsToKeep) {
-  rocksdb::Status s =
-      reinterpret_cast<rocksdb::BackupableDB*>(jhandle)->
+  rocksdb3131::Status s =
+      reinterpret_cast<rocksdb3131::BackupableDB*>(jhandle)->
       PurgeOldBackups(jnumBackupsToKeep);
   if (!s.ok()) {
-    rocksdb::RocksDBExceptionJni::ThrowNew(env, s);
+    rocksdb3131::RocksDBExceptionJni::ThrowNew(env, s);
   }
 }
 
@@ -70,11 +70,11 @@ void Java_org_rocksdb_BackupableDB_purgeOldBackups(
  */
 void Java_org_rocksdb_BackupableDB_deleteBackup0(JNIEnv* env,
     jobject jobj, jlong jhandle, jint jbackup_id) {
-  auto rdb = reinterpret_cast<rocksdb::BackupableDB*>(jhandle);
-  rocksdb::Status s = rdb->DeleteBackup(jbackup_id);
+  auto rdb = reinterpret_cast<rocksdb3131::BackupableDB*>(jhandle);
+  rocksdb3131::Status s = rdb->DeleteBackup(jbackup_id);
 
   if (!s.ok()) {
-    rocksdb::RocksDBExceptionJni::ThrowNew(env, s);
+    rocksdb3131::RocksDBExceptionJni::ThrowNew(env, s);
   }
 }
 
@@ -85,10 +85,10 @@ void Java_org_rocksdb_BackupableDB_deleteBackup0(JNIEnv* env,
  */
 jobject Java_org_rocksdb_BackupableDB_getBackupInfo(
     JNIEnv* env, jobject jbdb, jlong jhandle) {
-  std::vector<rocksdb::BackupInfo> backup_infos;
-  reinterpret_cast<rocksdb::BackupableDB*>(jhandle)->
+  std::vector<rocksdb3131::BackupInfo> backup_infos;
+  reinterpret_cast<rocksdb3131::BackupableDB*>(jhandle)->
       GetBackupInfo(&backup_infos);
-  return rocksdb::BackupInfoListJni::getBackupInfo(env,
+  return rocksdb3131::BackupInfoListJni::getBackupInfo(env,
       backup_infos);
 }
 
@@ -99,14 +99,14 @@ jobject Java_org_rocksdb_BackupableDB_getBackupInfo(
  */
 jintArray Java_org_rocksdb_BackupableDB_getCorruptedBackups(
     JNIEnv* env, jobject jbdb, jlong jhandle) {
-  std::vector<rocksdb::BackupID> backup_ids;
-  reinterpret_cast<rocksdb::BackupableDB*>(jhandle)->
+  std::vector<rocksdb3131::BackupID> backup_ids;
+  reinterpret_cast<rocksdb3131::BackupableDB*>(jhandle)->
       GetCorruptedBackups(&backup_ids);
   // store backupids in int array
-  const std::vector<rocksdb::BackupID>::size_type
+  const std::vector<rocksdb3131::BackupID>::size_type
       kIdSize = backup_ids.size();
   int int_backup_ids[kIdSize];
-  for (std::vector<rocksdb::BackupID>::size_type i = 0;
+  for (std::vector<rocksdb3131::BackupID>::size_type i = 0;
       i != kIdSize; i++) {
     int_backup_ids[i] = backup_ids[i];
   }
@@ -127,11 +127,11 @@ jintArray Java_org_rocksdb_BackupableDB_getCorruptedBackups(
  */
 void Java_org_rocksdb_BackupableDB_garbageCollect(JNIEnv* env,
     jobject jobj, jlong jhandle) {
-  auto db = reinterpret_cast<rocksdb::BackupableDB*>(jhandle);
-  rocksdb::Status s = db->GarbageCollect();
+  auto db = reinterpret_cast<rocksdb3131::BackupableDB*>(jhandle);
+  rocksdb3131::Status s = db->GarbageCollect();
 
   if (!s.ok()) {
-    rocksdb::RocksDBExceptionJni::ThrowNew(env, s);
+    rocksdb3131::RocksDBExceptionJni::ThrowNew(env, s);
   }
 }
 
@@ -146,9 +146,9 @@ void Java_org_rocksdb_BackupableDB_garbageCollect(JNIEnv* env,
 void Java_org_rocksdb_BackupableDBOptions_newBackupableDBOptions(
     JNIEnv* env, jobject jobj, jstring jpath) {
   const char* cpath = env->GetStringUTFChars(jpath, 0);
-  auto bopt = new rocksdb::BackupableDBOptions(cpath);
+  auto bopt = new rocksdb3131::BackupableDBOptions(cpath);
   env->ReleaseStringUTFChars(jpath, cpath);
-  rocksdb::BackupableDBOptionsJni::setHandle(env, jobj, bopt);
+  rocksdb3131::BackupableDBOptionsJni::setHandle(env, jobj, bopt);
 }
 
 /*
@@ -158,7 +158,7 @@ void Java_org_rocksdb_BackupableDBOptions_newBackupableDBOptions(
  */
 jstring Java_org_rocksdb_BackupableDBOptions_backupDir(
     JNIEnv* env, jobject jopt, jlong jhandle) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   return env->NewStringUTF(bopt->backup_dir.c_str());
 }
 
@@ -169,7 +169,7 @@ jstring Java_org_rocksdb_BackupableDBOptions_backupDir(
  */
 void Java_org_rocksdb_BackupableDBOptions_setShareTableFiles(
     JNIEnv* env, jobject jobj, jlong jhandle, jboolean flag) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   bopt->share_table_files = flag;
 }
 
@@ -180,7 +180,7 @@ void Java_org_rocksdb_BackupableDBOptions_setShareTableFiles(
  */
 jboolean Java_org_rocksdb_BackupableDBOptions_shareTableFiles(
     JNIEnv* env, jobject jobj, jlong jhandle) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   return bopt->share_table_files;
 }
 
@@ -191,7 +191,7 @@ jboolean Java_org_rocksdb_BackupableDBOptions_shareTableFiles(
  */
 void Java_org_rocksdb_BackupableDBOptions_setSync(
     JNIEnv* env, jobject jobj, jlong jhandle, jboolean flag) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   bopt->sync = flag;
 }
 
@@ -202,7 +202,7 @@ void Java_org_rocksdb_BackupableDBOptions_setSync(
  */
 jboolean Java_org_rocksdb_BackupableDBOptions_sync(
     JNIEnv* env, jobject jobj, jlong jhandle) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   return bopt->sync;
 }
 
@@ -213,7 +213,7 @@ jboolean Java_org_rocksdb_BackupableDBOptions_sync(
  */
 void Java_org_rocksdb_BackupableDBOptions_setDestroyOldData(
     JNIEnv* env, jobject jobj, jlong jhandle, jboolean flag) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   bopt->destroy_old_data = flag;
 }
 
@@ -224,7 +224,7 @@ void Java_org_rocksdb_BackupableDBOptions_setDestroyOldData(
  */
 jboolean Java_org_rocksdb_BackupableDBOptions_destroyOldData(
     JNIEnv* env, jobject jobj, jlong jhandle) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   return bopt->destroy_old_data;
 }
 
@@ -235,7 +235,7 @@ jboolean Java_org_rocksdb_BackupableDBOptions_destroyOldData(
  */
 void Java_org_rocksdb_BackupableDBOptions_setBackupLogFiles(
     JNIEnv* env, jobject jobj, jlong jhandle, jboolean flag) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   bopt->backup_log_files = flag;
 }
 
@@ -246,7 +246,7 @@ void Java_org_rocksdb_BackupableDBOptions_setBackupLogFiles(
  */
 jboolean Java_org_rocksdb_BackupableDBOptions_backupLogFiles(
     JNIEnv* env, jobject jobj, jlong jhandle) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   return bopt->backup_log_files;
 }
 
@@ -257,7 +257,7 @@ jboolean Java_org_rocksdb_BackupableDBOptions_backupLogFiles(
  */
 void Java_org_rocksdb_BackupableDBOptions_setBackupRateLimit(
     JNIEnv* env, jobject jobj, jlong jhandle, jlong jbackup_rate_limit) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   bopt->backup_rate_limit = jbackup_rate_limit;
 }
 
@@ -268,7 +268,7 @@ void Java_org_rocksdb_BackupableDBOptions_setBackupRateLimit(
  */
 jlong Java_org_rocksdb_BackupableDBOptions_backupRateLimit(
     JNIEnv* env, jobject jobj, jlong jhandle) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   return bopt->backup_rate_limit;
 }
 
@@ -279,7 +279,7 @@ jlong Java_org_rocksdb_BackupableDBOptions_backupRateLimit(
  */
 void Java_org_rocksdb_BackupableDBOptions_setRestoreRateLimit(
     JNIEnv* env, jobject jobj, jlong jhandle, jlong jrestore_rate_limit) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   bopt->restore_rate_limit = jrestore_rate_limit;
 }
 
@@ -290,7 +290,7 @@ void Java_org_rocksdb_BackupableDBOptions_setRestoreRateLimit(
  */
 jlong Java_org_rocksdb_BackupableDBOptions_restoreRateLimit(
     JNIEnv* env, jobject jobj, jlong jhandle) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   return bopt->restore_rate_limit;
 }
 
@@ -301,7 +301,7 @@ jlong Java_org_rocksdb_BackupableDBOptions_restoreRateLimit(
  */
 void Java_org_rocksdb_BackupableDBOptions_setShareFilesWithChecksum(
     JNIEnv* env, jobject jobj, jlong jhandle, jboolean flag) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   bopt->share_files_with_checksum = flag;
 }
 
@@ -312,7 +312,7 @@ void Java_org_rocksdb_BackupableDBOptions_setShareFilesWithChecksum(
  */
 jboolean Java_org_rocksdb_BackupableDBOptions_shareFilesWithChecksum(
     JNIEnv* env, jobject jobj, jlong jhandle) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   return bopt->share_files_with_checksum;
 }
 
@@ -323,8 +323,8 @@ jboolean Java_org_rocksdb_BackupableDBOptions_shareFilesWithChecksum(
  */
 void Java_org_rocksdb_BackupableDBOptions_disposeInternal(
     JNIEnv* env, jobject jopt, jlong jhandle) {
-  auto bopt = reinterpret_cast<rocksdb::BackupableDBOptions*>(jhandle);
+  auto bopt = reinterpret_cast<rocksdb3131::BackupableDBOptions*>(jhandle);
   assert(bopt);
   delete bopt;
-  rocksdb::BackupableDBOptionsJni::setHandle(env, jopt, nullptr);
+  rocksdb3131::BackupableDBOptionsJni::setHandle(env, jopt, nullptr);
 }

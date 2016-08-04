@@ -4,7 +4,7 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 // This file implements the "bridge" between Java and C++ and enables
-// calling c++ rocksdb::Iterator methods from Java side.
+// calling c++ rocksdb3131::Iterator methods from Java side.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,7 +12,7 @@
 
 #include "include/org_rocksdb_RocksIterator.h"
 #include "rocksjni/portal.h"
-#include "rocksdb/iterator.h"
+#include "rocksdb3131/iterator.h"
 
 /*
  * Class:     org_rocksdb_RocksIterator
@@ -21,7 +21,7 @@
  */
 void Java_org_rocksdb_RocksIterator_disposeInternal(
     JNIEnv* env, jobject jobj, jlong handle) {
-  auto it = reinterpret_cast<rocksdb::Iterator*>(handle);
+  auto it = reinterpret_cast<rocksdb3131::Iterator*>(handle);
   delete it;
 }
 
@@ -32,7 +32,7 @@ void Java_org_rocksdb_RocksIterator_disposeInternal(
  */
 jboolean Java_org_rocksdb_RocksIterator_isValid0(
     JNIEnv* env, jobject jobj, jlong handle) {
-  return reinterpret_cast<rocksdb::Iterator*>(handle)->Valid();
+  return reinterpret_cast<rocksdb3131::Iterator*>(handle)->Valid();
 }
 
 /*
@@ -42,7 +42,7 @@ jboolean Java_org_rocksdb_RocksIterator_isValid0(
  */
 void Java_org_rocksdb_RocksIterator_seekToFirst0(
     JNIEnv* env, jobject jobj, jlong handle) {
-  reinterpret_cast<rocksdb::Iterator*>(handle)->SeekToFirst();
+  reinterpret_cast<rocksdb3131::Iterator*>(handle)->SeekToFirst();
 }
 
 /*
@@ -52,7 +52,7 @@ void Java_org_rocksdb_RocksIterator_seekToFirst0(
  */
 void Java_org_rocksdb_RocksIterator_seekToLast0(
     JNIEnv* env, jobject jobj, jlong handle) {
-  reinterpret_cast<rocksdb::Iterator*>(handle)->SeekToLast();
+  reinterpret_cast<rocksdb3131::Iterator*>(handle)->SeekToLast();
 }
 
 /*
@@ -62,7 +62,7 @@ void Java_org_rocksdb_RocksIterator_seekToLast0(
  */
 void Java_org_rocksdb_RocksIterator_next0(
     JNIEnv* env, jobject jobj, jlong handle) {
-  reinterpret_cast<rocksdb::Iterator*>(handle)->Next();
+  reinterpret_cast<rocksdb3131::Iterator*>(handle)->Next();
 }
 
 /*
@@ -72,7 +72,7 @@ void Java_org_rocksdb_RocksIterator_next0(
  */
 void Java_org_rocksdb_RocksIterator_prev0(
     JNIEnv* env, jobject jobj, jlong handle) {
-  reinterpret_cast<rocksdb::Iterator*>(handle)->Prev();
+  reinterpret_cast<rocksdb3131::Iterator*>(handle)->Prev();
 }
 
 /*
@@ -83,9 +83,9 @@ void Java_org_rocksdb_RocksIterator_prev0(
 void Java_org_rocksdb_RocksIterator_seek0(
     JNIEnv* env, jobject jobj, jlong handle,
     jbyteArray jtarget, jint jtarget_len) {
-  auto it = reinterpret_cast<rocksdb::Iterator*>(handle);
+  auto it = reinterpret_cast<rocksdb3131::Iterator*>(handle);
   jbyte* target = env->GetByteArrayElements(jtarget, 0);
-  rocksdb::Slice target_slice(
+  rocksdb3131::Slice target_slice(
       reinterpret_cast<char*>(target), jtarget_len);
 
   it->Seek(target_slice);
@@ -100,14 +100,14 @@ void Java_org_rocksdb_RocksIterator_seek0(
  */
 void Java_org_rocksdb_RocksIterator_status0(
     JNIEnv* env, jobject jobj, jlong handle) {
-  auto it = reinterpret_cast<rocksdb::Iterator*>(handle);
-  rocksdb::Status s = it->status();
+  auto it = reinterpret_cast<rocksdb3131::Iterator*>(handle);
+  rocksdb3131::Status s = it->status();
 
   if (s.ok()) {
     return;
   }
 
-  rocksdb::RocksDBExceptionJni::ThrowNew(env, s);
+  rocksdb3131::RocksDBExceptionJni::ThrowNew(env, s);
 }
 
 /*
@@ -117,8 +117,8 @@ void Java_org_rocksdb_RocksIterator_status0(
  */
 jbyteArray Java_org_rocksdb_RocksIterator_key0(
     JNIEnv* env, jobject jobj, jlong handle) {
-  auto it = reinterpret_cast<rocksdb::Iterator*>(handle);
-  rocksdb::Slice key_slice = it->key();
+  auto it = reinterpret_cast<rocksdb3131::Iterator*>(handle);
+  rocksdb3131::Slice key_slice = it->key();
 
   jbyteArray jkey = env->NewByteArray(static_cast<jsize>(key_slice.size()));
   env->SetByteArrayRegion(jkey, 0, static_cast<jsize>(key_slice.size()),
@@ -133,8 +133,8 @@ jbyteArray Java_org_rocksdb_RocksIterator_key0(
  */
 jbyteArray Java_org_rocksdb_RocksIterator_value0(
     JNIEnv* env, jobject jobj, jlong handle) {
-  auto it = reinterpret_cast<rocksdb::Iterator*>(handle);
-  rocksdb::Slice value_slice = it->value();
+  auto it = reinterpret_cast<rocksdb3131::Iterator*>(handle);
+  rocksdb3131::Slice value_slice = it->value();
 
   jbyteArray jkeyValue =
       env->NewByteArray(static_cast<jsize>(value_slice.size()));

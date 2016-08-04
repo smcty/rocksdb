@@ -15,7 +15,7 @@
 #include "util/random.h"
 #include "util/murmurhash.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class MemFile {
  public:
@@ -707,4 +707,4 @@ void MockEnv::FakeSleepForMicroseconds(int64_t micros) {
   fake_sleep_micros_.fetch_add(micros);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

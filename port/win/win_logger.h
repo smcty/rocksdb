@@ -14,15 +14,15 @@
 
 #include <atomic>
 
-#include "rocksdb/env.h"
+#include "rocksdb3131/env.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class Env;
 
 const int kDebugLogChunkSize = 128 * 1024;
 
-class WinLogger : public rocksdb::Logger {
+class WinLogger : public rocksdb3131::Logger {
  public:
   WinLogger(uint64_t (*gettid)(), Env* env, FILE* file,
             const InfoLogLevel log_level = InfoLogLevel::ERROR_LEVEL);
@@ -54,4 +54,4 @@ class WinLogger : public rocksdb::Logger {
   const static uint64_t flush_every_seconds_ = 5;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

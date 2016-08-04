@@ -11,13 +11,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "rocksdb/cache.h"
+#include "rocksdb3131/cache.h"
 #include "port/port.h"
 #include "util/autovector.h"
 #include "util/hash.h"
 #include "util/mutexlock.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 Cache::~Cache() {
 }
@@ -574,4 +574,4 @@ shared_ptr<Cache> NewLRUCache(size_t capacity, int num_shard_bits) {
   return std::make_shared<ShardedLRUCache>(capacity, num_shard_bits);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

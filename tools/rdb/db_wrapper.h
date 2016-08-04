@@ -4,9 +4,9 @@
 #include <map>
 #include <node.h>
 
-#include "rocksdb/db.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/options.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/options.h"
 
 using namespace v8;
 
@@ -25,9 +25,9 @@ class DBWrapper : public node::ObjectWrap {
 
     // Helper methods
     static bool HasFamilyNamed(std::string& name, DBWrapper* db);
-    static bool AddToBatch(rocksdb::WriteBatch& batch, bool del,
+    static bool AddToBatch(rocksdb3131::WriteBatch& batch, bool del,
         Handle<Array> array);
-    static bool AddToBatch(rocksdb::WriteBatch& batch, bool del,
+    static bool AddToBatch(rocksdb3131::WriteBatch& batch, bool del,
         Handle<Array> array, DBWrapper* db_wrapper, std::string cf);
     static Handle<Value> CompactRangeDefault(const v8::Arguments& args);
     static Handle<Value> CompactColumnFamily(const Arguments& args);
@@ -48,10 +48,10 @@ class DBWrapper : public node::ObjectWrap {
     static Handle<Value> Close(const Arguments& args);
 
     // Internal fields
-    rocksdb::Options options_;
-    rocksdb::Status status_;
-    rocksdb::DB* db_;
-    std::unordered_map<std::string, rocksdb::ColumnFamilyHandle*>
+    rocksdb3131::Options options_;
+    rocksdb3131::Status status_;
+    rocksdb3131::DB* db_;
+    std::unordered_map<std::string, rocksdb3131::ColumnFamilyHandle*>
         columnFamilies_;
 };
 

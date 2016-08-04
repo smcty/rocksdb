@@ -9,7 +9,7 @@
 #include "util/coding.h"
 #include "util/string_util.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 Status InternalKeyPropertiesCollector::InternalAdd(const Slice& key,
                                                    const Slice& value,
@@ -98,4 +98,4 @@ uint64_t GetDeletedKeys(
   return GetVarint64(&raw, &val) ? val : 0;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

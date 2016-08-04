@@ -60,7 +60,7 @@ It depends on successfully passing SMHasher test set.
 #pragma once
 
 #if defined (__cplusplus)
-namespace rocksdb {
+namespace rocksdb3131 {
 #endif
 
 
@@ -160,5 +160,5 @@ To free memory context, use XXH32_digest(), or free().
 
 
 #if defined (__cplusplus)
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif

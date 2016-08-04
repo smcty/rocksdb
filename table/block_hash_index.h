@@ -7,11 +7,11 @@
 #include <string>
 #include <unordered_map>
 
-#include "rocksdb/status.h"
+#include "rocksdb3131/status.h"
 #include "util/arena.h"
 #include "util/murmurhash.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class Comparator;
 class Iterator;
@@ -82,4 +82,4 @@ BlockHashIndex* CreateBlockHashIndexOnTheFly(
     Iterator* index_iter, Iterator* data_iter, const uint32_t num_restarts,
     const Comparator* comparator, const SliceTransform* hash_key_extractor);
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

@@ -9,7 +9,7 @@
 
 #ifndef ROCKSDB_LITE
 
-#include "rocksdb/utilities/checkpoint.h"
+#include "rocksdb3131/utilities/checkpoint.h"
 
 #ifndef __STDC_FORMAT_MACROS
 #define __STDC_FORMAT_MACROS
@@ -20,12 +20,12 @@
 #include <string>
 #include "db/filename.h"
 #include "db/wal_manager.h"
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
-#include "rocksdb/transaction_log.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/transaction_log.h"
 #include "util/file_util.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class CheckpointImpl : public Checkpoint {
  public:
@@ -213,6 +213,6 @@ Status CheckpointImpl::CreateCheckpoint(const std::string& checkpoint_dir) {
 
   return s;
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

@@ -9,7 +9,7 @@
 #include <vector>
 #include <string>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class CompactedDBImpl : public DBImpl {
  public:

@@ -8,10 +8,10 @@
 
 #ifndef ROCKSDB_LITE
 #pragma once
-#include "rocksdb/slice_transform.h"
-#include "rocksdb/memtablerep.h"
+#include "rocksdb3131/slice_transform.h"
+#include "rocksdb3131/memtablerep.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class HashLinkListRepFactory : public MemTableRepFactory {
  public:

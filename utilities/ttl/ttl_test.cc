@@ -5,8 +5,8 @@
 #ifndef ROCKSDB_LITE
 
 #include <memory>
-#include "rocksdb/compaction_filter.h"
-#include "rocksdb/utilities/db_ttl.h"
+#include "rocksdb3131/compaction_filter.h"
+#include "rocksdb3131/utilities/db_ttl.h"
 #include "util/testharness.h"
 #include "util/logging.h"
 #include <map>
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #endif
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 
@@ -626,7 +626,7 @@ TEST_F(TtlTest, ColumnFamiliesTest) {
   db_ttl_ = nullptr;
 }
 
-} //  namespace rocksdb
+} //  namespace rocksdb3131
 
 // A black-box test for the ttl wrapper around rocksdb
 int main(int argc, char** argv) {

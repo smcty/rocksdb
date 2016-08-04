@@ -13,7 +13,7 @@
 #include "port/port.h"
 #include "port/util_logger.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // Rolls the log file by size and/or time
 class AutoRollLogger : public Logger {
@@ -111,4 +111,4 @@ Status CreateLoggerFromOptions(
     const DBOptions& options,
     std::shared_ptr<Logger>* logger);
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

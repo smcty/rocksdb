@@ -7,17 +7,17 @@
 
 #include <vector>
 
-#include "rocksdb/comparator.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/slice_transform.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/slice_transform.h"
 #include "util/arena.h"
 #include "util/coding.h"
 #include "util/hash.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 inline uint32_t Hash(const Slice& s) {
-  return rocksdb::Hash(s.data(), s.size(), 0);
+  return rocksdb3131::Hash(s.data(), s.size(), 0);
 }
 
 inline uint32_t PrefixToBucket(const Slice& prefix, uint32_t num_buckets) {
@@ -233,4 +233,4 @@ uint32_t BlockPrefixIndex::GetBlocks(const Slice& key,
   }
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

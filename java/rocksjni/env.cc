@@ -4,12 +4,12 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 // This file implements the "bridge" between Java and C++ and enables
-// calling c++ rocksdb::Env methods from Java side.
+// calling c++ rocksdb3131::Env methods from Java side.
 
 #include "include/org_rocksdb_Env.h"
 #include "include/org_rocksdb_RocksEnv.h"
 #include "include/org_rocksdb_RocksMemEnv.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/env.h"
 
 /*
  * Class:     org_rocksdb_Env
@@ -18,7 +18,7 @@
  */
 jlong Java_org_rocksdb_Env_getDefaultEnvInternal(
     JNIEnv* env, jclass jclazz) {
-  return reinterpret_cast<jlong>(rocksdb::Env::Default());
+  return reinterpret_cast<jlong>(rocksdb3131::Env::Default());
 }
 
 /*
@@ -29,13 +29,13 @@ jlong Java_org_rocksdb_Env_getDefaultEnvInternal(
 void Java_org_rocksdb_Env_setBackgroundThreads(
     JNIEnv* env, jobject jobj, jlong jhandle,
     jint num, jint priority) {
-  auto* rocks_env = reinterpret_cast<rocksdb::Env*>(jhandle);
+  auto* rocks_env = reinterpret_cast<rocksdb3131::Env*>(jhandle);
   switch (priority) {
     case org_rocksdb_Env_FLUSH_POOL:
-      rocks_env->SetBackgroundThreads(num, rocksdb::Env::Priority::LOW);
+      rocks_env->SetBackgroundThreads(num, rocksdb3131::Env::Priority::LOW);
       break;
     case org_rocksdb_Env_COMPACTION_POOL:
-      rocks_env->SetBackgroundThreads(num, rocksdb::Env::Priority::HIGH);
+      rocks_env->SetBackgroundThreads(num, rocksdb3131::Env::Priority::HIGH);
       break;
   }
 }
@@ -47,12 +47,12 @@ void Java_org_rocksdb_Env_setBackgroundThreads(
  */
 jint Java_org_rocksdb_Env_getThreadPoolQueueLen(
     JNIEnv* env, jobject jobj, jlong jhandle, jint pool_id) {
-  auto* rocks_env = reinterpret_cast<rocksdb::Env*>(jhandle);
+  auto* rocks_env = reinterpret_cast<rocksdb3131::Env*>(jhandle);
   switch (pool_id) {
     case org_rocksdb_RocksEnv_FLUSH_POOL:
-      return rocks_env->GetThreadPoolQueueLen(rocksdb::Env::Priority::LOW);
+      return rocks_env->GetThreadPoolQueueLen(rocksdb3131::Env::Priority::LOW);
     case org_rocksdb_RocksEnv_COMPACTION_POOL:
-      return rocks_env->GetThreadPoolQueueLen(rocksdb::Env::Priority::HIGH);
+      return rocks_env->GetThreadPoolQueueLen(rocksdb3131::Env::Priority::HIGH);
   }
   return 0;
 }
@@ -64,8 +64,8 @@ jint Java_org_rocksdb_Env_getThreadPoolQueueLen(
  */
 jlong Java_org_rocksdb_RocksMemEnv_createMemEnv(
     JNIEnv* env, jclass jclazz) {
-  return reinterpret_cast<jlong>(rocksdb::NewMemEnv(
-      rocksdb::Env::Default()));
+  return reinterpret_cast<jlong>(rocksdb3131::NewMemEnv(
+      rocksdb3131::Env::Default()));
 }
 
 /*
@@ -75,5 +75,5 @@ jlong Java_org_rocksdb_RocksMemEnv_createMemEnv(
  */
 void Java_org_rocksdb_RocksMemEnv_disposeInternal(
     JNIEnv* env, jobject jobj, jlong jhandle) {
-  delete reinterpret_cast<rocksdb::Env*>(jhandle);
+  delete reinterpret_cast<rocksdb3131::Env*>(jhandle);
 }

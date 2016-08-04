@@ -6,10 +6,10 @@
 #include "table/bloom_block.h"
 
 #include <string>
-#include "rocksdb/slice.h"
+#include "rocksdb3131/slice.h"
 #include "util/dynamic_bloom.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 void BloomBlockBuilder::AddKeysHashes(const std::vector<uint32_t>& keys_hashes) {
   for (auto hash : keys_hashes) {
@@ -20,4 +20,4 @@ void BloomBlockBuilder::AddKeysHashes(const std::vector<uint32_t>& keys_hashes) 
 Slice BloomBlockBuilder::Finish() { return bloom_.GetRawData(); }
 
 const std::string BloomBlockBuilder::kBloomBlock = "kBloomBlock";
-}  // namespace rocksdb
+}  // namespace rocksdb3131

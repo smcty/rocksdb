@@ -23,7 +23,7 @@ public class DBOptions extends RocksObject implements DBOptionsInterface {
    * Construct DBOptions.
    *
    * This constructor will create (by allocating a block of memory)
-   * an {@code rocksdb::DBOptions} in the c++ side.
+   * an {@code rocksdb3131::DBOptions} in the c++ side.
    */
   public DBOptions() {
     super();

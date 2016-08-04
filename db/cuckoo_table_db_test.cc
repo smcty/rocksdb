@@ -6,15 +6,15 @@
 #ifndef ROCKSDB_LITE
 
 #include "db/db_impl.h"
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
 #include "table/meta_blocks.h"
 #include "table/cuckoo_table_factory.h"
 #include "table/cuckoo_table_reader.h"
 #include "util/testharness.h"
 #include "util/testutil.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class CuckooTableDBTest : public testing::Test {
  private:
@@ -315,7 +315,7 @@ TEST_F(CuckooTableDBTest, AdaptiveTable) {
   ASSERT_EQ("v4", Get("key4"));
   ASSERT_EQ("v6", Get("key5"));
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

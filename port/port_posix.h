@@ -74,7 +74,7 @@
 
 #include <limits>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace port {
 
 // For use at db/file_indexer.h kLevelMaxIndex
@@ -152,5 +152,5 @@ extern void InitOnce(OnceType* once, void (*initializer)());
 
 extern void Crash(const std::string& srcfile, int srcline);
 } // namespace port
-} // namespace rocksdb
+} // namespace rocksdb3131
 

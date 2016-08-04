@@ -6,8 +6,8 @@
 #include <cstring>
 #include <iostream>
 
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
 #include "util/coding.h"
 
 void usage(const char *name) {
@@ -15,12 +15,12 @@ void usage(const char *name) {
 }
 
 int main(int argc, char **argv) {
-  rocksdb::DB *dbptr;
-  rocksdb::Options options;
-  rocksdb::Status status;
-  rocksdb::Env *env;
-  std::unique_ptr<rocksdb::SequentialFile> dumpfile;
-  rocksdb::Slice slice;
+  rocksdb3131::DB *dbptr;
+  rocksdb3131::Options options;
+  rocksdb3131::Status status;
+  rocksdb3131::Env *env;
+  std::unique_ptr<rocksdb3131::SequentialFile> dumpfile;
+  rocksdb3131::Slice slice;
   char scratch8[8];
 
   static const char *magicstr = "ROCKDUMP";
@@ -31,9 +31,9 @@ int main(int argc, char **argv) {
     exit(1);
   }
 
-  env = rocksdb::Env::Default();
+  env = rocksdb3131::Env::Default();
 
-  status = env->NewSequentialFile(argv[1], &dumpfile, rocksdb::EnvOptions());
+  status = env->NewSequentialFile(argv[1], &dumpfile, rocksdb3131::EnvOptions());
   if (!status.ok()) {
     std::cerr << "Unable to open dump file '" << argv[1]
               << "' for reading: " << status.ToString() << std::endl;
@@ -61,7 +61,7 @@ int main(int argc, char **argv) {
     std::cerr << "Unable to read info blob size." << std::endl;
     exit(1);
   }
-  uint32_t infosize = rocksdb::DecodeFixed32(slice.data());
+  uint32_t infosize = rocksdb3131::DecodeFixed32(slice.data());
   status = dumpfile->Skip(infosize);
   if (!status.ok()) {
     std::cerr << "Unable to skip info blob: " << status.ToString() << std::endl;
@@ -69,14 +69,14 @@ int main(int argc, char **argv) {
   }
 
   options.create_if_missing = true;
-  status = rocksdb::DB::Open(options, argv[2], &dbptr);
+  status = rocksdb3131::DB::Open(options, argv[2], &dbptr);
   if (!status.ok()) {
     std::cerr << "Unable to open database '" << argv[2]
               << "' for writing: " << status.ToString() << std::endl;
     exit(1);
   }
 
-  const std::unique_ptr<rocksdb::DB> db(dbptr);
+  const std::unique_ptr<rocksdb3131::DB> db(dbptr);
 
   uint32_t last_keysize = 64;
   size_t last_valsize = 1 << 20;
@@ -85,12 +85,12 @@ int main(int argc, char **argv) {
 
   while (1) {
     uint32_t keysize, valsize;
-    rocksdb::Slice keyslice;
-    rocksdb::Slice valslice;
+    rocksdb3131::Slice keyslice;
+    rocksdb3131::Slice valslice;
 
     status = dumpfile->Read(4, &slice, scratch8);
     if (!status.ok() || slice.size() != 4) break;
-    keysize = rocksdb::DecodeFixed32(slice.data());
+    keysize = rocksdb3131::DecodeFixed32(slice.data());
     if (keysize > last_keysize) {
       while (keysize > last_keysize) last_keysize *= 2;
       keyscratch = std::unique_ptr<char[]>(new char[last_keysize]);
@@ -111,7 +111,7 @@ int main(int argc, char **argv) {
                 << std::endl;
       exit(1);
     }
-    valsize = rocksdb::DecodeFixed32(slice.data());
+    valsize = rocksdb3131::DecodeFixed32(slice.data());
     if (valsize > last_valsize) {
       while (valsize > last_valsize) last_valsize *= 2;
       valscratch = std::unique_ptr<char[]>(new char[last_valsize]);
@@ -125,7 +125,7 @@ int main(int argc, char **argv) {
       exit(1);
     }
 
-    status = db->Put(rocksdb::WriteOptions(), keyslice, valslice);
+    status = db->Put(rocksdb3131::WriteOptions(), keyslice, valslice);
     if (!status.ok()) {
       fprintf(stderr, "Unable to write database entry\n");
       exit(1);

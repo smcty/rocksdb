@@ -8,12 +8,12 @@
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 
 #pragma once
-#include "rocksdb/types.h"
-#include "rocksdb/write_batch.h"
-#include "rocksdb/db.h"
-#include "rocksdb/options.h"
+#include "rocksdb3131/types.h"
+#include "rocksdb3131/write_batch.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/options.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class MemTable;
 
@@ -126,4 +126,4 @@ class WriteBatchInternal {
   static void Append(WriteBatch* dst, const WriteBatch* src);
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

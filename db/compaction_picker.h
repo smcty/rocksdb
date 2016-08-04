@@ -15,9 +15,9 @@
 
 #include "db/version_set.h"
 #include "db/compaction.h"
-#include "rocksdb/status.h"
-#include "rocksdb/options.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/status.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/env.h"
 #include "util/mutable_cf_options.h"
 
 #include <vector>
@@ -25,7 +25,7 @@
 #include <set>
 #include <string>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class LogBuffer;
 class Compaction;
@@ -345,4 +345,4 @@ CompressionType GetCompressionType(const ImmutableCFOptions& ioptions,
                                    int level, int base_level,
                                    const bool enable_compression = true);
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

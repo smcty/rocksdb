@@ -8,9 +8,9 @@
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 
 #include "util/rate_limiter.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/env.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 
 // Pending request
@@ -213,4 +213,4 @@ RateLimiter* NewGenericRateLimiter(
       rate_bytes_per_sec, refill_period_us, fairness);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

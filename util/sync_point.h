@@ -21,7 +21,7 @@ extern int rocksdb_kill_odds;
 #define TEST_KILL_RANDOM(rocksdb_kill_odds)
 #else
 
-namespace rocksdb {
+namespace rocksdb3131 {
 // Kill the process with probablity 1/odds for testing.
 extern void TestKillRandom(int odds, const std::string& srcfile, int srcline);
 
@@ -36,7 +36,7 @@ extern void TestKillRandom(int odds, const std::string& srcfile, int srcline);
       TestKillRandom(rocksdb_kill_odds, __FILE__, __LINE__); \
     }                                                        \
   }
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif
 
 #ifdef NDEBUG
@@ -44,7 +44,7 @@ extern void TestKillRandom(int odds, const std::string& srcfile, int srcline);
 #define TEST_SYNC_POINT_CALLBACK(x, y)
 #else
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // This class provides facility to reproduce race conditions deterministically
 // in unit tests.
@@ -106,7 +106,7 @@ class SyncPoint {
   int num_callbacks_running_ = 0;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 // Use TEST_SYNC_POINT to specify sync points inside code base.
 // Sync points can have happens-after depedency on other sync points,
@@ -114,7 +114,7 @@ class SyncPoint {
 // utilized to re-produce race conditions between threads.
 // See TransactionLogIteratorRace in db_test.cc for an example use case.
 // TEST_SYNC_POINT is no op in release build.
-#define TEST_SYNC_POINT(x) rocksdb::SyncPoint::GetInstance()->Process(x)
+#define TEST_SYNC_POINT(x) rocksdb3131::SyncPoint::GetInstance()->Process(x)
 #define TEST_SYNC_POINT_CALLBACK(x, y) \
-  rocksdb::SyncPoint::GetInstance()->Process(x, y)
+  rocksdb3131::SyncPoint::GetInstance()->Process(x, y)
 #endif  // NDEBUG

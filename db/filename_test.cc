@@ -14,7 +14,7 @@
 #include "util/logging.h"
 #include "util/testharness.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class FileNameTest : public testing::Test {};
 
@@ -172,7 +172,7 @@ TEST_F(FileNameTest, Construction) {
   ASSERT_EQ(kMetaDatabase, type);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

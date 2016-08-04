@@ -10,13 +10,13 @@
 #include <time.h>
 #include <iostream>
 #include "port/sys_time.h"
-#include "rocksdb/env.h"
-#include "rocksdb/status.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/status.h"
 
 #ifdef USE_HDFS
 #include <hdfs.h>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // Thrown during execution when there is an issue with the supplied
 // arguments.
@@ -231,12 +231,12 @@ class HdfsEnv : public Env {
   }
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #else // USE_HDFS
 
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 static const Status notsup;
 

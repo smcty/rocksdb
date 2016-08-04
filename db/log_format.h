@@ -11,7 +11,7 @@
 // See ../doc/log_format.txt for more detail.
 
 #pragma once
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace log {
 
 enum RecordType {
@@ -32,4 +32,4 @@ static const unsigned int kBlockSize = 32768;
 static const int kHeaderSize = 4 + 1 + 2;
 
 }  // namespace log
-}  // namespace rocksdb
+}  // namespace rocksdb3131

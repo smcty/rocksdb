@@ -8,7 +8,7 @@
 
 using namespace std;
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // -- AutoRollLogger
 Status AutoRollLogger::ResetLogger() {
@@ -158,4 +158,4 @@ Status CreateLoggerFromOptions(
   }
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

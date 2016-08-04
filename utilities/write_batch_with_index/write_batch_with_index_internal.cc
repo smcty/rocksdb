@@ -8,14 +8,14 @@
 #include "db/column_family.h"
 #include "db/merge_context.h"
 #include "db/merge_helper.h"
-#include "rocksdb/comparator.h"
-#include "rocksdb/db.h"
-#include "rocksdb/utilities/write_batch_with_index.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/utilities/write_batch_with_index.h"
 #include "util/coding.h"
 #include "util/string_util.h"
 #include "utilities/write_batch_with_index/write_batch_with_index_internal.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class Env;
 class Logger;
@@ -247,6 +247,6 @@ WriteBatchWithIndexInternal::Result WriteBatchWithIndexInternal::GetFromBatch(
   return result;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // !ROCKSDB_LITE

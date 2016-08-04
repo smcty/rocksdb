@@ -7,13 +7,13 @@
 #include <iostream>
 #include <utility>
 
-#include "rocksdb/env.h"
+#include "rocksdb3131/env.h"
 #include "util/autovector.h"
 #include "util/string_util.h"
 #include "util/testharness.h"
 #include "util/testutil.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 using namespace std;
 
@@ -203,7 +203,7 @@ vector<string> GetTestKeys(size_t size) {
 
   int index = 0;
   for (auto& key : keys) {
-    key = "item-" + rocksdb::ToString(index++);
+    key = "item-" + rocksdb3131::ToString(index++);
   }
   return keys;
 }
@@ -322,7 +322,7 @@ TEST_F(AutoVectorTest, PerfBench) {
   }
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

@@ -15,7 +15,7 @@
 #include "util/coding.h"
 #include "util/hash.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 inline uint32_t GetBucketIdFromHash(uint32_t hash, uint32_t num_buckets) {
@@ -210,6 +210,6 @@ Slice PlainTableIndexBuilder::FillIndexes(
 
 const std::string PlainTableIndexBuilder::kPlainTableIndexBlock =
     "PlainTableIndexBlock";
-};  // namespace rocksdb
+};  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

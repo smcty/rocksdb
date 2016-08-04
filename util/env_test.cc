@@ -29,7 +29,7 @@
 #include <fcntl.h>
 #endif
 
-#include "rocksdb/env.h"
+#include "rocksdb3131/env.h"
 #include "port/port.h"
 #include "util/coding.h"
 #include "util/log_buffer.h"
@@ -37,7 +37,7 @@
 #include "util/string_util.h"
 #include "util/testharness.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 static const int kDelayMicros = 100000;
 
@@ -1077,7 +1077,7 @@ TEST_F(EnvPosixTest, WritableFileWrapper) {
   EXPECT_EQ(14, step);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

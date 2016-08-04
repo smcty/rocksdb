@@ -9,7 +9,7 @@
 #include <cctype>
 #include "util/testharness.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class GeoDBTest : public testing::Test {
  public:
@@ -116,7 +116,7 @@ TEST_F(GeoDBTest, Search) {
   ASSERT_EQ(values.size(), 0U);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char* argv[]) {
   ::testing::InitGoogleTest(&argc, argv);

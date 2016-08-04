@@ -12,9 +12,9 @@
 #include "db/version_set.h"
 #include "util/coding.h"
 #include "util/event_logger.h"
-#include "rocksdb/slice.h"
+#include "rocksdb3131/slice.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // Tag numbers for serialized VersionEdit.  These numbers are written to
 // disk and should not be changed.
@@ -476,4 +476,4 @@ std::string VersionEdit::DebugJSON(int edit_num, bool hex_key) const {
   return jw.Get();
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

@@ -8,11 +8,11 @@
 
 #include <mutex>
 #include <string>
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
-#include "rocksdb/options.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/options.h"
 
-using namespace rocksdb;
+using namespace rocksdb3131;
 std::string kDBPath = "/tmp/rocksdb_compact_files_example";
 struct CompactionTask;
 

@@ -7,8 +7,8 @@
 #include <map>
 #include <string>
 
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
 #include "util/hash.h"
 #include "util/string_util.h"
 #include "util/testharness.h"
@@ -17,7 +17,7 @@
 
 using std::unique_ptr;
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace {
 
 static const Comparator* comparator;
@@ -437,7 +437,7 @@ TEST_F(ComparatorDBTest, TwoStrComparator) {
   }
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

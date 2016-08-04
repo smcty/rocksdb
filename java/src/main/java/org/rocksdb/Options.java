@@ -24,7 +24,7 @@ public class Options extends RocksObject
    * Construct options for opening a RocksDB.
    *
    * This constructor will create (by allocating a block of memory)
-   * an {@code rocksdb::Options} in the c++ side.
+   * an {@code rocksdb3131::Options} in the c++ side.
    */
   public Options() {
     super();

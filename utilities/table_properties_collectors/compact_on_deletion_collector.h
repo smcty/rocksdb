@@ -6,7 +6,7 @@
 #pragma once
 
 #ifndef ROCKSDB_LITE
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // A factory of a table property collector that marks a SST
 // file as need-compaction when it observe at least "D" deletion
@@ -97,5 +97,5 @@ class CompactOnDeletionCollector : public TablePropertiesCollector {
   // true if the current SST file needs to be compacted.
   bool need_compaction_;
 };
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // !ROCKSDB_LITE

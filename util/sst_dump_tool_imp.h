@@ -5,7 +5,7 @@
 #ifndef ROCKSDB_LITE
 #pragma once
 
-#include "rocksdb/sst_dump_tool.h"
+#include "rocksdb3131/sst_dump_tool.h"
 
 #include <map>
 #include <sstream>
@@ -15,13 +15,13 @@
 #include "db/dbformat.h"
 #include "db/memtable.h"
 #include "db/write_batch_internal.h"
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
-#include "rocksdb/immutable_options.h"
-#include "rocksdb/iterator.h"
-#include "rocksdb/slice_transform.h"
-#include "rocksdb/status.h"
-#include "rocksdb/table_properties.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/immutable_options.h"
+#include "rocksdb3131/iterator.h"
+#include "rocksdb3131/slice_transform.h"
+#include "rocksdb3131/status.h"
+#include "rocksdb3131/table_properties.h"
 #include "table/block.h"
 #include "table/block_based_table_builder.h"
 #include "table/block_based_table_factory.h"
@@ -35,7 +35,7 @@
 #include "util/testharness.h"
 #include "util/testutil.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class SstFileReader {
  public:
@@ -93,6 +93,6 @@ class SstFileReader {
   unique_ptr<TableProperties> table_properties_;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

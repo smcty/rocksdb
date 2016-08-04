@@ -10,14 +10,14 @@
 #include "db/column_family.h"
 #include "db/version_set.h"
 #include "db/writebuffer.h"
-#include "rocksdb/cache.h"
+#include "rocksdb3131/cache.h"
 #include "util/file_reader_writer.h"
 #include "util/string_util.h"
 #include "util/testharness.h"
 #include "util/testutil.h"
 #include "table/mock_table.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // TODO(icanadi) Mock out everything else:
 // 1. VersionSet
@@ -131,7 +131,7 @@ TEST_F(FlushJobTest, NonEmpty) {
   job_context.Clean();
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

@@ -7,15 +7,15 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 
-#include "rocksdb/filter_policy.h"
+#include "rocksdb3131/filter_policy.h"
 
-#include "rocksdb/slice.h"
+#include "rocksdb3131/slice.h"
 #include "table/block_based_filter_block.h"
 #include "table/full_filter_block.h"
 #include "util/hash.h"
 #include "util/coding.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class BlockBasedFilterBlockBuilder;
 class FullFilterBlockBuilder;
@@ -364,4 +364,4 @@ const FilterPolicy* NewBloomFilterPolicy(int bits_per_key,
   return new BloomFilterPolicy(bits_per_key, use_block_based_builder);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

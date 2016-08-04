@@ -9,17 +9,17 @@
 #include <utility>
 
 #include "db/dbformat.h"
-#include "rocksdb/comparator.h"
-#include "rocksdb/options.h"
-#include "rocksdb/perf_context.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/statistics.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/perf_context.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/statistics.h"
 #include "db/db_iter.h"
 #include "util/string_util.h"
 #include "util/testharness.h"
 #include "utilities/merge_operators.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 static uint64_t TestGetTickerCount(const Options& options,
                                    Tickers ticker_type) {
@@ -587,7 +587,7 @@ TEST_F(DBIteratorTest, DBIteratorEmpty) {
 
 TEST_F(DBIteratorTest, DBIteratorUseSkipCountSkips) {
   Options options;
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
   options.merge_operator = MergeOperators::CreateFromStringId("stringappend");
 
   TestIterator* internal_iter = new TestIterator(BytewiseComparator());
@@ -638,7 +638,7 @@ TEST_F(DBIteratorTest, DBIteratorUseSkip) {
       }
       internal_iter->Finish();
 
-      options.statistics = rocksdb::CreateDBStatistics();
+      options.statistics = rocksdb3131::CreateDBStatistics();
       std::unique_ptr<Iterator> db_iter(NewDBIterator(
           env_, ImmutableCFOptions(options),
           BytewiseComparator(), internal_iter, i + 2,
@@ -1772,7 +1772,7 @@ TEST_F(DBIteratorTest, SeekToLastOccurrenceSeq0) {
   ASSERT_FALSE(db_iter->Valid());
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

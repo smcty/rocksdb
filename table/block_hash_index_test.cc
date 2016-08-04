@@ -7,14 +7,14 @@
 #include <memory>
 #include <vector>
 
-#include "rocksdb/comparator.h"
-#include "rocksdb/iterator.h"
-#include "rocksdb/slice_transform.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/iterator.h"
+#include "rocksdb3131/slice_transform.h"
 #include "table/block_hash_index.h"
 #include "util/testharness.h"
 #include "util/testutil.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 typedef std::map<std::string, std::string> Data;
 
@@ -112,7 +112,7 @@ TEST_F(BlockTest, BasicTest) {
   delete prefix_extractor;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

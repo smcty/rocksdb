@@ -4,7 +4,7 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 // This file implements the "bridge" between Java and C++ and enables
-// calling c++ rocksdb::Iterator methods from Java side.
+// calling c++ rocksdb3131::Iterator methods from Java side.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,6 +20,6 @@
  */
 void Java_org_rocksdb_ColumnFamilyHandle_disposeInternal(
     JNIEnv* env, jobject jobj, jlong handle) {
-  auto it = reinterpret_cast<rocksdb::ColumnFamilyHandle*>(handle);
+  auto it = reinterpret_cast<rocksdb3131::ColumnFamilyHandle*>(handle);
   delete it;
 }

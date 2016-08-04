@@ -5,7 +5,7 @@
 
 #ifndef ROCKSDB_LITE
 
-#include "rocksdb/utilities/spatial_db.h"
+#include "rocksdb3131/utilities/spatial_db.h"
 
 #ifndef __STDC_FORMAT_MACROS
 #define __STDC_FORMAT_MACROS
@@ -21,18 +21,18 @@
 #include <set>
 #include <unordered_set>
 
-#include "rocksdb/cache.h"
-#include "rocksdb/options.h"
-#include "rocksdb/memtablerep.h"
-#include "rocksdb/slice_transform.h"
-#include "rocksdb/statistics.h"
-#include "rocksdb/table.h"
-#include "rocksdb/db.h"
-#include "rocksdb/utilities/stackable_db.h"
+#include "rocksdb3131/cache.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/memtablerep.h"
+#include "rocksdb3131/slice_transform.h"
+#include "rocksdb3131/statistics.h"
+#include "rocksdb3131/table.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/utilities/stackable_db.h"
 #include "util/coding.h"
 #include "utilities/spatialdb/utils.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace spatial {
 
 // Column families are used to store element's data and spatial indexes. We use
@@ -915,5 +915,5 @@ Status SpatialDB::Open(const SpatialDBOptions& options, const std::string& name,
 }
 
 }  // namespace spatial
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

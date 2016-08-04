@@ -126,10 +126,10 @@ public class BackupableDB extends RocksDB {
   /**
    * <p>Close the BackupableDB instance and release resource.</p>
    *
-   * <p>Internally, {@link BackupableDB} owns the {@code rocksdb::DB}
+   * <p>Internally, {@link BackupableDB} owns the {@code rocksdb3131::DB}
    * pointer to its associated {@link org.rocksdb.RocksDB}.
    * The release of that RocksDB pointer is handled in the destructor
-   * of the c++ {@code rocksdb::BackupableDB} and should be transparent
+   * of the c++ {@code rocksdb3131::BackupableDB} and should be transparent
    * to Java developers.</p>
    */
   @Override public synchronized void close() {

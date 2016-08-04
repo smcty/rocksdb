@@ -16,9 +16,9 @@
 #include "util/testharness.h"
 #include "util/rate_limiter.h"
 #include "util/random.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/env.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class RateLimiterTest : public testing::Test {};
 
@@ -87,7 +87,7 @@ TEST_F(RateLimiterTest, Rate) {
   }
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

@@ -5,7 +5,7 @@
 
 #include "db/write_thread.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 void WriteThread::EnterWriteThread(WriteThread::Writer* w) {
   // the following code block pushes the current writer "w" into the writer
@@ -113,4 +113,4 @@ size_t WriteThread::BuildBatchGroup(
   return size;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

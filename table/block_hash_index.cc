@@ -7,12 +7,12 @@
 
 #include <algorithm>
 
-#include "rocksdb/comparator.h"
-#include "rocksdb/iterator.h"
-#include "rocksdb/slice_transform.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/iterator.h"
+#include "rocksdb3131/slice_transform.h"
 #include "util/coding.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 Status CreateBlockHashIndex(const SliceTransform* hash_key_extractor,
                             const Slice& prefixes, const Slice& prefix_meta,
@@ -154,4 +154,4 @@ const BlockHashIndex::RestartIndex* BlockHashIndex::GetRestartIndex(
   return &pos->second;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

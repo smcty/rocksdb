@@ -5,7 +5,7 @@
 //  LICENSE file in the root directory of this source tree. An additional grant
 //  of patent rights can be found in the PATENTS file in the same directory.
 
-#include "rocksdb/table_properties.h"
+#include "rocksdb3131/table_properties.h"
 #include "table/mock_table.h"
 #include "table/get_context.h"
 #include "db/dbformat.h"
@@ -13,7 +13,7 @@
 #include "util/coding.h"
 #include "util/file_reader_writer.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace mock {
 
 Iterator* MockTableReader::NewIterator(const ReadOptions&, Arena* arena) {
@@ -112,4 +112,4 @@ void MockTableFactory::AssertLatestFile(const MockFileContents& file_contents) {
 }
 
 }  // namespace mock
-}  // namespace rocksdb
+}  // namespace rocksdb3131

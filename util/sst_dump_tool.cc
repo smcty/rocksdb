@@ -13,7 +13,7 @@
 
 #include <inttypes.h>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 using std::dynamic_pointer_cast;
 
@@ -146,7 +146,7 @@ int SstFileReader::ShowAllCompressionSizes(size_t block_size) {
   ReadOptions read_options;
   Options opts;
   const ImmutableCFOptions imoptions(opts);
-  rocksdb::InternalKeyComparator ikc(opts.comparator);
+  rocksdb3131::InternalKeyComparator ikc(opts.comparator);
   std::vector<std::unique_ptr<IntTblPropCollectorFactory> >
       block_based_table_factories;
 
@@ -182,7 +182,7 @@ Status SstFileReader::ReadTableProperties(uint64_t table_magic_number,
                                           RandomAccessFileReader* file,
                                           uint64_t file_size) {
   TableProperties* table_properties = nullptr;
-  Status s = rocksdb::ReadTableProperties(file, file_size, table_magic_number,
+  Status s = rocksdb3131::ReadTableProperties(file, file_size, table_magic_number,
                                           options_.env, options_.info_log.get(),
                                           &table_properties);
   if (s.ok()) {
@@ -417,8 +417,8 @@ int SSTDumpTool::Run(int argc, char** argv) {
   }
 
   std::vector<std::string> filenames;
-  rocksdb::Env* env = rocksdb::Env::Default();
-  rocksdb::Status st = env->GetChildren(dir_or_file, &filenames);
+  rocksdb3131::Env* env = rocksdb3131::Env::Default();
+  rocksdb3131::Status st = env->GetChildren(dir_or_file, &filenames);
   bool dir = true;
   if (!st.ok()) {
     filenames.clear();
@@ -427,8 +427,8 @@ int SSTDumpTool::Run(int argc, char** argv) {
   }
 
   fprintf(stdout, "from [%s] to [%s]\n",
-      rocksdb::Slice(from_key).ToString(true).c_str(),
-      rocksdb::Slice(to_key).ToString(true).c_str());
+      rocksdb3131::Slice(from_key).ToString(true).c_str(),
+      rocksdb3131::Slice(to_key).ToString(true).c_str());
 
   uint64_t total_read = 0;
   for (size_t i = 0; i < filenames.size(); i++) {
@@ -442,7 +442,7 @@ int SSTDumpTool::Run(int argc, char** argv) {
       filename = std::string(dir_or_file) + "/" + filename;
     }
 
-    rocksdb::SstFileReader reader(filename, verify_checksum,
+    rocksdb3131::SstFileReader reader(filename, verify_checksum,
                                   output_hex);
     if (!reader.getStatus().ok()) {
       fprintf(stderr, "%s: %s\n", filename.c_str(),
@@ -489,9 +489,9 @@ int SSTDumpTool::Run(int argc, char** argv) {
       }
     }
     if (show_properties) {
-      const rocksdb::TableProperties* table_properties;
+      const rocksdb3131::TableProperties* table_properties;
 
-      std::shared_ptr<const rocksdb::TableProperties>
+      std::shared_ptr<const rocksdb3131::TableProperties>
           table_properties_from_reader;
       st = reader.ReadTableProperties(&table_properties_from_reader);
       if (!st.ok()) {
@@ -508,13 +508,13 @@ int SSTDumpTool::Run(int argc, char** argv) {
                 "  %s",
                 table_properties->ToString("\n  ", ": ").c_str());
         fprintf(stdout, "# deleted keys: %" PRIu64 "\n",
-                rocksdb::GetDeletedKeys(
+                rocksdb3131::GetDeletedKeys(
                     table_properties->user_collected_properties));
       }
     }
   }
   return 0;
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

@@ -28,22 +28,22 @@
 #include "db/version_set.h"
 #include "db/write_batch_internal.h"
 #include "port/stack_trace.h"
-#include "rocksdb/cache.h"
-#include "rocksdb/compaction_filter.h"
-#include "rocksdb/convenience.h"
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
-#include "rocksdb/experimental.h"
-#include "rocksdb/filter_policy.h"
-#include "rocksdb/options.h"
-#include "rocksdb/perf_context.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/slice_transform.h"
-#include "rocksdb/table.h"
-#include "rocksdb/table_properties.h"
-#include "rocksdb/thread_status.h"
-#include "rocksdb/utilities/checkpoint.h"
-#include "rocksdb/utilities/write_batch_with_index.h"
+#include "rocksdb3131/cache.h"
+#include "rocksdb3131/compaction_filter.h"
+#include "rocksdb3131/convenience.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/experimental.h"
+#include "rocksdb3131/filter_policy.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/perf_context.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/slice_transform.h"
+#include "rocksdb3131/table.h"
+#include "rocksdb3131/table_properties.h"
+#include "rocksdb3131/thread_status.h"
+#include "rocksdb3131/utilities/checkpoint.h"
+#include "rocksdb3131/utilities/write_batch_with_index.h"
 #include "table/block_based_table_factory.h"
 #include "table/mock_table.h"
 #include "table/plain_table_factory.h"
@@ -66,7 +66,7 @@
 
 #if !defined(IOS_CROSS_COMPILE) && (!defined(NDEBUG) || !defined(OS_WIN))
 #ifndef ROCKSDB_LITE
-namespace rocksdb {
+namespace rocksdb3131 {
 
 static std::string RandomString(Random* rnd, int len, double ratio) {
   std::string r;
@@ -115,9 +115,9 @@ class CompactionJobStatsTest : public testing::Test,
   }
 
   ~CompactionJobStatsTest() {
-    rocksdb::SyncPoint::GetInstance()->DisableProcessing();
-    rocksdb::SyncPoint::GetInstance()->LoadDependency({});
-    rocksdb::SyncPoint::GetInstance()->ClearAllCallBacks();
+    rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
+    rocksdb3131::SyncPoint::GetInstance()->LoadDependency({});
+    rocksdb3131::SyncPoint::GetInstance()->ClearAllCallBacks();
     Close();
     Options options;
     options.db_paths.emplace_back(dbname_, 0);
@@ -951,10 +951,10 @@ TEST_P(CompactionJobStatsTest, UniversalCompactionTest) {
 
 INSTANTIATE_TEST_CASE_P(CompactionJobStatsTest, CompactionJobStatsTest,
                         ::testing::Values(1, 4));
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
-  rocksdb::port::InstallStackTraceHandler();
+  rocksdb3131::port::InstallStackTraceHandler();
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }

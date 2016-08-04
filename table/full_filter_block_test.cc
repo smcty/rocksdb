@@ -5,14 +5,14 @@
 
 #include "table/full_filter_block.h"
 
-#include "rocksdb/filter_policy.h"
+#include "rocksdb3131/filter_policy.h"
 #include "util/coding.h"
 #include "util/hash.h"
 #include "util/logging.h"
 #include "util/testharness.h"
 #include "util/testutil.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class TestFilterBitsBuilder : public FilterBitsBuilder {
  public:
@@ -181,7 +181,7 @@ TEST_F(FullFilterBlockTest, SingleChunk) {
   ASSERT_TRUE(!reader.KeyMayMatch("other"));
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

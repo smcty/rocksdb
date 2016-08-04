@@ -10,10 +10,10 @@
 #include <string>
 #include <chrono>
 
-#include "rocksdb/env.h"
+#include "rocksdb3131/env.h"
 #include "util/log_buffer.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class JSONWriter {
  public:
@@ -193,4 +193,4 @@ class EventLogger {
   Logger* logger_;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

@@ -12,10 +12,10 @@
 
 #include "port/port.h"
 
-#include "rocksdb/delete_scheduler.h"
-#include "rocksdb/status.h"
+#include "rocksdb3131/delete_scheduler.h"
+#include "rocksdb3131/status.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class Env;
 class Logger;
@@ -78,4 +78,4 @@ class DeleteSchedulerImpl : public DeleteScheduler {
   static const uint64_t kMicrosInSecond = 1000 * 1000LL;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

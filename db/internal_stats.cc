@@ -20,7 +20,7 @@
 #include "db/db_impl.h"
 #include "util/string_util.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 #ifndef ROCKSDB_LITE
 namespace {
@@ -671,4 +671,4 @@ DBPropertyType GetPropertyType(const Slice& property, bool* is_int_property,
 
 #endif  // !ROCKSDB_LITE
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

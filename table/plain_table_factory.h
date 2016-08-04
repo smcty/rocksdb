@@ -9,10 +9,10 @@
 #include <string>
 #include <stdint.h>
 
-#include "rocksdb/options.h"
-#include "rocksdb/table.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/table.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 struct EnvOptions;
 
@@ -188,5 +188,5 @@ class PlainTableFactory : public TableFactory {
   bool store_index_in_file_;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

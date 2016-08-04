@@ -27,7 +27,7 @@
 #include "util/string_util.h"
 #include "util/sync_point.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 uint64_t TotalCompensatedFileSize(const std::vector<FileMetaData*>& files) {
@@ -1748,4 +1748,4 @@ Compaction* FIFOCompactionPicker::CompactRange(
 
 #endif  // !ROCKSDB_LITE
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

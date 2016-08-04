@@ -5,9 +5,9 @@
 
 #include <math.h>
 #include <algorithm>
-#include "rocksdb/options.h"
+#include "rocksdb3131/options.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 
@@ -203,4 +203,4 @@ Options GetOptions(size_t total_write_buffer_limit,
   return options;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

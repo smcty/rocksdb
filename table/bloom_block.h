@@ -8,7 +8,7 @@
 #include <string>
 #include "util/dynamic_bloom.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 class Logger;
 
 class BloomBlockBuilder {
@@ -35,4 +35,4 @@ class BloomBlockBuilder {
   DynamicBloom bloom_;
 };
 
-};  // namespace rocksdb
+};  // namespace rocksdb3131

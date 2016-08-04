@@ -44,7 +44,7 @@ DEFINE_bool(write, false,
     "Should write new values to file in performance tests?");
 DEFINE_bool(identity_as_first_hash, true, "use identity as first hash");
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 const uint32_t kNumHashFunc = 10;
@@ -536,7 +536,7 @@ TEST_F(CuckooReaderTest, TestReadPerformance) {
     fprintf(stderr, "\n");
   }
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

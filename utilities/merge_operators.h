@@ -9,9 +9,9 @@
 #include <memory>
 #include <stdio.h>
 
-#include "rocksdb/merge_operator.h"
+#include "rocksdb3131/merge_operator.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class MergeOperators {
  public:
@@ -40,6 +40,6 @@ class MergeOperators {
 
 };
 
-} // namespace rocksdb
+} // namespace rocksdb3131
 
 #endif

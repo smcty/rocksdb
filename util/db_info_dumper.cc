@@ -14,11 +14,11 @@
 #include <vector>
 
 #include "db/filename.h"
-#include "rocksdb/options.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/env.h"
 #include "util/db_info_dumper.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 void DumpDBFileSummary(const DBOptions& options, const std::string& dbname) {
   if (options.info_log == nullptr) {
@@ -127,4 +127,4 @@ void DumpDBFileSummary(const DBOptions& options, const std::string& dbname) {
       "Write Ahead Log file in %s: %s\n",
       options.wal_dir.c_str(), wal_info.c_str());
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131

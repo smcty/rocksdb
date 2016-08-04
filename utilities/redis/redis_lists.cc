@@ -28,10 +28,10 @@
 #include <memory>
 #include <cmath>
 
-#include "rocksdb/slice.h"
+#include "rocksdb3131/slice.h"
 #include "util/coding.h"
 
-namespace rocksdb
+namespace rocksdb3131
 {
 
 /// Constructors
@@ -548,5 +548,5 @@ int RedisLists::Insert(const std::string& key, const std::string& pivot,
   return it.Length();
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

@@ -10,11 +10,11 @@
 #include "db/dbformat.h"
 #include "db/memtable.h"
 #include "db/write_batch_internal.h"
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
-#include "rocksdb/iterator.h"
-#include "rocksdb/table.h"
-#include "rocksdb/slice_transform.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/iterator.h"
+#include "rocksdb3131/table.h"
+#include "rocksdb3131/slice_transform.h"
 #include "table/block.h"
 #include "table/block_builder.h"
 #include "table/format.h"
@@ -23,7 +23,7 @@
 #include "util/testharness.h"
 #include "util/testutil.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 static std::string RandomString(Random* rnd, int len) {
   std::string r;
@@ -234,7 +234,7 @@ TEST_F(BlockTest, IndexHashWithSharedPrefix) {
   CheckBlockContents(std::move(contents), kMaxKey, keys, values);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);

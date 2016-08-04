@@ -3,7 +3,7 @@
 // LICENSE file in the root directory of this source tree. An additional grant
 // of patent rights can be found in the PATENTS file in the same directory.
 
-#include "rocksdb/utilities/flashcache.h"
+#include "rocksdb3131/utilities/flashcache.h"
 
 #include "utilities/flashcache/flashcache.h"
 
@@ -17,7 +17,7 @@
 #include "third-party/flashcache/flashcache_ioctl.h"
 #endif
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 #if !defined(ROCKSDB_LITE) && defined(OS_LINUX)
 // Most of the code that handles flashcache is copied from websql's branch of
@@ -133,4 +133,4 @@ int FlashcacheWhitelistCurrentThread(Env* flashcache_aware_env) { return -1; }
 
 #endif  // !defined(ROCKSDB_LITE) && defined(OS_LINUX)
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

@@ -12,11 +12,11 @@
 #include "db/dbformat.h"
 #include "db/version_edit.h"
 #include "port/stack_trace.h"
-#include "rocksdb/comparator.h"
+#include "rocksdb3131/comparator.h"
 #include "util/testharness.h"
 #include "util/testutil.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class IntComparator : public Comparator {
  public:
@@ -341,10 +341,10 @@ TEST_F(FileIndexerTest, mixed) {
   ClearFiles();
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
-  rocksdb::port::InstallStackTraceHandler();
+  rocksdb3131::port::InstallStackTraceHandler();
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }

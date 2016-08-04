@@ -7,13 +7,13 @@
 
 #include "db/filename.h"
 #include "db/write_batch_internal.h"
-#include "rocksdb/convenience.h"
-#include "rocksdb/env.h"
-#include "rocksdb/iterator.h"
-#include "rocksdb/utilities/db_ttl.h"
+#include "rocksdb3131/convenience.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/iterator.h"
+#include "rocksdb3131/utilities/db_ttl.h"
 #include "util/coding.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 void DBWithTTLImpl::SanitizeOptions(int32_t ttl, ColumnFamilyOptions* options,
                                     Env* env) {
@@ -298,5 +298,5 @@ Iterator* DBWithTTLImpl::NewIterator(const ReadOptions& opts,
   return new TtlIterator(db_->NewIterator(opts, column_family));
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

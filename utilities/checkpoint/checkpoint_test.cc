@@ -20,14 +20,14 @@
 #include <utility>
 #include "db/db_impl.h"
 #include "port/stack_trace.h"
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
-#include "rocksdb/utilities/checkpoint.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/utilities/checkpoint.h"
 #include "util/sync_point.h"
 #include "util/testharness.h"
 #include "util/xfunc.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 class DBTest : public testing::Test {
  protected:
   // Sequence of option configurations to try
@@ -60,9 +60,9 @@ class DBTest : public testing::Test {
   }
 
   ~DBTest() {
-    rocksdb::SyncPoint::GetInstance()->DisableProcessing();
-    rocksdb::SyncPoint::GetInstance()->LoadDependency({});
-    rocksdb::SyncPoint::GetInstance()->ClearAllCallBacks();
+    rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
+    rocksdb3131::SyncPoint::GetInstance()->LoadDependency({});
+    rocksdb3131::SyncPoint::GetInstance()->ClearAllCallBacks();
     Close();
     Options options;
     options.db_paths.emplace_back(dbname_, 0);
@@ -275,13 +275,13 @@ TEST_F(DBTest, GetSnapshotLink) {
 TEST_F(DBTest, CheckpointCF) {
   Options options = CurrentOptions();
   CreateAndReopenWithCF({"one", "two", "three", "four", "five"}, options);
-  rocksdb::SyncPoint::GetInstance()->LoadDependency(
+  rocksdb3131::SyncPoint::GetInstance()->LoadDependency(
       {{"DBTest::CheckpointCF:2",
         "DBImpl::GetLiveFiles:2"},
        {"DBImpl::GetLiveFiles:1",
         "DBTest::CheckpointCF:1"}});
 
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   ASSERT_OK(Put(0, "Default", "Default"));
   ASSERT_OK(Put(1, "one", "one"));
@@ -316,7 +316,7 @@ TEST_F(DBTest, CheckpointCF) {
   ASSERT_OK(Put(5, "five", "fifteen"));
   TEST_SYNC_POINT("DBTest::CheckpointCF:2");
   t.join();
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
   ASSERT_OK(Put(1, "one", "twentyone"));
   ASSERT_OK(Put(2, "two", "twentytwo"));
   ASSERT_OK(Put(3, "three", "twentythree"));
@@ -348,13 +348,13 @@ TEST_F(DBTest, CheckpointCF) {
   ASSERT_OK(DestroyDB(snapshot_name, options));
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif
 
 int main(int argc, char** argv) {
 #if !defined(NDEBUG) || !defined(OS_WIN)
-  rocksdb::port::InstallStackTraceHandler();
+  rocksdb3131::port::InstallStackTraceHandler();
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 #else

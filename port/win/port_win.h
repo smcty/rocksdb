@@ -29,7 +29,7 @@
 
 #include <stdint.h>
 
-#include "rocksdb/options.h"
+#include "rocksdb3131/options.h"
 
 #undef min
 #undef max
@@ -87,7 +87,7 @@ typedef SSIZE_T ssize_t;
 #define PLATFORM_IS_LITTLE_ENDIAN (__BYTE_ORDER == __LITTLE_ENDIAN)
 #endif
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 #define PREFETCH(addr, rw, locality)
 
@@ -565,6 +565,6 @@ using port::pthread_setspecific;
 using port::pthread_getspecific;
 using port::truncate;
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // STORAGE_LEVELDB_PORT_PORT_POSIX_H_

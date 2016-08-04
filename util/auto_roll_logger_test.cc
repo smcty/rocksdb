@@ -12,13 +12,13 @@
 #include <algorithm>
 #include "util/testharness.h"
 #include "util/auto_roll_logger.h"
-#include "rocksdb/db.h"
+#include "rocksdb3131/db.h"
 #include <sys/stat.h>
 #include <errno.h>
 
 using namespace std;
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class AutoRollLoggerTest : public testing::Test {
  public:
@@ -400,18 +400,18 @@ TEST_F(AutoRollLoggerTest, LogHeaderTest) {
 }
 
 TEST_F(AutoRollLoggerTest, LogFileExistence) {
-  rocksdb::DB* db;
-  rocksdb::Options options;
+  rocksdb3131::DB* db;
+  rocksdb3131::Options options;
   string deleteCmd = "rm -rf " + kTestDir;
   ASSERT_EQ(system(deleteCmd.c_str()), 0);
   options.max_log_file_size = 100 * 1024 * 1024;
   options.create_if_missing = true;
-  ASSERT_OK(rocksdb::DB::Open(options, kTestDir, &db));
+  ASSERT_OK(rocksdb3131::DB::Open(options, kTestDir, &db));
   ASSERT_OK(env->FileExists(kLogFile));
   delete db;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

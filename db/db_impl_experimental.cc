@@ -19,9 +19,9 @@
 #include "db/column_family.h"
 #include "db/job_context.h"
 #include "db/version_set.h"
-#include "rocksdb/status.h"
+#include "rocksdb3131/status.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 #ifndef ROCKSDB_LITE
 Status DBImpl::SuggestCompactRange(ColumnFamilyHandle* column_family,
@@ -148,4 +148,4 @@ Status DBImpl::PromoteL0(ColumnFamilyHandle* column_family, int target_level) {
 }
 #endif  // ROCKSDB_LITE
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

@@ -8,12 +8,12 @@
 #include <iostream>
 
 #include "port/stack_trace.h"
-#include "rocksdb/cache.h"
-#include "rocksdb/comparator.h"
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
-#include "rocksdb/merge_operator.h"
-#include "rocksdb/utilities/db_ttl.h"
+#include "rocksdb3131/cache.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/merge_operator.h"
+#include "rocksdb3131/utilities/db_ttl.h"
 #include "db/dbformat.h"
 #include "db/db_impl.h"
 #include "db/write_batch_internal.h"
@@ -21,7 +21,7 @@
 #include "util/testharness.h"
 
 using namespace std;
-using namespace rocksdb;
+using namespace rocksdb3131;
 
 namespace {
 size_t num_merge_operator_calls;
@@ -363,7 +363,7 @@ void testPartialMerge(Counters* counters, DB* db, size_t max_merge,
   // Test case 2: partial merge should not be called when a put is found.
   resetNumPartialMergeCalls();
   tmp_sum = 0;
-  db->Put(rocksdb::WriteOptions(), "c", "10");
+  db->Put(rocksdb3131::WriteOptions(), "c", "10");
   for (size_t i = 1; i <= count; i++) {
     counters->assert_add("c", i);
     tmp_sum += i;
@@ -507,7 +507,7 @@ void runTest(int argc, const string& dbname, const bool use_ttl = false) {
 
 int main(int argc, char *argv[]) {
   //TODO: Make this test like a general rocksdb unit-test
-  rocksdb::port::InstallStackTraceHandler();
+  rocksdb3131::port::InstallStackTraceHandler();
   runTest(argc, test::TmpDir() + "/merge_testdb");
 // DBWithTTL is not supported in ROCKSDB_LITE
 #ifndef ROCKSDB_LITE

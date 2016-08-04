@@ -9,18 +9,18 @@
 #include <iostream>
 #include <map>
 
-#include "rocksdb/db.h"
-#include "rocksdb/merge_operator.h"
-#include "rocksdb/utilities/db_ttl.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/merge_operator.h"
+#include "rocksdb3131/utilities/db_ttl.h"
 #include "utilities/merge_operators.h"
 #include "utilities/merge_operators/string_append/stringappend.h"
 #include "utilities/merge_operators/string_append/stringappend2.h"
 #include "util/testharness.h"
 #include "util/random.h"
 
-using namespace rocksdb;
+using namespace rocksdb3131;
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // Path to the database on file system
 const std::string kDbName = test::TmpDir() + "/stringappend_test";
@@ -142,7 +142,7 @@ TEST_F(StringAppendOperatorTest, IteratorTest) {
   slists.Append("k2", "a3");
 
   std::string res;
-  std::unique_ptr<rocksdb::Iterator> it(db_->NewIterator(ReadOptions()));
+  std::unique_ptr<rocksdb3131::Iterator> it(db_->NewIterator(ReadOptions()));
   std::string k1("k1");
   std::string k2("k2");
   bool first = true;
@@ -466,7 +466,7 @@ TEST_F(StringAppendOperatorTest, PersistentFlushAndCompaction) {
 
     // Append, Flush, Get
     slists.Append("c", "asdasd");
-    db->Flush(rocksdb::FlushOptions());
+    db->Flush(rocksdb3131::FlushOptions());
     success = slists.Get("c", &c);
     ASSERT_TRUE(success);
     ASSERT_EQ(c, "asdasd");
@@ -474,7 +474,7 @@ TEST_F(StringAppendOperatorTest, PersistentFlushAndCompaction) {
     // Append, Flush, Append, Get
     slists.Append("a", "x");
     slists.Append("b", "y");
-    db->Flush(rocksdb::FlushOptions());
+    db->Flush(rocksdb3131::FlushOptions());
     slists.Append("a", "t");
     slists.Append("a", "r");
     slists.Append("b", "2");
@@ -545,7 +545,7 @@ TEST_F(StringAppendOperatorTest, PersistentFlushAndCompaction) {
 
     // Append, Flush, Compact, Get
     slists.Append("b", "afcg");
-    db->Flush(rocksdb::FlushOptions());
+    db->Flush(rocksdb3131::FlushOptions());
     db->CompactRange(CompactRangeOptions(), nullptr, nullptr);
     slists.Get("b", &b);
     ASSERT_EQ(b, "y\n2\nmonkey\ndf\nl;\nafcg");
@@ -575,7 +575,7 @@ TEST_F(StringAppendOperatorTest, SimpleTestNullDelimiter) {
   ASSERT_EQ(res, checker);
 }
 
-} // namespace rocksdb
+} // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

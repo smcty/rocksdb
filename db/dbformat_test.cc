@@ -11,7 +11,7 @@
 #include "util/logging.h"
 #include "util/testharness.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 static std::string IKey(const std::string& user_key,
                         uint64_t seq,
@@ -168,7 +168,7 @@ TEST_F(FormatTest, UpdateInternalKey) {
   ASSERT_EQ(new_val_type, decoded.type);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

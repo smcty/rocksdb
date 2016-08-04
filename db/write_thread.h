@@ -8,13 +8,13 @@
 #include <stdint.h>
 #include <deque>
 #include <limits>
-#include "rocksdb/status.h"
+#include "rocksdb3131/status.h"
 #include "db/write_batch_internal.h"
 #include "util/autovector.h"
 #include "port/port.h"
 #include "util/instrumented_mutex.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class WriteThread {
  public:
@@ -77,4 +77,4 @@ class WriteThread {
   std::deque<Writer*> writers_;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

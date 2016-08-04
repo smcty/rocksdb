@@ -11,7 +11,7 @@
 
 #pragma once
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class WriteBuffer {
  public:
@@ -41,4 +41,4 @@ class WriteBuffer {
   void operator=(const WriteBuffer&);
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

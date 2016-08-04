@@ -10,7 +10,7 @@
 #include "include/org_rocksdb_HashLinkedListMemTableConfig.h"
 #include "include/org_rocksdb_VectorMemTableConfig.h"
 #include "include/org_rocksdb_SkipListMemTableConfig.h"
-#include "rocksdb/memtablerep.h"
+#include "rocksdb3131/memtablerep.h"
 
 /*
  * Class:     org_rocksdb_HashSkipListMemTableConfig
@@ -20,14 +20,14 @@
 jlong Java_org_rocksdb_HashSkipListMemTableConfig_newMemTableFactoryHandle(
     JNIEnv* env, jobject jobj, jlong jbucket_count,
     jint jheight, jint jbranching_factor) {
-  rocksdb::Status s = rocksdb::check_if_jlong_fits_size_t(jbucket_count);
+  rocksdb3131::Status s = rocksdb3131::check_if_jlong_fits_size_t(jbucket_count);
   if (s.ok()) {
-    return reinterpret_cast<jlong>(rocksdb::NewHashSkipListRepFactory(
+    return reinterpret_cast<jlong>(rocksdb3131::NewHashSkipListRepFactory(
         static_cast<size_t>(jbucket_count),
         static_cast<int32_t>(jheight),
         static_cast<int32_t>(jbranching_factor)));
   }
-  rocksdb::IllegalArgumentExceptionJni::ThrowNew(env, s);
+  rocksdb3131::IllegalArgumentExceptionJni::ThrowNew(env, s);
   return 0;
 }
 
@@ -40,19 +40,19 @@ jlong Java_org_rocksdb_HashLinkedListMemTableConfig_newMemTableFactoryHandle(
     JNIEnv* env, jobject jobj, jlong jbucket_count, jlong jhuge_page_tlb_size,
     jint jbucket_entries_logging_threshold,
     jboolean jif_log_bucket_dist_when_flash, jint jthreshold_use_skiplist) {
-  rocksdb::Status statusBucketCount =
-      rocksdb::check_if_jlong_fits_size_t(jbucket_count);
-  rocksdb::Status statusHugePageTlb =
-      rocksdb::check_if_jlong_fits_size_t(jhuge_page_tlb_size);
+  rocksdb3131::Status statusBucketCount =
+      rocksdb3131::check_if_jlong_fits_size_t(jbucket_count);
+  rocksdb3131::Status statusHugePageTlb =
+      rocksdb3131::check_if_jlong_fits_size_t(jhuge_page_tlb_size);
   if (statusBucketCount.ok() && statusHugePageTlb.ok()) {
-    return reinterpret_cast<jlong>(rocksdb::NewHashLinkListRepFactory(
+    return reinterpret_cast<jlong>(rocksdb3131::NewHashLinkListRepFactory(
         static_cast<size_t>(jbucket_count),
         static_cast<size_t>(jhuge_page_tlb_size),
         static_cast<int32_t>(jbucket_entries_logging_threshold),
         static_cast<bool>(jif_log_bucket_dist_when_flash),
         static_cast<int32_t>(jthreshold_use_skiplist)));
   }
-  rocksdb::IllegalArgumentExceptionJni::ThrowNew(env,
+  rocksdb3131::IllegalArgumentExceptionJni::ThrowNew(env,
       !statusBucketCount.ok()?statusBucketCount:statusHugePageTlb);
   return 0;
 }
@@ -64,12 +64,12 @@ jlong Java_org_rocksdb_HashLinkedListMemTableConfig_newMemTableFactoryHandle(
  */
 jlong Java_org_rocksdb_VectorMemTableConfig_newMemTableFactoryHandle(
     JNIEnv* env, jobject jobj, jlong jreserved_size) {
-  rocksdb::Status s = rocksdb::check_if_jlong_fits_size_t(jreserved_size);
+  rocksdb3131::Status s = rocksdb3131::check_if_jlong_fits_size_t(jreserved_size);
   if (s.ok()) {
-    return reinterpret_cast<jlong>(new rocksdb::VectorRepFactory(
+    return reinterpret_cast<jlong>(new rocksdb3131::VectorRepFactory(
         static_cast<size_t>(jreserved_size)));
   }
-  rocksdb::IllegalArgumentExceptionJni::ThrowNew(env, s);
+  rocksdb3131::IllegalArgumentExceptionJni::ThrowNew(env, s);
   return 0;
 }
 
@@ -80,11 +80,11 @@ jlong Java_org_rocksdb_VectorMemTableConfig_newMemTableFactoryHandle(
  */
 jlong Java_org_rocksdb_SkipListMemTableConfig_newMemTableFactoryHandle0(
     JNIEnv* env, jobject jobj, jlong jlookahead) {
-  rocksdb::Status s = rocksdb::check_if_jlong_fits_size_t(jlookahead);
+  rocksdb3131::Status s = rocksdb3131::check_if_jlong_fits_size_t(jlookahead);
   if (s.ok()) {
-    return reinterpret_cast<jlong>(new rocksdb::SkipListFactory(
+    return reinterpret_cast<jlong>(new rocksdb3131::SkipListFactory(
         static_cast<size_t>(jlookahead)));
   }
-  rocksdb::IllegalArgumentExceptionJni::ThrowNew(env, s);
+  rocksdb3131::IllegalArgumentExceptionJni::ThrowNew(env, s);
   return 0;
 }

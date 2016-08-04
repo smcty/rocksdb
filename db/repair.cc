@@ -76,15 +76,15 @@
 #include "db/version_edit.h"
 #include "db/writebuffer.h"
 #include "db/write_batch_internal.h"
-#include "rocksdb/comparator.h"
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
-#include "rocksdb/options.h"
-#include "rocksdb/immutable_options.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/immutable_options.h"
 #include "util/file_reader_writer.h"
 #include "util/scoped_arena_iterator.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 
@@ -465,6 +465,6 @@ Status RepairDB(const std::string& dbname, const Options& options) {
   return repairer.Run();
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

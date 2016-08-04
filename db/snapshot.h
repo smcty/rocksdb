@@ -10,9 +10,9 @@
 #pragma once
 #include <vector>
 
-#include "rocksdb/db.h"
+#include "rocksdb3131/db.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class SnapshotList;
 
@@ -108,4 +108,4 @@ class SnapshotList {
   uint64_t count_;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

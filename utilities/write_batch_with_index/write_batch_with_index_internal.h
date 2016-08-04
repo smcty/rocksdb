@@ -11,13 +11,13 @@
 #include <string>
 #include <unordered_map>
 
-#include "rocksdb/comparator.h"
-#include "rocksdb/iterator.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/status.h"
-#include "rocksdb/utilities/write_batch_with_index.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/iterator.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/status.h"
+#include "rocksdb3131/utilities/write_batch_with_index.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class MergeContext;
 struct Options;
@@ -95,5 +95,5 @@ class WriteBatchWithIndexInternal {
       std::string* value, Status* s);
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // !ROCKSDB_LITE

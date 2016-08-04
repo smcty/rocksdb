@@ -19,7 +19,7 @@
 #include <cstdlib>
 #include "util/logging.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace port {
 
 static int PthreadCall(const char* label, int result) {
@@ -142,4 +142,4 @@ void Crash(const std::string& srcfile, int srcline) {
 }
 
 }  // namespace port
-}  // namespace rocksdb
+}  // namespace rocksdb3131

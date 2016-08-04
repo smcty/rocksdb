@@ -7,12 +7,12 @@
 #include <vector>
 
 #include "port/port.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/env.h"
 #include "util/delete_scheduler_impl.h"
 #include "util/mutexlock.h"
 #include "util/sync_point.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 DeleteSchedulerImpl::DeleteSchedulerImpl(Env* env, const std::string& trash_dir,
                                          int64_t rate_bytes_per_sec,
@@ -227,4 +227,4 @@ DeleteScheduler* NewDeleteScheduler(Env* env, const std::string& trash_dir,
   return res;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

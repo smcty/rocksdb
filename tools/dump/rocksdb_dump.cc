@@ -19,8 +19,8 @@ int main() {
 #include <gflags/gflags.h>
 #include <iostream>
 
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
 #include "util/coding.h"
 
 DEFINE_bool(anonymous, false, "Output an empty information blob.");
@@ -31,10 +31,10 @@ void usage(const char* name) {
 }
 
 int main(int argc, char** argv) {
-  rocksdb::DB* dbptr;
-  rocksdb::Options options;
-  rocksdb::Status status;
-  std::unique_ptr<rocksdb::WritableFile> dumpfile;
+  rocksdb3131::DB* dbptr;
+  rocksdb3131::Options options;
+  rocksdb3131::Status status;
+  std::unique_ptr<rocksdb3131::WritableFile> dumpfile;
   char hostname[1024];
   int64_t timesec;
   std::string abspath;
@@ -50,34 +50,34 @@ int main(int argc, char** argv) {
     exit(1);
   }
 
-  rocksdb::Env* env = rocksdb::Env::Default();
+  rocksdb3131::Env* env = rocksdb3131::Env::Default();
 
   // Open the database
   options.create_if_missing = false;
-  status = rocksdb::DB::OpenForReadOnly(options, argv[1], &dbptr);
+  status = rocksdb3131::DB::OpenForReadOnly(options, argv[1], &dbptr);
   if (!status.ok()) {
     std::cerr << "Unable to open database '" << argv[1]
               << "' for reading: " << status.ToString() << std::endl;
     exit(1);
   }
 
-  const std::unique_ptr<rocksdb::DB> db(dbptr);
+  const std::unique_ptr<rocksdb3131::DB> db(dbptr);
 
-  status = env->NewWritableFile(argv[2], &dumpfile, rocksdb::EnvOptions());
+  status = env->NewWritableFile(argv[2], &dumpfile, rocksdb3131::EnvOptions());
   if (!status.ok()) {
     std::cerr << "Unable to open dump file '" << argv[2]
               << "' for writing: " << status.ToString() << std::endl;
     exit(1);
   }
 
-  rocksdb::Slice magicslice(magicstr, 8);
+  rocksdb3131::Slice magicslice(magicstr, 8);
   status = dumpfile->Append(magicslice);
   if (!status.ok()) {
     std::cerr << "Append failed: " << status.ToString() << std::endl;
     exit(1);
   }
 
-  rocksdb::Slice versionslice(versionstr, 8);
+  rocksdb3131::Slice versionslice(versionstr, 8);
   status = dumpfile->Append(versionslice);
   if (!status.ok()) {
     std::cerr << "Append failed: " << status.ToString() << std::endl;
@@ -96,10 +96,10 @@ int main(int argc, char** argv) {
              abspath.c_str(), hostname, timesec);
   }
 
-  rocksdb::Slice infoslice(json, strlen(json));
+  rocksdb3131::Slice infoslice(json, strlen(json));
   char infosize[4];
-  rocksdb::EncodeFixed32(infosize, (uint32_t)infoslice.size());
-  rocksdb::Slice infosizeslice(infosize, 4);
+  rocksdb3131::EncodeFixed32(infosize, (uint32_t)infoslice.size());
+  rocksdb3131::Slice infosizeslice(infosize, 4);
   status = dumpfile->Append(infosizeslice);
   if (!status.ok()) {
     std::cerr << "Append failed: " << status.ToString() << std::endl;
@@ -111,12 +111,12 @@ int main(int argc, char** argv) {
     exit(1);
   }
 
-  const std::unique_ptr<rocksdb::Iterator> it(
-      db->NewIterator(rocksdb::ReadOptions()));
+  const std::unique_ptr<rocksdb3131::Iterator> it(
+      db->NewIterator(rocksdb3131::ReadOptions()));
   for (it->SeekToFirst(); it->Valid(); it->Next()) {
     char keysize[4];
-    rocksdb::EncodeFixed32(keysize, (uint32_t)it->key().size());
-    rocksdb::Slice keysizeslice(keysize, 4);
+    rocksdb3131::EncodeFixed32(keysize, (uint32_t)it->key().size());
+    rocksdb3131::Slice keysizeslice(keysize, 4);
     status = dumpfile->Append(keysizeslice);
     if (!status.ok()) {
       std::cerr << "Append failed: " << status.ToString() << std::endl;
@@ -129,8 +129,8 @@ int main(int argc, char** argv) {
     }
 
     char valsize[4];
-    rocksdb::EncodeFixed32(valsize, (uint32_t)it->value().size());
-    rocksdb::Slice valsizeslice(valsize, 4);
+    rocksdb3131::EncodeFixed32(valsize, (uint32_t)it->value().size());
+    rocksdb3131::Slice valsizeslice(valsize, 4);
     status = dumpfile->Append(valsizeslice);
     if (!status.ok()) {
       std::cerr << "Append failed: " << status.ToString() << std::endl;

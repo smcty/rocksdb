@@ -14,11 +14,11 @@
 #include <utility>
 #include <vector>
 #include "db/table_properties_collector.h"
-#include "rocksdb/options.h"
-#include "rocksdb/table_properties.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/table_properties.h"
 #include "util/mutable_cf_options.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class Slice;
 class Status;
@@ -91,4 +91,4 @@ class TableBuilder {
   virtual TableProperties GetTableProperties() const = 0;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

@@ -22,12 +22,12 @@
 //    len: varint32
 //    data: uint8[len]
 
-#include "rocksdb/write_batch.h"
+#include "rocksdb3131/write_batch.h"
 
 #include <stack>
 #include <stdexcept>
 
-#include "rocksdb/merge_operator.h"
+#include "rocksdb3131/merge_operator.h"
 #include "db/dbformat.h"
 #include "db/db_impl.h"
 #include "db/column_family.h"
@@ -38,7 +38,7 @@
 #include "util/statistics.h"
 #include "util/perf_context_imp.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // WriteBatch header has an 8-byte sequence number followed by a 4-byte count.
 static const size_t kHeader = 12;
@@ -605,4 +605,4 @@ void WriteBatchInternal::Append(WriteBatch* dst, const WriteBatch* src) {
   dst->rep_.append(src->rep_.data() + kHeader, src->rep_.size() - kHeader);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

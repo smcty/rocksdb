@@ -5,11 +5,11 @@
 //
 #pragma once
 #include "db/dbformat.h"
-#include "rocksdb/slice.h"
+#include "rocksdb3131/slice.h"
 #include <string>
 #include <deque>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 const std::deque<std::string> empty_operand_list;
 
@@ -65,4 +65,4 @@ private:
   std::unique_ptr<std::deque<std::string>> operand_list;
 };
 
-} // namespace rocksdb
+} // namespace rocksdb3131

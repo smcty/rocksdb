@@ -3,23 +3,23 @@
 //  LICENSE file in the root directory of this source tree. An additional grant
 //  of patent rights can be found in the PATENTS file in the same directory.
 //
-#include "rocksdb/status.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/status.h"
+#include "rocksdb3131/env.h"
 
 #include <vector>
 #include "util/coding.h"
 #include "util/testharness.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class LockTest : public testing::Test {
  public:
   static LockTest* current_;
   std::string file_;
-  rocksdb::Env* env_;
+  rocksdb3131::Env* env_;
 
   LockTest() : file_(test::TmpDir() + "/db_testlock_file"),
-               env_(rocksdb::Env::Default()) {
+               env_(rocksdb3131::Env::Default()) {
     current_ = this;
   }
 
@@ -51,7 +51,7 @@ TEST_F(LockTest, LockBySameThread) {
 
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

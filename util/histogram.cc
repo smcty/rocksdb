@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include "port/port.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 HistogramBucketMapper::HistogramBucketMapper()
     :

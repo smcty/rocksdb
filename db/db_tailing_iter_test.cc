@@ -15,7 +15,7 @@
 #include "port/stack_trace.h"
 #include "util/db_test_util.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class DBTestTailingIterator : public DBTestBase {
  public:
@@ -466,13 +466,13 @@ TEST_F(DBTestTailingIterator, ManagedTailingIteratorSeekToSame) {
   ASSERT_EQ(found, iter->key().ToString());
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // !(defined NDEBUG) || !defined(OS_WIN)
 
 int main(int argc, char** argv) {
 #if !(defined NDEBUG) || !defined(OS_WIN)
-  rocksdb::port::InstallStackTraceHandler();
+  rocksdb3131::port::InstallStackTraceHandler();
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 #else

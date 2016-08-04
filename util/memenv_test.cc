@@ -5,14 +5,14 @@
 #ifndef ROCKSDB_LITE
 
 #include "db/db_impl.h"
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
 #include "util/testharness.h"
 #include <memory>
 #include <string>
 #include <vector>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class MemEnvTest : public testing::Test {
  public:
@@ -235,7 +235,7 @@ TEST_F(MemEnvTest, DBTest) {
   delete db;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

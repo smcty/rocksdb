@@ -7,9 +7,9 @@
 #include <string>
 #include <algorithm>
 
-#include "rocksdb/utilities/spatial_db.h"
+#include "rocksdb3131/utilities/spatial_db.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace spatial {
 
 // indexing idea from http://msdn.microsoft.com/en-us/library/bb259689.aspx
@@ -92,4 +92,4 @@ inline bool GetDouble(Slice* input, double* d) {
 }
 
 }  // namespace spatial
-}  // namespace rocksdb
+}  // namespace rocksdb3131

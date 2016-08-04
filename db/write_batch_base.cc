@@ -3,13 +3,13 @@
 //  LICENSE file in the root directory of this source tree. An additional grant
 //  of patent rights can be found in the PATENTS file in the same directory.
 
-#include "rocksdb/write_batch_base.h"
+#include "rocksdb3131/write_batch_base.h"
 
 #include <string>
 
-#include "rocksdb/slice.h"
+#include "rocksdb3131/slice.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // Simple implementation of SlicePart variants of Put().  Child classes
 // can override these method with more performant solutions if they choose.
@@ -60,4 +60,4 @@ void WriteBatchBase::Merge(const SliceParts& key, const SliceParts& value) {
   Merge(key_slice, value_slice);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

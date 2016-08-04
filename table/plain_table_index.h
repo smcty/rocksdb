@@ -11,13 +11,13 @@
 #include <vector>
 
 #include "db/dbformat.h"
-#include "rocksdb/options.h"
+#include "rocksdb3131/options.h"
 #include "util/murmurhash.h"
 #include "util/hash.h"
 #include "util/arena.h"
 #include "util/histogram.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // PlainTableIndex contains buckets size of index_size_, each is a
 // 32-bit integer. The lower 31 bits contain an offset value (explained below)
@@ -220,6 +220,6 @@ class PlainTableIndexBuilder {
   static const size_t kRecordsPerGroup = 256;
 };
 
-};  // namespace rocksdb
+};  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

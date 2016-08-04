@@ -9,9 +9,9 @@
 
 #pragma once
 
-#include "rocksdb/iterator.h"
+#include "rocksdb3131/iterator.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // A internal wrapper class with an interface similar to Iterator that
 // caches the valid() and key() results for an underlying iterator.
@@ -76,4 +76,4 @@ extern Iterator* NewEmptyIterator(Arena* arena);
 // Return an empty iterator with the specified status, allocated arena.
 extern Iterator* NewErrorIterator(const Status& status, Arena* arena);
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

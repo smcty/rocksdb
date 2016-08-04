@@ -11,10 +11,10 @@
 #include <memory>
 #include <stdint.h>
 #include "db/log_format.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/status.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/status.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class WritableFileWriter;
 
@@ -86,4 +86,4 @@ class Writer {
 };
 
 }  // namespace log
-}  // namespace rocksdb
+}  // namespace rocksdb3131

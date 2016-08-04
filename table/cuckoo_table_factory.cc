@@ -10,7 +10,7 @@
 #include "table/cuckoo_table_builder.h"
 #include "table/cuckoo_table_reader.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 Status CuckooTableFactory::NewTableReader(
     const ImmutableCFOptions& ioptions, const EnvOptions& env_options,
@@ -66,5 +66,5 @@ TableFactory* NewCuckooTableFactory(const CuckooTableOptions& table_options) {
   return new CuckooTableFactory(table_options);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

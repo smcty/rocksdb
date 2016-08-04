@@ -5,7 +5,7 @@
 
 #include "db/event_helpers.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 inline double SafeDivide(double a, double b) { return b == 0.0 ? 0 : a / b; }
@@ -105,4 +105,4 @@ void EventHelpers::LogAndNotifyTableFileDeletion(
 #endif  // !ROCKSDB_LITE
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

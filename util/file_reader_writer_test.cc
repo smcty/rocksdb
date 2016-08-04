@@ -8,7 +8,7 @@
 #include "util/random.h"
 #include "util/testharness.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class WritableFileWriterTest : public testing::Test {};
 
@@ -81,7 +81,7 @@ TEST_F(WritableFileWriterTest, RangeSync) {
   }
   writer->Close();
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

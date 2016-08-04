@@ -5,13 +5,13 @@
 
 #ifndef ROCKSDB_LITE
 
-#include "rocksdb/utilities/write_batch_with_index.h"
+#include "rocksdb3131/utilities/write_batch_with_index.h"
 
 #include <memory>
 #include <limits>
 
-#include "rocksdb/comparator.h"
-#include "rocksdb/iterator.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/iterator.h"
 #include "db/column_family.h"
 #include "db/merge_context.h"
 #include "db/merge_helper.h"
@@ -19,7 +19,7 @@
 #include "util/arena.h"
 #include "utilities/write_batch_with_index/write_batch_with_index_internal.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // when direction == forward
 // * current_at_base_ <=> base_iterator > delta_iterator
@@ -717,5 +717,5 @@ Status WriteBatchWithIndex::RollbackToSavePoint() {
   return s;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // !ROCKSDB_LITE

@@ -18,7 +18,7 @@ int main() {
 #include <gflags/gflags.h>
 #include <vector>
 
-#include "rocksdb/filter_policy.h"
+#include "rocksdb3131/filter_policy.h"
 #include "util/logging.h"
 #include "util/testharness.h"
 #include "util/testutil.h"
@@ -28,7 +28,7 @@ using GFLAGS::ParseCommandLineFlags;
 
 DEFINE_int32(bits_per_key, 10, "");
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 static const int kVerbose = 1;
 
@@ -289,7 +289,7 @@ TEST_F(FullBloomTest, FullVaryingLengths) {
   ASSERT_LE(mediocre_filters, good_filters/5);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

@@ -33,7 +33,7 @@ DEFINE_int32(bits_per_key, 10, "");
 DEFINE_int32(num_probes, 6, "");
 DEFINE_bool(enable_perf, false, "");
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 static Slice Key(uint64_t i, char* buffer) {
   memcpy(buffer, &i, sizeof(i));
@@ -211,7 +211,7 @@ TEST_F(DynamicBloomTest, perf) {
     }
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

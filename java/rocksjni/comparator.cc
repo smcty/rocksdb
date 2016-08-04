@@ -4,7 +4,7 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 // This file implements the "bridge" between Java and C++ for
-// rocksdb::Comparator.
+// rocksdb3131::Comparator.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,7 +27,7 @@
  */
 void Java_org_rocksdb_AbstractComparator_disposeInternal(
     JNIEnv* env, jobject jobj, jlong handle) {
-  delete reinterpret_cast<rocksdb::BaseComparatorJniCallback*>(handle);
+  delete reinterpret_cast<rocksdb3131::BaseComparatorJniCallback*>(handle);
 }
 // </editor-fold>
 
@@ -40,11 +40,11 @@ void Java_org_rocksdb_AbstractComparator_disposeInternal(
  */
 void Java_org_rocksdb_Comparator_createNewComparator0(
     JNIEnv* env, jobject jobj, jlong copt_handle) {
-  const rocksdb::ComparatorJniCallbackOptions* copt =
-    reinterpret_cast<rocksdb::ComparatorJniCallbackOptions*>(copt_handle);
-  const rocksdb::ComparatorJniCallback* c =
-    new rocksdb::ComparatorJniCallback(env, jobj, copt);
-  rocksdb::AbstractComparatorJni::setHandle(env, jobj, c);
+  const rocksdb3131::ComparatorJniCallbackOptions* copt =
+    reinterpret_cast<rocksdb3131::ComparatorJniCallbackOptions*>(copt_handle);
+  const rocksdb3131::ComparatorJniCallback* c =
+    new rocksdb3131::ComparatorJniCallback(env, jobj, copt);
+  rocksdb3131::AbstractComparatorJni::setHandle(env, jobj, c);
 }
 // </editor-fold>
 
@@ -57,10 +57,10 @@ void Java_org_rocksdb_Comparator_createNewComparator0(
  */
 void Java_org_rocksdb_DirectComparator_createNewDirectComparator0(
     JNIEnv* env, jobject jobj, jlong copt_handle) {
-  const rocksdb::ComparatorJniCallbackOptions* copt =
-    reinterpret_cast<rocksdb::ComparatorJniCallbackOptions*>(copt_handle);
-  const rocksdb::DirectComparatorJniCallback* c =
-    new rocksdb::DirectComparatorJniCallback(env, jobj, copt);
-  rocksdb::AbstractComparatorJni::setHandle(env, jobj, c);
+  const rocksdb3131::ComparatorJniCallbackOptions* copt =
+    reinterpret_cast<rocksdb3131::ComparatorJniCallbackOptions*>(copt_handle);
+  const rocksdb3131::DirectComparatorJniCallback* c =
+    new rocksdb3131::DirectComparatorJniCallback(env, jobj, copt);
+  rocksdb3131::AbstractComparatorJni::setHandle(env, jobj, c);
 }
 // </editor-fold>

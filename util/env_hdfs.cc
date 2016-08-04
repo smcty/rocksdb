@@ -13,8 +13,8 @@
 #include <time.h>
 #include <iostream>
 #include <sstream>
-#include "rocksdb/env.h"
-#include "rocksdb/status.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/status.h"
 #include "hdfs/env_hdfs.h"
 
 #define HDFS_EXISTS 0
@@ -27,7 +27,7 @@
 // will reside on the same HDFS cluster.
 //
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 
@@ -597,16 +597,16 @@ Status HdfsEnv::NewLogger(const std::string& fname,
   return Status::OK();
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif // ROCKSDB_HDFS_FILE_C
 
 #else // USE_HDFS
 
 // dummy placeholders used when HDFS is not available
-#include "rocksdb/env.h"
+#include "rocksdb3131/env.h"
 #include "hdfs/env_hdfs.h"
-namespace rocksdb {
+namespace rocksdb3131 {
  Status HdfsEnv::NewSequentialFile(const std::string& fname,
                                    unique_ptr<SequentialFile>* result,
                                    const EnvOptions& options) {

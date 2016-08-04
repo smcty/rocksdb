@@ -9,7 +9,7 @@
 
 #include <memory>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class Env;
 class WriteControllerToken;
@@ -94,4 +94,4 @@ class DelayWriteToken : public WriteControllerToken {
   virtual ~DelayWriteToken();
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

@@ -25,7 +25,7 @@
 #include "db/version_set.h"
 #include "table/table_reader.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 bool NewestFirstBySeqNo(FileMetaData* a, FileMetaData* b) {
   if (a->smallest_seqno != b->smallest_seqno) {
@@ -327,4 +327,4 @@ void VersionBuilder::MaybeAddFile(VersionStorageInfo* vstorage, int level,
   rep_->MaybeAddFile(vstorage, level, f);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

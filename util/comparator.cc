@@ -9,12 +9,12 @@
 
 #include <algorithm>
 #include <stdint.h>
-#include "rocksdb/comparator.h"
-#include "rocksdb/slice.h"
+#include "rocksdb3131/comparator.h"
+#include "rocksdb3131/slice.h"
 #include "port/port.h"
 #include "util/logging.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 Comparator::~Comparator() { }
 
@@ -103,4 +103,4 @@ const Comparator* ReverseBytewiseComparator() {
   return rbytewise;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

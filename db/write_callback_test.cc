@@ -9,14 +9,14 @@
 
 #include "db/db_impl.h"
 #include "db/write_callback.h"
-#include "rocksdb/db.h"
-#include "rocksdb/write_batch.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/write_batch.h"
 #include "util/logging.h"
 #include "util/testharness.h"
 
 using std::string;
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class WriteCallbackTest : public testing::Test {
  public:
@@ -110,7 +110,7 @@ TEST_F(WriteCallbackTest, WriteCallBackTest) {
   DestroyDB(dbname, options);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

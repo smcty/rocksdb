@@ -5,9 +5,9 @@
 #pragma once
 
 #include <stdint.h>
-#include "rocksdb/status.h"
+#include "rocksdb3131/status.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class Comparator;
 class Iterator;
@@ -65,4 +65,4 @@ class BlockPrefixIndex {
   uint32_t* block_array_buffer_;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

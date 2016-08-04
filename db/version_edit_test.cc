@@ -10,7 +10,7 @@
 #include "db/version_edit.h"
 #include "util/testharness.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 static void TestEncodeDecode(const VersionEdit& edit) {
   std::string encoded, encoded2;
@@ -65,7 +65,7 @@ TEST_F(VersionEditTest, ColumnFamilyTest) {
   TestEncodeDecode(edit);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

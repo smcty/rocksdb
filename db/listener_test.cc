@@ -7,17 +7,17 @@
 #include "db/filename.h"
 #include "db/version_set.h"
 #include "db/write_batch_internal.h"
-#include "rocksdb/cache.h"
-#include "rocksdb/compaction_filter.h"
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
-#include "rocksdb/filter_policy.h"
-#include "rocksdb/perf_context.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/slice_transform.h"
-#include "rocksdb/table.h"
-#include "rocksdb/options.h"
-#include "rocksdb/table_properties.h"
+#include "rocksdb3131/cache.h"
+#include "rocksdb3131/compaction_filter.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/filter_policy.h"
+#include "rocksdb3131/perf_context.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/slice_transform.h"
+#include "rocksdb3131/table.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/table_properties.h"
 #include "table/block_based_table_factory.h"
 #include "table/plain_table_factory.h"
 #include "util/hash.h"
@@ -34,7 +34,7 @@
 
 #ifndef ROCKSDB_LITE
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class EventListenerTest : public testing::Test {
  public:
@@ -466,7 +466,7 @@ TEST_F(EventListenerTest, DisableBGCompaction) {
   ASSERT_GE(listener->slowdown_count, kSlowdownTrigger * 9);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE
 

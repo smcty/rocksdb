@@ -12,7 +12,7 @@
 #include <map>
 #include <string>
 
-#include "rocksdb/table.h"
+#include "rocksdb3131/table.h"
 #include "table/table_reader.h"
 #include "table/table_builder.h"
 #include "port/port.h"
@@ -20,7 +20,7 @@
 #include "util/testharness.h"
 #include "util/testutil.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace mock {
 
 typedef std::map<std::string, std::string> MockFileContents;
@@ -179,4 +179,4 @@ class MockTableFactory : public TableFactory {
 };
 
 }  // namespace mock
-}  // namespace rocksdb
+}  // namespace rocksdb3131

@@ -7,10 +7,10 @@
 #include <iostream>
 #include <vector>
 
-#include "rocksdb/db.h"
-#include "rocksdb/perf_context.h"
-#include "rocksdb/slice_transform.h"
-#include "rocksdb/memtablerep.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/perf_context.h"
+#include "rocksdb3131/slice_transform.h"
+#include "rocksdb3131/memtablerep.h"
 #include "util/histogram.h"
 #include "util/stop_watch.h"
 #include "util/testharness.h"
@@ -27,9 +27,9 @@ int FLAGS_min_write_buffer_number_to_merge = 7;
 bool FLAGS_verbose = false;
 
 // Path to the database on file system
-const std::string kDbName = rocksdb::test::TmpDir() + "/perf_context_test";
+const std::string kDbName = rocksdb3131::test::TmpDir() + "/perf_context_test";
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 std::shared_ptr<DB> OpenDb(bool read_only = false) {
     DB* db;
@@ -42,7 +42,7 @@ std::shared_ptr<DB> OpenDb(bool read_only = false) {
 
     if (FLAGS_use_set_based_memetable) {
 #ifndef ROCKSDB_LITE
-      options.prefix_extractor.reset(rocksdb::NewFixedPrefixTransform(0));
+      options.prefix_extractor.reset(rocksdb3131::NewFixedPrefixTransform(0));
       options.memtable_factory.reset(NewHashSkipListRepFactory());
 #endif  // ROCKSDB_LITE
     }

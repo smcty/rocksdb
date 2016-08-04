@@ -7,13 +7,13 @@
 
 #include <algorithm>
 
-#include "rocksdb/utilities/json_document.h"
-#include "rocksdb/utilities/document_db.h"
+#include "rocksdb3131/utilities/json_document.h"
+#include "rocksdb3131/utilities/document_db.h"
 
 #include "util/testharness.h"
 #include "util/testutil.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class DocumentDBTest : public testing::Test {
  public:
@@ -318,7 +318,7 @@ TEST_F(DocumentDBTest, ComplexQueryTest) {
   ASSERT_OK(db_->DropIndex("priority"));
 }
 
-}  //  namespace rocksdb
+}  //  namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

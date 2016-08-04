@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include <string>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 /*
  * If ROCKSDB_XFTEST_FORCE has a value of 1, XFUNC is forced to be defined.
@@ -120,4 +120,4 @@ class XFuncPoint {
 #endif  // XFUNC
 
 enum SkipPolicy { kSkipNone = 0, kSkipNoSnapshot = 1, kSkipNoPrefix = 2 };
-}  // namespace rocksdb
+}  // namespace rocksdb3131

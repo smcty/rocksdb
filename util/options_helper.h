@@ -8,13 +8,13 @@
 #include <string>
 #include <stdexcept>
 #include "util/mutable_cf_options.h"
-#include "rocksdb/status.h"
+#include "rocksdb3131/status.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 Status GetMutableOptionsFromStrings(
     const MutableCFOptions& base_options,
     const std::unordered_map<std::string, std::string>& options_map,
     MutableCFOptions* new_options);
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

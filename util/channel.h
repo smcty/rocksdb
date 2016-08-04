@@ -10,7 +10,7 @@
 
 #pragma once
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 template <class T>
 class channel {
@@ -64,4 +64,4 @@ class channel {
   std::queue<T> buffer_;
   bool eof_;
 };
-}  // namespace rocksdb
+}  // namespace rocksdb3131

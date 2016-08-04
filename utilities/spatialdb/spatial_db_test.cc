@@ -9,13 +9,13 @@
 #include <string>
 #include <set>
 
-#include "rocksdb/utilities/spatial_db.h"
+#include "rocksdb3131/utilities/spatial_db.h"
 #include "util/compression.h"
 #include "util/testharness.h"
 #include "util/testutil.h"
 #include "util/random.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace spatial {
 
 class SpatialDBTest : public testing::Test {
@@ -284,7 +284,7 @@ TEST_F(SpatialDBTest, RandomizedTest) {
 }
 
 }  // namespace spatial
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

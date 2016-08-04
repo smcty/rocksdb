@@ -43,8 +43,8 @@ We plan to use this port for our business purposes here at Bing and this provide
 
 * Certain headers that are not present and not necessary on Windows were simply `#ifndef OS_WIN` in a few places (`unistd.h`)
 * All posix specific headers were replaced to port/port.h which worked well
-* Replaced `dirent.h` for `port/dirent.h` (very few places) with the implementation of the relevant interfaces within `rocksdb::port` namespace
-* Replaced `sys/time.h` to `port/sys_time.h` (few places) implemented equivalents within `rocksdb::port`
+* Replaced `dirent.h` for `port/dirent.h` (very few places) with the implementation of the relevant interfaces within `rocksdb3131::port` namespace
+* Replaced `sys/time.h` to `port/sys_time.h` (few places) implemented equivalents within `rocksdb3131::port`
 * `printf %z` specification is not supported on Windows. To imitate existing standards we came up with a string macro `ROCKSDB_PRIszt` which expands to `%z` on posix systems and to Iu on windows.
 * in class member initialization were moved to a __ctors in some cases
 * `constexpr` is not supported. We had to replace `std::numeric_limits<>::max/min()` to its C macros for constants. Sometimes we had to make class members `static const` and place a definition within a .cc file.
@@ -75,7 +75,7 @@ We used `SetFileInformationByHandle` both to truncate files after writing a full
 RocksDB renames, copies and deletes files at will even though they may be opened with another handle at the same time. We had to relax and allow nearly all the concurrent access permissions possible.
 
 ## Thread-Local Storage
-Thread-Local storage plays a significant role for RocksDB performance. Rather than creating a separate implementation we chose to create inline wrappers that forward `pthread_specific` calls to Windows `Tls` interfaces within `rocksdb::port` namespace. This leaves the existing meat of the logic in tact and unchanged and just as maintainable.
+Thread-Local storage plays a significant role for RocksDB performance. Rather than creating a separate implementation we chose to create inline wrappers that forward `pthread_specific` calls to Windows `Tls` interfaces within `rocksdb3131::port` namespace. This leaves the existing meat of the logic in tact and unchanged and just as maintainable.
 
 To mitigate the lack of thread local storage cleanup on thread-exit we added a limited amount of windows specific code within the same thread_local.cc file that injects a cleanup callback into a `"__tls"` structure within `".CRT$XLB"` data segment. This approach guarantees that the callback is invoked regardless of whether RocksDB used within an executable, standalone DLL or within another DLL.
 

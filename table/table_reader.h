@@ -10,7 +10,7 @@
 #pragma once
 #include <memory>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class Iterator;
 struct ParsedInternalKey;
@@ -86,4 +86,4 @@ class TableReader {
   }
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

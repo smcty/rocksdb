@@ -6,11 +6,11 @@
 #include <string>
 #include <vector>
 
-#include "rocksdb/db.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/options.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/options.h"
 
-using namespace rocksdb;
+using namespace rocksdb3131;
 
 std::string kDBPath = "/tmp/rocksdb_column_families_example";
 

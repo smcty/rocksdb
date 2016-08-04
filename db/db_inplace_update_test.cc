@@ -9,7 +9,7 @@
 #include "port/stack_trace.h"
 #include "util/db_test_util.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class DBTestInPlaceUpdate : public DBTestBase {
  public:
@@ -71,7 +71,7 @@ TEST_F(DBTestInPlaceUpdate, InPlaceUpdateCallbackSmallerSize) {
     options.env = env_;
     options.write_buffer_size = 100000;
     options.inplace_callback =
-      rocksdb::DBTestInPlaceUpdate::updateInPlaceSmallerSize;
+      rocksdb3131::DBTestInPlaceUpdate::updateInPlaceSmallerSize;
     options = CurrentOptions(options);
     CreateAndReopenWithCF({"pikachu"}, options);
 
@@ -99,7 +99,7 @@ TEST_F(DBTestInPlaceUpdate, InPlaceUpdateCallbackSmallerVarintSize) {
     options.env = env_;
     options.write_buffer_size = 100000;
     options.inplace_callback =
-      rocksdb::DBTestInPlaceUpdate::updateInPlaceSmallerVarintSize;
+      rocksdb3131::DBTestInPlaceUpdate::updateInPlaceSmallerVarintSize;
     options = CurrentOptions(options);
     CreateAndReopenWithCF({"pikachu"}, options);
 
@@ -127,7 +127,7 @@ TEST_F(DBTestInPlaceUpdate, InPlaceUpdateCallbackLargeNewValue) {
     options.env = env_;
     options.write_buffer_size = 100000;
     options.inplace_callback =
-      rocksdb::DBTestInPlaceUpdate::updateInPlaceLargerSize;
+      rocksdb3131::DBTestInPlaceUpdate::updateInPlaceLargerSize;
     options = CurrentOptions(options);
     CreateAndReopenWithCF({"pikachu"}, options);
 
@@ -153,7 +153,7 @@ TEST_F(DBTestInPlaceUpdate, InPlaceUpdateCallbackNoAction) {
     options.env = env_;
     options.write_buffer_size = 100000;
     options.inplace_callback =
-      rocksdb::DBTestInPlaceUpdate::updateInPlaceNoAction;
+      rocksdb3131::DBTestInPlaceUpdate::updateInPlaceNoAction;
     options = CurrentOptions(options);
     CreateAndReopenWithCF({"pikachu"}, options);
 
@@ -162,10 +162,10 @@ TEST_F(DBTestInPlaceUpdate, InPlaceUpdateCallbackNoAction) {
     ASSERT_EQ(Get(1, "key"), "NOT_FOUND");
   } while (ChangeCompactOptions());
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
-  rocksdb::port::InstallStackTraceHandler();
+  rocksdb3131::port::InstallStackTraceHandler();
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }

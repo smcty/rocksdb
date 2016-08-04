@@ -4,12 +4,12 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 // This file implements the callback "bridge" between Java and C++ for
-// rocksdb::Comparator.
+// rocksdb3131::Comparator.
 
 #include "rocksjni/writebatchhandlerjnicallback.h"
 #include "rocksjni/portal.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 WriteBatchHandlerJniCallback::WriteBatchHandlerJniCallback(
     JNIEnv* env, jobject jWriteBatchHandler)
     : m_env(env) {
@@ -101,4 +101,4 @@ jbyteArray WriteBatchHandlerJniCallback::sliceToJArray(const Slice& s) {
 WriteBatchHandlerJniCallback::~WriteBatchHandlerJniCallback() {
   m_env->DeleteGlobalRef(m_jWriteBatchHandler);
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131

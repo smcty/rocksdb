@@ -10,10 +10,10 @@
 #include "util/coding.h"
 
 #include <algorithm>
-#include "rocksdb/slice.h"
-#include "rocksdb/slice_transform.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/slice_transform.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 char* EncodeVarint32(char* dst, uint32_t v) {
   // Operate on characters as unsigneds
@@ -78,4 +78,4 @@ const char* GetVarint64Ptr(const char* p, const char* limit, uint64_t* value) {
   return nullptr;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

@@ -9,7 +9,7 @@
 
 #include "util/db_test_util.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // Special Env used to delay background operations
 
@@ -61,9 +61,9 @@ DBTestBase::DBTestBase(const std::string path) : option_config_(kDefault),
 DBTestBase::~DBTestBase() {
 // SyncPoint is not supported in Released Windows Mode.
 #if !(defined NDEBUG) || !defined(OS_WIN)
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
-  rocksdb::SyncPoint::GetInstance()->LoadDependency({});
-  rocksdb::SyncPoint::GetInstance()->ClearAllCallBacks();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->LoadDependency({});
+  rocksdb3131::SyncPoint::GetInstance()->ClearAllCallBacks();
 #endif  // !(defined NDEBUG) || !defined(OS_WIN)
   Close();
   Options options;
@@ -927,4 +927,4 @@ void DBTestBase::CopyFile(
   ASSERT_OK(destfile->Close());
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

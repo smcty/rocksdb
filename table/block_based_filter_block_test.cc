@@ -9,14 +9,14 @@
 
 #include "table/block_based_filter_block.h"
 
-#include "rocksdb/filter_policy.h"
+#include "rocksdb3131/filter_policy.h"
 #include "util/coding.h"
 #include "util/hash.h"
 #include "util/logging.h"
 #include "util/testharness.h"
 #include "util/testutil.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // For testing: emit an array with one hash value per key
 class TestHashFilter : public FilterPolicy {
@@ -240,7 +240,7 @@ TEST_F(BlockBasedFilterBlockTest, BlockBasedMultiChunk) {
   delete reader;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

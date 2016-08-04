@@ -7,11 +7,11 @@
 #ifndef ROCKSDB_LITE
 
 #include <string>
-#include "rocksdb/table.h"
+#include "rocksdb3131/table.h"
 #include "util/murmurhash.h"
-#include "rocksdb/options.h"
+#include "rocksdb3131/options.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 const uint32_t kCuckooMurmurSeedMultiplier = 816922183;
 static inline uint64_t CuckooHash(
@@ -78,5 +78,5 @@ class CuckooTableFactory : public TableFactory {
   const CuckooTableOptions table_options_;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

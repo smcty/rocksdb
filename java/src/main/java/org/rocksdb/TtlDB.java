@@ -155,10 +155,10 @@ public class TtlDB extends RocksDB {
   /**
    * <p>Close the TtlDB instance and release resource.</p>
    *
-   * <p>Internally, TtlDB owns the {@code rocksdb::DB} pointer
+   * <p>Internally, TtlDB owns the {@code rocksdb3131::DB} pointer
    * to its associated {@link org.rocksdb.RocksDB}. The release
    * of that RocksDB pointer is handled in the destructor of the
-   * c++ {@code rocksdb::TtlDB} and should be transparent to
+   * c++ {@code rocksdb3131::TtlDB} and should be transparent to
    * Java developers.</p>
    */
   @Override public synchronized void close() {

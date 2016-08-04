@@ -12,11 +12,11 @@
 #pragma once
 
 #include <string>
-#include "rocksdb/db.h"
+#include "rocksdb3131/db.h"
 #include "redis_list_iterator.h"
 #include "redis_list_exception.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 /// The Redis functionality (see http://redis.io/commands#list)
 /// All functions may THROW a RedisListException
@@ -104,5 +104,5 @@ class RedisLists {
   std::unique_ptr<DB> db_;
 };
 
-} // namespace rocksdb
+} // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

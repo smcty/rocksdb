@@ -15,13 +15,13 @@
 #include <memory>
 #include <vector>
 
-#include "rocksdb/memtablerep.h"
+#include "rocksdb3131/memtablerep.h"
 #include "util/murmurhash.h"
 #include "db/memtable.h"
 #include "db/skiplist.h"
 #include "util/stl_wrappers.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace {
 
 // the default maximum size of the cuckoo path searching queue
@@ -639,5 +639,5 @@ MemTableRepFactory* NewHashCuckooRepFactory(size_t write_buffer_size,
                                   hash_function_count);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

@@ -24,9 +24,9 @@
 #include "db/log_writer.h"
 #include "db/write_batch_internal.h"
 #include "port/port.h"
-#include "rocksdb/env.h"
-#include "rocksdb/options.h"
-#include "rocksdb/write_batch.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/write_batch.h"
 #include "util/coding.h"
 #include "util/file_reader_writer.h"
 #include "util/logging.h"
@@ -34,7 +34,7 @@
 #include "util/sync_point.h"
 #include "util/string_util.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 #ifndef ROCKSDB_LITE
 
@@ -474,4 +474,4 @@ Status WalManager::ReadFirstLine(const std::string& fname,
 }
 
 #endif  // ROCKSDB_LITE
-}  // namespace rocksdb
+}  // namespace rocksdb3131

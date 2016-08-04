@@ -8,7 +8,7 @@
 #include "util/perf_level_imp.h"
 #include "port/port.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 #if defined(IOS_CROSS_COMPILE)
 PerfLevel perf_level = kEnableCount;
@@ -24,4 +24,4 @@ PerfLevel GetPerfLevel() {
   return perf_level;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

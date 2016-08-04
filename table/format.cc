@@ -12,7 +12,7 @@
 #include <string>
 #include <inttypes.h>
 
-#include "rocksdb/env.h"
+#include "rocksdb3131/env.h"
 #include "table/block.h"
 #include "util/coding.h"
 #include "util/compression.h"
@@ -22,7 +22,7 @@
 #include "util/string_util.h"
 #include "util/xxhash.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 extern const uint64_t kLegacyBlockBasedTableMagicNumber;
 extern const uint64_t kBlockBasedTableMagicNumber;
@@ -199,14 +199,14 @@ std::string Footer::ToString() const {
     result.append("metaindex handle: " + metaindex_handle_.ToString() + "\n  ");
     result.append("index handle: " + index_handle_.ToString() + "\n  ");
     result.append("table_magic_number: " +
-                  rocksdb::ToString(table_magic_number_) + "\n  ");
+                  rocksdb3131::ToString(table_magic_number_) + "\n  ");
   } else {
-    result.append("checksum: " + rocksdb::ToString(checksum_) + "\n  ");
+    result.append("checksum: " + rocksdb3131::ToString(checksum_) + "\n  ");
     result.append("metaindex handle: " + metaindex_handle_.ToString() + "\n  ");
     result.append("index handle: " + index_handle_.ToString() + "\n  ");
-    result.append("footer version: " + rocksdb::ToString(version_) + "\n  ");
+    result.append("footer version: " + rocksdb3131::ToString(version_) + "\n  ");
     result.append("table_magic_number: " +
-                  rocksdb::ToString(table_magic_number_) + "\n  ");
+                  rocksdb3131::ToString(table_magic_number_) + "\n  ");
   }
   return result;
 }
@@ -310,7 +310,7 @@ Status ReadBlockContents(RandomAccessFileReader* file, const Footer& footer,
   std::unique_ptr<char[]> heap_buf;
   char stack_buf[DefaultStackBufferSize];
   char* used_buf = nullptr;
-  rocksdb::CompressionType compression_type;
+  rocksdb3131::CompressionType compression_type;
 
   if (decompression_requested &&
       n + kBlockTrailerSize < DefaultStackBufferSize) {
@@ -330,7 +330,7 @@ Status ReadBlockContents(RandomAccessFileReader* file, const Footer& footer,
 
   PERF_TIMER_GUARD(block_decompress_time);
 
-  compression_type = static_cast<rocksdb::CompressionType>(slice.data()[n]);
+  compression_type = static_cast<rocksdb3131::CompressionType>(slice.data()[n]);
 
   if (decompression_requested && compression_type != kNoCompression) {
     return UncompressBlockContents(slice.data(), n, contents, footer.version());
@@ -432,4 +432,4 @@ Status UncompressBlockContents(const char* data, size_t n,
   return Status::OK();
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

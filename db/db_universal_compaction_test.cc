@@ -13,7 +13,7 @@
 #include "util/sync_point.h"
 #endif
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 static std::string CompressibleString(Random* rnd, int len) {
   std::string r;
@@ -136,7 +136,7 @@ TEST_P(DBTestUniversalCompaction, UniversalCompactionTrigger) {
   DestroyAndReopen(options);
   CreateAndReopenWithCF({"pikachu"}, options);
 
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "DBTestWritableFile.GetPreallocationStatus", [&](void* arg) {
         ASSERT_TRUE(arg != nullptr);
         size_t preallocation_size = *(static_cast<size_t*>(arg));
@@ -144,7 +144,7 @@ TEST_P(DBTestUniversalCompaction, UniversalCompactionTrigger) {
           ASSERT_LE(preallocation_size, options.target_file_size_base * 1.1);
         }
       });
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   Random rnd(301);
   int key_idx = 0;
@@ -255,7 +255,7 @@ TEST_P(DBTestUniversalCompaction, UniversalCompactionTrigger) {
   // All files at level 0 will be compacted into a single one.
   ASSERT_EQ(NumSortedRuns(1), 1);
 
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
 }
 #endif  // !(defined NDEBUG) || !defined(OS_WIN)
 
@@ -448,17 +448,17 @@ TEST_P(DBTestUniversalCompactionMultiLevels, UniversalCompactionMultiLevels) {
 TEST_P(DBTestUniversalCompactionMultiLevels, UniversalCompactionTrivialMove) {
   int32_t trivial_move = 0;
   int32_t non_trivial_move = 0;
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "DBImpl::BackgroundCompaction:TrivialMove",
       [&](void* arg) { trivial_move++; });
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "DBImpl::BackgroundCompaction:NonTrivial", [&](void* arg) {
         non_trivial_move++;
         ASSERT_TRUE(arg != nullptr);
         int output_level = *(static_cast<int*>(arg));
         ASSERT_EQ(output_level, 0);
       });
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   Options options;
   options.compaction_style = kCompactionStyleUniversal;
@@ -490,7 +490,7 @@ TEST_P(DBTestUniversalCompactionMultiLevels, UniversalCompactionTrivialMove) {
   ASSERT_GT(trivial_move, 0);
   ASSERT_GT(non_trivial_move, 0);
 
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
 }
 
 INSTANTIATE_TEST_CASE_P(DBTestUniversalCompactionMultiLevels,
@@ -522,7 +522,7 @@ TEST_P(DBTestUniversalCompactionParallel, UniversalCompactionParallel) {
   // Delay every compaction so multiple compactions will happen.
   std::atomic<int> num_compactions_running(0);
   std::atomic<bool> has_parallel(false);
-  rocksdb::SyncPoint::GetInstance()->SetCallBack("CompactionJob::Run():Start",
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack("CompactionJob::Run():Start",
                                                  [&](void* arg) {
     if (num_compactions_running.fetch_add(1) > 0) {
       has_parallel.store(true);
@@ -536,10 +536,10 @@ TEST_P(DBTestUniversalCompactionParallel, UniversalCompactionParallel) {
       env_->SleepForMicroseconds(1000);
     }
   });
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "CompactionJob::Run():End",
       [&](void* arg) { num_compactions_running.fetch_add(-1); });
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   options = CurrentOptions(options);
   ReopenWithColumnFamilies({"default", "pikachu"}, options);
@@ -551,7 +551,7 @@ TEST_P(DBTestUniversalCompactionParallel, UniversalCompactionParallel) {
   }
   dbfull()->TEST_WaitForCompact();
 
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
   ASSERT_EQ(num_compactions_running.load(), 0);
   ASSERT_TRUE(has_parallel.load());
 
@@ -789,17 +789,17 @@ TEST_P(DBTestUniversalCompaction, UniversalCompactionCompressRatio2) {
 TEST_P(DBTestUniversalCompaction, UniversalCompactionTrivialMoveTest1) {
   int32_t trivial_move = 0;
   int32_t non_trivial_move = 0;
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "DBImpl::BackgroundCompaction:TrivialMove",
       [&](void* arg) { trivial_move++; });
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "DBImpl::BackgroundCompaction:NonTrivial", [&](void* arg) {
         non_trivial_move++;
         ASSERT_TRUE(arg != nullptr);
         int output_level = *(static_cast<int*>(arg));
         ASSERT_EQ(output_level, 0);
       });
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   Options options;
   options.compaction_style = kCompactionStyleUniversal;
@@ -831,20 +831,20 @@ TEST_P(DBTestUniversalCompaction, UniversalCompactionTrivialMoveTest1) {
   ASSERT_GT(trivial_move, 0);
   ASSERT_GT(non_trivial_move, 0);
 
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
 }
 // Test that checks trivial move in universal compaction
 TEST_P(DBTestUniversalCompaction, UniversalCompactionTrivialMoveTest2) {
   int32_t trivial_move = 0;
   int32_t non_trivial_move = 0;
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "DBImpl::BackgroundCompaction:TrivialMove",
       [&](void* arg) { trivial_move++; });
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "DBImpl::BackgroundCompaction:NonTrivial",
       [&](void* arg) { non_trivial_move++; });
 
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   Options options;
   options.compaction_style = kCompactionStyleUniversal;
@@ -876,7 +876,7 @@ TEST_P(DBTestUniversalCompaction, UniversalCompactionTrivialMoveTest2) {
   ASSERT_GT(trivial_move, 0);
   ASSERT_EQ(non_trivial_move, 0);
 
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
 }
 
 TEST_P(DBTestUniversalCompaction, UniversalCompactionFourPaths) {
@@ -1239,11 +1239,11 @@ INSTANTIATE_TEST_CASE_P(DBTestUniversalManualCompactionOutputPathId,
                         DBTestUniversalManualCompactionOutputPathId,
                         ::testing::Values(1, 8));
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
 #if !(defined NDEBUG) || !defined(OS_WIN)
-  rocksdb::port::InstallStackTraceHandler();
+  rocksdb3131::port::InstallStackTraceHandler();
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 #else

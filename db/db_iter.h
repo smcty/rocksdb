@@ -9,12 +9,12 @@
 
 #pragma once
 #include <stdint.h>
-#include "rocksdb/db.h"
+#include "rocksdb3131/db.h"
 #include "db/dbformat.h"
 #include "util/arena.h"
 #include "util/autovector.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class Arena;
 class DBIter;
@@ -74,4 +74,4 @@ extern ArenaWrappedDBIter* NewArenaWrappedDbIterator(
     const SequenceNumber& sequence, uint64_t max_sequential_skip_in_iterations,
     const Slice* iterate_upper_bound = nullptr);
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

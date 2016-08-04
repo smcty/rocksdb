@@ -16,12 +16,12 @@
 #include <inttypes.h>
 #include <vector>
 
-#include "rocksdb/compaction_filter.h"
+#include "rocksdb3131/compaction_filter.h"
 #include "db/column_family.h"
 #include "util/logging.h"
 #include "util/sync_point.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 uint64_t TotalFileSize(const std::vector<FileMetaData*>& files) {
   uint64_t sum = 0;
@@ -376,4 +376,4 @@ std::unique_ptr<CompactionFilter> Compaction::CreateCompactionFilter() const {
       context);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

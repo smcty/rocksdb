@@ -35,7 +35,7 @@
 #include "util/thread_status_util.h"
 #include "util/xfunc.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 ColumnFamilyHandleImpl::ColumnFamilyHandleImpl(
     ColumnFamilyData* column_family_data, DBImpl* db, InstrumentedMutex* mutex)
@@ -827,4 +827,4 @@ const Comparator* GetColumnFamilyUserComparator(
   return nullptr;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

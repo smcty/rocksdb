@@ -9,9 +9,9 @@
 
 #pragma once
 
-#include "rocksdb/types.h"
+#include "rocksdb3131/types.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class Comparator;
 class Iterator;
@@ -57,4 +57,4 @@ class MergeIteratorBuilder {
   Arena* arena;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

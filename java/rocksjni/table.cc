@@ -3,14 +3,14 @@
 // LICENSE file in the root directory of this source tree. An additional grant
 // of patent rights can be found in the PATENTS file in the same directory.
 //
-// This file implements the "bridge" between Java and C++ for rocksdb::Options.
+// This file implements the "bridge" between Java and C++ for rocksdb3131::Options.
 
 #include <jni.h>
 #include "include/org_rocksdb_PlainTableConfig.h"
 #include "include/org_rocksdb_BlockBasedTableConfig.h"
-#include "rocksdb/table.h"
-#include "rocksdb/cache.h"
-#include "rocksdb/filter_policy.h"
+#include "rocksdb3131/table.h"
+#include "rocksdb3131/cache.h"
+#include "rocksdb3131/filter_policy.h"
 
 /*
  * Class:     org_rocksdb_PlainTableConfig
@@ -22,17 +22,17 @@ jlong Java_org_rocksdb_PlainTableConfig_newTableFactoryHandle(
     jdouble jhash_table_ratio, jint jindex_sparseness,
     jint jhuge_page_tlb_size, jbyte jencoding_type,
     jboolean jfull_scan_mode, jboolean jstore_index_in_file) {
-  rocksdb::PlainTableOptions options = rocksdb::PlainTableOptions();
+  rocksdb3131::PlainTableOptions options = rocksdb3131::PlainTableOptions();
   options.user_key_len = jkey_size;
   options.bloom_bits_per_key = jbloom_bits_per_key;
   options.hash_table_ratio = jhash_table_ratio;
   options.index_sparseness = jindex_sparseness;
   options.huge_page_tlb_size = jhuge_page_tlb_size;
-  options.encoding_type = static_cast<rocksdb::EncodingType>(
+  options.encoding_type = static_cast<rocksdb3131::EncodingType>(
       jencoding_type);
   options.full_scan_mode = jfull_scan_mode;
   options.store_index_in_file = jstore_index_in_file;
-  return reinterpret_cast<jlong>(rocksdb::NewPlainTableFactory(options));
+  return reinterpret_cast<jlong>(rocksdb3131::NewPlainTableFactory(options));
 }
 
 /*
@@ -48,15 +48,15 @@ jlong Java_org_rocksdb_BlockBasedTableConfig_newTableFactoryHandle(
     jboolean hash_index_allow_collision, jlong block_cache_compressed_size,
     jint block_cache_compressd_num_shard_bits, jbyte jchecksum_type,
     jbyte jindex_type, jint jformat_version) {
-  rocksdb::BlockBasedTableOptions options;
+  rocksdb3131::BlockBasedTableOptions options;
   options.no_block_cache = no_block_cache;
 
   if (!no_block_cache && block_cache_size > 0) {
     if (block_cache_num_shardbits > 0) {
       options.block_cache =
-          rocksdb::NewLRUCache(block_cache_size, block_cache_num_shardbits);
+          rocksdb3131::NewLRUCache(block_cache_size, block_cache_num_shardbits);
     } else {
-      options.block_cache = rocksdb::NewLRUCache(block_cache_size);
+      options.block_cache = rocksdb3131::NewLRUCache(block_cache_size);
     }
   }
   options.block_size = block_size;
@@ -64,8 +64,8 @@ jlong Java_org_rocksdb_BlockBasedTableConfig_newTableFactoryHandle(
   options.block_restart_interval = block_restart_interval;
   options.whole_key_filtering = whole_key_filtering;
   if (jfilterPolicy > 0) {
-    std::shared_ptr<rocksdb::FilterPolicy> *pFilterPolicy =
-        reinterpret_cast<std::shared_ptr<rocksdb::FilterPolicy> *>(
+    std::shared_ptr<rocksdb3131::FilterPolicy> *pFilterPolicy =
+        reinterpret_cast<std::shared_ptr<rocksdb3131::FilterPolicy> *>(
             jfilterPolicy);
     options.filter_policy = *pFilterPolicy;
   }
@@ -74,16 +74,16 @@ jlong Java_org_rocksdb_BlockBasedTableConfig_newTableFactoryHandle(
   if (block_cache_compressed_size > 0) {
     if (block_cache_compressd_num_shard_bits > 0) {
       options.block_cache =
-          rocksdb::NewLRUCache(block_cache_compressed_size,
+          rocksdb3131::NewLRUCache(block_cache_compressed_size,
               block_cache_compressd_num_shard_bits);
     } else {
-      options.block_cache = rocksdb::NewLRUCache(block_cache_compressed_size);
+      options.block_cache = rocksdb3131::NewLRUCache(block_cache_compressed_size);
     }
   }
-  options.checksum = static_cast<rocksdb::ChecksumType>(jchecksum_type);
+  options.checksum = static_cast<rocksdb3131::ChecksumType>(jchecksum_type);
   options.index_type = static_cast<
-      rocksdb::BlockBasedTableOptions::IndexType>(jindex_type);
+      rocksdb3131::BlockBasedTableOptions::IndexType>(jindex_type);
   options.format_version = jformat_version;
 
-  return reinterpret_cast<jlong>(rocksdb::NewBlockBasedTableFactory(options));
+  return reinterpret_cast<jlong>(rocksdb3131::NewBlockBasedTableFactory(options));
 }

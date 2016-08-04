@@ -4,11 +4,11 @@
 //  of patent rights can be found in the PATENTS file in the same directory.
 
 #include <memory>
-#include "rocksdb/slice.h"
-#include "rocksdb/merge_operator.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/merge_operator.h"
 #include "utilities/merge_operators.h"
 
-using namespace rocksdb;
+using namespace rocksdb3131;
 
 namespace { // anonymous namespace
 
@@ -59,7 +59,7 @@ class PutOperator : public MergeOperator {
 
 } // end of anonymous namespace
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 std::shared_ptr<MergeOperator> MergeOperators::CreatePutOperator() {
   return std::make_shared<PutOperator>();

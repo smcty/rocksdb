@@ -7,15 +7,15 @@
 
 #include <string>
 
-#include "rocksdb/db.h"
-#include "rocksdb/utilities/optimistic_transaction.h"
-#include "rocksdb/utilities/optimistic_transaction_db.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/utilities/optimistic_transaction.h"
+#include "rocksdb3131/utilities/optimistic_transaction_db.h"
 #include "util/logging.h"
 #include "util/testharness.h"
 
 using std::string;
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class OptimisticTransactionTest : public testing::Test {
  public:
@@ -836,7 +836,7 @@ TEST_F(OptimisticTransactionTest, UntrackedWrites) {
   delete txn;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

@@ -7,7 +7,7 @@
 
 #include "util/testharness.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class HistogramTest : public testing::Test {};
 
@@ -54,7 +54,7 @@ TEST_F(HistogramTest, ClearHistogram) {
   ASSERT_EQ(histogram.Average(), 0);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

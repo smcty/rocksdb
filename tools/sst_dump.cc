@@ -5,10 +5,10 @@
 //
 #ifndef ROCKSDB_LITE
 
-#include "rocksdb/sst_dump_tool.h"
+#include "rocksdb3131/sst_dump_tool.h"
 
 int main(int argc, char** argv) {
-  rocksdb::SSTDumpTool tool;
+  rocksdb3131::SSTDumpTool tool;
   tool.Run(argc, argv);
   return 0;
 }

@@ -7,16 +7,16 @@
 #ifndef ROCKSDB_LITE
 #include <stdint.h>
 #include <vector>
-#include "rocksdb/options.h"
-#include "rocksdb/status.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/status.h"
 #include "table/table_builder.h"
 #include "table/plain_table_key_coding.h"
-#include "rocksdb/table.h"
-#include "rocksdb/table_properties.h"
+#include "rocksdb3131/table.h"
+#include "rocksdb3131/table_properties.h"
 #include "table/bloom_block.h"
 #include "table/plain_table_index.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class BlockBuilder;
 class BlockHandle;
@@ -130,6 +130,6 @@ class PlainTableBuilder: public TableBuilder {
   void operator=(const PlainTableBuilder&) = delete;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

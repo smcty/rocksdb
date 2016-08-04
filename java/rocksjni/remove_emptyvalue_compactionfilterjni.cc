@@ -16,8 +16,8 @@
  */
 void Java_org_rocksdb_RemoveEmptyValueCompactionFilter_createNewRemoveEmptyValueCompactionFilter0(
     JNIEnv* env, jobject jobj) {
-  const rocksdb::RemoveEmptyValueCompactionFilter* compaction_filter =
-      new rocksdb::RemoveEmptyValueCompactionFilter();
+  const rocksdb3131::RemoveEmptyValueCompactionFilter* compaction_filter =
+      new rocksdb3131::RemoveEmptyValueCompactionFilter();
 
   // set the native handle to our native compaction filter
   static jclass jclazz =

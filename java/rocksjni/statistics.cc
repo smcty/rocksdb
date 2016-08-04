@@ -4,7 +4,7 @@
 // of patent rights can be found in the PATENTS file in the same directory.
 //
 // This file implements the "bridge" between Java and C++ and enables
-// calling c++ rocksdb::Statistics methods from Java side.
+// calling c++ rocksdb3131::Statistics methods from Java side.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,7 +12,7 @@
 
 #include "include/org_rocksdb_Statistics.h"
 #include "rocksjni/portal.h"
-#include "rocksdb/statistics.h"
+#include "rocksdb3131/statistics.h"
 
 /*
  * Class:     org_rocksdb_Statistics
@@ -21,10 +21,10 @@
  */
 jlong Java_org_rocksdb_Statistics_getTickerCount0(
     JNIEnv* env, jobject jobj, int tickerType, jlong handle) {
-  auto st = reinterpret_cast<rocksdb::Statistics*>(handle);
+  auto st = reinterpret_cast<rocksdb3131::Statistics*>(handle);
   assert(st != nullptr);
 
-  return st->getTickerCount(static_cast<rocksdb::Tickers>(tickerType));
+  return st->getTickerCount(static_cast<rocksdb3131::Tickers>(tickerType));
 }
 
 /*
@@ -34,16 +34,16 @@ jlong Java_org_rocksdb_Statistics_getTickerCount0(
  */
 jobject Java_org_rocksdb_Statistics_geHistogramData0(
   JNIEnv* env, jobject jobj, int histogramType, jlong handle) {
-  auto st = reinterpret_cast<rocksdb::Statistics*>(handle);
+  auto st = reinterpret_cast<rocksdb3131::Statistics*>(handle);
   assert(st != nullptr);
 
-  rocksdb::HistogramData data;
-  st->histogramData(static_cast<rocksdb::Histograms>(histogramType),
+  rocksdb3131::HistogramData data;
+  st->histogramData(static_cast<rocksdb3131::Histograms>(histogramType),
     &data);
 
   // Don't reuse class pointer
   jclass jclazz = env->FindClass("org/rocksdb/HistogramData");
-  jmethodID mid = rocksdb::HistogramDataJni::getConstructorMethodId(
+  jmethodID mid = rocksdb3131::HistogramDataJni::getConstructorMethodId(
       env, jclazz);
   return env->NewObject(jclazz, mid, data.median, data.percentile95,
       data.percentile99, data.average, data.standard_deviation);

@@ -42,20 +42,20 @@ int main() {
 
 #include "db/db_impl.h"
 #include "db/version_set.h"
-#include "rocksdb/options.h"
-#include "rocksdb/cache.h"
-#include "rocksdb/db.h"
-#include "rocksdb/env.h"
-#include "rocksdb/memtablerep.h"
-#include "rocksdb/write_batch.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/filter_policy.h"
-#include "rocksdb/rate_limiter.h"
-#include "rocksdb/slice_transform.h"
-#include "rocksdb/perf_context.h"
-#include "rocksdb/utilities/flashcache.h"
-#include "rocksdb/utilities/optimistic_transaction.h"
-#include "rocksdb/utilities/optimistic_transaction_db.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/cache.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/memtablerep.h"
+#include "rocksdb3131/write_batch.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/filter_policy.h"
+#include "rocksdb3131/rate_limiter.h"
+#include "rocksdb3131/slice_transform.h"
+#include "rocksdb3131/perf_context.h"
+#include "rocksdb3131/utilities/flashcache.h"
+#include "rocksdb3131/utilities/optimistic_transaction.h"
+#include "rocksdb3131/utilities/optimistic_transaction_db.h"
 #include "port/port.h"
 #include "port/stack_trace.h"
 #include "util/crc32c.h"
@@ -244,19 +244,19 @@ DEFINE_bool(enable_numa, false,
             "CPU and memory of same node. Use \"$numactl --hardware\" command "
             "to see NUMA memory architecture.");
 
-DEFINE_int64(db_write_buffer_size, rocksdb::Options().db_write_buffer_size,
+DEFINE_int64(db_write_buffer_size, rocksdb3131::Options().db_write_buffer_size,
              "Number of bytes to buffer in all memtables before compacting");
 
-DEFINE_int64(write_buffer_size, rocksdb::Options().write_buffer_size,
+DEFINE_int64(write_buffer_size, rocksdb3131::Options().write_buffer_size,
              "Number of bytes to buffer in memtable before compacting");
 
 DEFINE_int32(max_write_buffer_number,
-             rocksdb::Options().max_write_buffer_number,
+             rocksdb3131::Options().max_write_buffer_number,
              "The number of in-memory memtables. Each memtable is of size"
              "write_buffer_size.");
 
 DEFINE_int32(min_write_buffer_number_to_merge,
-             rocksdb::Options().min_write_buffer_number_to_merge,
+             rocksdb3131::Options().min_write_buffer_number_to_merge,
              "The minimum number of write buffers that will be merged together"
              "before writing to storage. This is cheap because it is an"
              "in-memory merge. If this feature is not enabled, then all these"
@@ -267,7 +267,7 @@ DEFINE_int32(min_write_buffer_number_to_merge,
              " in each of these individual write buffers.");
 
 DEFINE_int32(max_write_buffer_number_to_maintain,
-             rocksdb::Options().max_write_buffer_number_to_maintain,
+             rocksdb3131::Options().max_write_buffer_number_to_maintain,
              "The total maximum number of write buffers to maintain in memory "
              "including copies of buffers that have already been flushed. "
              "Unlike max_write_buffer_number, this parameter does not affect "
@@ -281,17 +281,17 @@ DEFINE_int32(max_write_buffer_number_to_maintain,
              "'max_write_buffer_number' will be used.");
 
 DEFINE_int32(max_background_compactions,
-             rocksdb::Options().max_background_compactions,
+             rocksdb3131::Options().max_background_compactions,
              "The maximum number of concurrent background compactions"
              " that can occur in parallel.");
 
 DEFINE_int32(max_background_flushes,
-             rocksdb::Options().max_background_flushes,
+             rocksdb3131::Options().max_background_flushes,
              "The maximum number of concurrent background flushes"
              " that can occur in parallel.");
 
-static rocksdb::CompactionStyle FLAGS_compaction_style_e;
-DEFINE_int32(compaction_style, (int32_t) rocksdb::Options().compaction_style,
+static rocksdb3131::CompactionStyle FLAGS_compaction_style_e;
+DEFINE_int32(compaction_style, (int32_t) rocksdb3131::Options().compaction_style,
              "style of compaction: level-based vs universal");
 
 DEFINE_int32(universal_size_ratio, 0,
@@ -321,11 +321,11 @@ DEFINE_bool(cache_index_and_filter_blocks, false,
             "Cache index/filter blocks in block cache.");
 
 DEFINE_int32(block_size,
-             static_cast<int32_t>(rocksdb::BlockBasedTableOptions().block_size),
+             static_cast<int32_t>(rocksdb3131::BlockBasedTableOptions().block_size),
              "Number of bytes in a block.");
 
 DEFINE_int32(block_restart_interval,
-             rocksdb::BlockBasedTableOptions().block_restart_interval,
+             rocksdb3131::BlockBasedTableOptions().block_restart_interval,
              "Number of keys between restart points "
              "for delta encoding of keys.");
 
@@ -336,7 +336,7 @@ DEFINE_int64(row_cache_size, 0,
              "Number of bytes to use as a cache of individual rows"
              " (0 = disabled).");
 
-DEFINE_int32(open_files, rocksdb::Options().max_open_files,
+DEFINE_int32(open_files, rocksdb3131::Options().max_open_files,
              "Maximum number of files to keep open at the same time"
              " (use default if == 0)");
 
@@ -367,7 +367,7 @@ DEFINE_bool(verify_checksum, false, "Verify checksum for every block read"
             " from storage");
 
 DEFINE_bool(statistics, false, "Database statistics");
-static class std::shared_ptr<rocksdb::Statistics> dbstats;
+static class std::shared_ptr<rocksdb3131::Statistics> dbstats;
 
 DEFINE_int64(writes, -1, "Number of write operations to do. If negative, do"
              " --num reads.");
@@ -407,17 +407,17 @@ DEFINE_string(max_bytes_for_level_multiplier_additional, "",
               "A vector that specifies additional fanout per level");
 
 DEFINE_int32(level0_stop_writes_trigger,
-             rocksdb::Options().level0_stop_writes_trigger,
+             rocksdb3131::Options().level0_stop_writes_trigger,
              "Number of files in level-0"
              " that will trigger put stop.");
 
 DEFINE_int32(level0_slowdown_writes_trigger,
-             rocksdb::Options().level0_slowdown_writes_trigger,
+             rocksdb3131::Options().level0_slowdown_writes_trigger,
              "Number of files in level-0"
              " that will slow down writes.");
 
 DEFINE_int32(level0_file_num_compaction_trigger,
-             rocksdb::Options().level0_file_num_compaction_trigger,
+             rocksdb3131::Options().level0_file_num_compaction_trigger,
              "Number of files in level-0"
              " when compactions start");
 
@@ -461,29 +461,29 @@ DEFINE_int32(transaction_sleep, 0,
              "reading and writing a value (used in RandomTransaction only). ");
 
 namespace {
-enum rocksdb::CompressionType StringToCompressionType(const char* ctype) {
+enum rocksdb3131::CompressionType StringToCompressionType(const char* ctype) {
   assert(ctype);
 
   if (!strcasecmp(ctype, "none"))
-    return rocksdb::kNoCompression;
+    return rocksdb3131::kNoCompression;
   else if (!strcasecmp(ctype, "snappy"))
-    return rocksdb::kSnappyCompression;
+    return rocksdb3131::kSnappyCompression;
   else if (!strcasecmp(ctype, "zlib"))
-    return rocksdb::kZlibCompression;
+    return rocksdb3131::kZlibCompression;
   else if (!strcasecmp(ctype, "bzip2"))
-    return rocksdb::kBZip2Compression;
+    return rocksdb3131::kBZip2Compression;
   else if (!strcasecmp(ctype, "lz4"))
-    return rocksdb::kLZ4Compression;
+    return rocksdb3131::kLZ4Compression;
   else if (!strcasecmp(ctype, "lz4hc"))
-    return rocksdb::kLZ4HCCompression;
+    return rocksdb3131::kLZ4HCCompression;
 
   fprintf(stdout, "Cannot parse compression type '%s'\n", ctype);
-  return rocksdb::kSnappyCompression; //default value
+  return rocksdb3131::kSnappyCompression; //default value
 }
 
 std::string ColumnFamilyName(size_t i) {
   if (i == 0) {
-    return rocksdb::kDefaultColumnFamilyName;
+    return rocksdb3131::kDefaultColumnFamilyName;
   } else {
     char name[100];
     snprintf(name, sizeof(name), "column_family_name_%06zu", i);
@@ -494,8 +494,8 @@ std::string ColumnFamilyName(size_t i) {
 
 DEFINE_string(compression_type, "snappy",
               "Algorithm to use to compress the database");
-static enum rocksdb::CompressionType FLAGS_compression_type_e =
-    rocksdb::kSnappyCompression;
+static enum rocksdb3131::CompressionType FLAGS_compression_type_e =
+    rocksdb3131::kSnappyCompression;
 
 DEFINE_int32(compression_level, -1,
              "Compression level. For zlib this should be -1 for the "
@@ -531,7 +531,7 @@ DEFINE_int32(table_cache_numshardbits, 4, "");
 
 DEFINE_string(hdfs, "", "Name of hdfs environment");
 // posix or hdfs environment
-static rocksdb::Env* FLAGS_env = rocksdb::Env::Default();
+static rocksdb3131::Env* FLAGS_env = rocksdb3131::Env::Default();
 
 DEFINE_int64(stats_interval, 0, "Stats are reported every N operations when "
              "this is greater than zero. When 0 the interval grows over time.");
@@ -602,22 +602,22 @@ DEFINE_uint64(wal_size_limit_MB, 0, "Set the size limit for the WAL Files"
               " in MB.");
 DEFINE_uint64(max_total_wal_size, 0, "Set total max WAL size");
 
-DEFINE_bool(bufferedio, rocksdb::EnvOptions().use_os_buffer,
+DEFINE_bool(bufferedio, rocksdb3131::EnvOptions().use_os_buffer,
             "Allow buffered io using OS buffers");
 
-DEFINE_bool(mmap_read, rocksdb::EnvOptions().use_mmap_reads,
+DEFINE_bool(mmap_read, rocksdb3131::EnvOptions().use_mmap_reads,
             "Allow reads to occur via mmap-ing files");
 
-DEFINE_bool(mmap_write, rocksdb::EnvOptions().use_mmap_writes,
+DEFINE_bool(mmap_write, rocksdb3131::EnvOptions().use_mmap_writes,
             "Allow writes to occur via mmap-ing files");
 
-DEFINE_bool(advise_random_on_open, rocksdb::Options().advise_random_on_open,
+DEFINE_bool(advise_random_on_open, rocksdb3131::Options().advise_random_on_open,
             "Advise random access on table file open");
 
 DEFINE_string(compaction_fadvice, "NORMAL",
               "Access pattern advice when a file is compacted");
 static auto FLAGS_compaction_fadvice_e =
-  rocksdb::Options().access_hint_on_compaction_start;
+  rocksdb3131::Options().access_hint_on_compaction_start;
 
 DEFINE_bool(disable_flashcache_for_background_threads, false,
             "Disable flashcache for background threads");
@@ -627,15 +627,15 @@ DEFINE_string(flashcache_dev, "", "Path to flashcache device");
 DEFINE_bool(use_tailing_iterator, false,
             "Use tailing iterator to access a series of keys instead of get");
 
-DEFINE_bool(use_adaptive_mutex, rocksdb::Options().use_adaptive_mutex,
+DEFINE_bool(use_adaptive_mutex, rocksdb3131::Options().use_adaptive_mutex,
             "Use adaptive mutex");
 
-DEFINE_uint64(bytes_per_sync,  rocksdb::Options().bytes_per_sync,
+DEFINE_uint64(bytes_per_sync,  rocksdb3131::Options().bytes_per_sync,
               "Allows OS to incrementally sync SST files to disk while they are"
               " being written, in the background. Issue one request for every"
               " bytes_per_sync written. 0 turns it off.");
 
-DEFINE_uint64(wal_bytes_per_sync,  rocksdb::Options().wal_bytes_per_sync,
+DEFINE_uint64(wal_bytes_per_sync,  rocksdb3131::Options().wal_bytes_per_sync,
               "Allows OS to incrementally sync WAL files to disk while they are"
               " being written, in the background. Issue one request for every"
               " wal_bytes_per_sync written. 0 turns it off.");
@@ -749,7 +749,7 @@ static const bool FLAGS_table_cache_numshardbits_dummy __attribute__((unused)) =
     RegisterFlagValidator(&FLAGS_table_cache_numshardbits,
                           &ValidateTableCacheNumshardbits);
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 struct ReportFileOpCounters {
@@ -1433,22 +1433,22 @@ class Benchmark {
 #endif
     }
     switch (FLAGS_compression_type_e) {
-      case rocksdb::kNoCompression:
+      case rocksdb3131::kNoCompression:
         fprintf(stdout, "Compression: none\n");
         break;
-      case rocksdb::kSnappyCompression:
+      case rocksdb3131::kSnappyCompression:
         fprintf(stdout, "Compression: snappy\n");
         break;
-      case rocksdb::kZlibCompression:
+      case rocksdb3131::kZlibCompression:
         fprintf(stdout, "Compression: zlib\n");
         break;
-      case rocksdb::kBZip2Compression:
+      case rocksdb3131::kBZip2Compression:
         fprintf(stdout, "Compression: bzip2\n");
         break;
-      case rocksdb::kLZ4Compression:
+      case rocksdb3131::kLZ4Compression:
         fprintf(stdout, "Compression: lz4\n");
         break;
-      case rocksdb::kLZ4HCCompression:
+      case rocksdb3131::kLZ4HCCompression:
         fprintf(stdout, "Compression: lz4hc\n");
         break;
     }
@@ -1486,7 +1486,7 @@ class Benchmark {
     fprintf(stdout,
             "WARNING: Assertions are enabled; benchmarks unnecessarily slow\n");
 #endif
-    if (FLAGS_compression_type_e != rocksdb::kNoCompression) {
+    if (FLAGS_compression_type_e != rocksdb3131::kNoCompression) {
       // The test string should not be too small.
       const int len = FLAGS_block_size;
       char* text = (char*) malloc(len+1);
@@ -1629,7 +1629,7 @@ class Benchmark {
                 "at the same time");
         exit(1);
       }
-      FLAGS_env = new ReportFileOpEnv(rocksdb::Env::Default());
+      FLAGS_env = new ReportFileOpEnv(rocksdb3131::Env::Default());
     }
 
     if (FLAGS_prefix_size > FLAGS_key_size) {
@@ -2099,23 +2099,23 @@ class Benchmark {
     // Compress 1G
     while (ok && bytes < int64_t(1) << 30) {
       switch (FLAGS_compression_type_e) {
-      case rocksdb::kSnappyCompression:
+      case rocksdb3131::kSnappyCompression:
         ok = Snappy_Compress(Options().compression_opts, input.data(),
                              input.size(), &compressed);
         break;
-      case rocksdb::kZlibCompression:
+      case rocksdb3131::kZlibCompression:
         ok = Zlib_Compress(Options().compression_opts, 2, input.data(),
                            input.size(), &compressed);
         break;
-      case rocksdb::kBZip2Compression:
+      case rocksdb3131::kBZip2Compression:
         ok = BZip2_Compress(Options().compression_opts, 2, input.data(),
                             input.size(), &compressed);
         break;
-      case rocksdb::kLZ4Compression:
+      case rocksdb3131::kLZ4Compression:
         ok = LZ4_Compress(Options().compression_opts, 2, input.data(),
                           input.size(), &compressed);
         break;
-      case rocksdb::kLZ4HCCompression:
+      case rocksdb3131::kLZ4HCCompression:
         ok = LZ4HC_Compress(Options().compression_opts, 2, input.data(),
                             input.size(), &compressed);
         break;
@@ -2145,23 +2145,23 @@ class Benchmark {
 
     bool ok;
     switch (FLAGS_compression_type_e) {
-    case rocksdb::kSnappyCompression:
+    case rocksdb3131::kSnappyCompression:
       ok = Snappy_Compress(Options().compression_opts, input.data(),
                            input.size(), &compressed);
       break;
-    case rocksdb::kZlibCompression:
+    case rocksdb3131::kZlibCompression:
       ok = Zlib_Compress(Options().compression_opts, 2, input.data(),
                          input.size(), &compressed);
       break;
-    case rocksdb::kBZip2Compression:
+    case rocksdb3131::kBZip2Compression:
       ok = BZip2_Compress(Options().compression_opts, 2, input.data(),
                           input.size(), &compressed);
       break;
-    case rocksdb::kLZ4Compression:
+    case rocksdb3131::kLZ4Compression:
       ok = LZ4_Compress(Options().compression_opts, 2, input.data(),
                         input.size(), &compressed);
       break;
-    case rocksdb::kLZ4HCCompression:
+    case rocksdb3131::kLZ4HCCompression:
       ok = LZ4HC_Compress(Options().compression_opts, 2, input.data(),
                           input.size(), &compressed);
       break;
@@ -2174,28 +2174,28 @@ class Benchmark {
     while (ok && bytes < 1024 * 1048576) {
       char *uncompressed = nullptr;
       switch (FLAGS_compression_type_e) {
-      case rocksdb::kSnappyCompression:
+      case rocksdb3131::kSnappyCompression:
         // allocate here to make comparison fair
         uncompressed = new char[input.size()];
         ok = Snappy_Uncompress(compressed.data(), compressed.size(),
                                uncompressed);
         break;
-      case rocksdb::kZlibCompression:
+      case rocksdb3131::kZlibCompression:
         uncompressed = Zlib_Uncompress(compressed.data(), compressed.size(),
                                        &decompress_size, 2);
         ok = uncompressed != nullptr;
         break;
-      case rocksdb::kBZip2Compression:
+      case rocksdb3131::kBZip2Compression:
         uncompressed = BZip2_Uncompress(compressed.data(), compressed.size(),
                                         &decompress_size, 2);
         ok = uncompressed != nullptr;
         break;
-      case rocksdb::kLZ4Compression:
+      case rocksdb3131::kLZ4Compression:
         uncompressed = LZ4_Uncompress(compressed.data(), compressed.size(),
                                       &decompress_size, 2);
         ok = uncompressed != nullptr;
         break;
-      case rocksdb::kLZ4HCCompression:
+      case rocksdb3131::kLZ4HCCompression:
         uncompressed = LZ4_Uncompress(compressed.data(), compressed.size(),
                                       &decompress_size, 2);
         ok = uncompressed != nullptr;
@@ -2357,7 +2357,7 @@ class Benchmark {
         fprintf(stderr, "Invalid cuckoo_hash_ratio\n");
         exit(1);
       }
-      rocksdb::CuckooTableOptions table_options;
+      rocksdb3131::CuckooTableOptions table_options;
       table_options.hash_table_ratio = FLAGS_cuckoo_hash_ratio;
       table_options.identity_as_first_hash = FLAGS_identity_as_first_hash;
       options.table_factory = std::shared_ptr<TableFactory>(
@@ -3811,20 +3811,20 @@ class Benchmark {
   }
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
-  rocksdb::port::InstallStackTraceHandler();
+  rocksdb3131::port::InstallStackTraceHandler();
   SetUsageMessage(std::string("\nUSAGE:\n") + std::string(argv[0]) +
                   " [OPTIONS]...");
   ParseCommandLineFlags(&argc, &argv, true);
 
-  FLAGS_compaction_style_e = (rocksdb::CompactionStyle) FLAGS_compaction_style;
+  FLAGS_compaction_style_e = (rocksdb3131::CompactionStyle) FLAGS_compaction_style;
   if (FLAGS_statistics) {
-    dbstats = rocksdb::CreateDBStatistics();
+    dbstats = rocksdb3131::CreateDBStatistics();
   }
 
-  std::vector<std::string> fanout = rocksdb::StringSplit(
+  std::vector<std::string> fanout = rocksdb3131::StringSplit(
       FLAGS_max_bytes_for_level_multiplier_additional, ',');
   for (unsigned int j= 0; j < fanout.size(); j++) {
     FLAGS_max_bytes_for_level_multiplier_additional_v.push_back(
@@ -3839,17 +3839,17 @@ int main(int argc, char** argv) {
     StringToCompressionType(FLAGS_compression_type.c_str());
 
   if (!FLAGS_hdfs.empty()) {
-    FLAGS_env  = new rocksdb::HdfsEnv(FLAGS_hdfs);
+    FLAGS_env  = new rocksdb3131::HdfsEnv(FLAGS_hdfs);
   }
 
   if (!strcasecmp(FLAGS_compaction_fadvice.c_str(), "NONE"))
-    FLAGS_compaction_fadvice_e = rocksdb::Options::NONE;
+    FLAGS_compaction_fadvice_e = rocksdb3131::Options::NONE;
   else if (!strcasecmp(FLAGS_compaction_fadvice.c_str(), "NORMAL"))
-    FLAGS_compaction_fadvice_e = rocksdb::Options::NORMAL;
+    FLAGS_compaction_fadvice_e = rocksdb3131::Options::NORMAL;
   else if (!strcasecmp(FLAGS_compaction_fadvice.c_str(), "SEQUENTIAL"))
-    FLAGS_compaction_fadvice_e = rocksdb::Options::SEQUENTIAL;
+    FLAGS_compaction_fadvice_e = rocksdb3131::Options::SEQUENTIAL;
   else if (!strcasecmp(FLAGS_compaction_fadvice.c_str(), "WILLNEED"))
-    FLAGS_compaction_fadvice_e = rocksdb::Options::WILLNEED;
+    FLAGS_compaction_fadvice_e = rocksdb3131::Options::WILLNEED;
   else {
     fprintf(stdout, "Unknown compaction fadvice:%s\n",
             FLAGS_compaction_fadvice.c_str());
@@ -3861,12 +3861,12 @@ int main(int argc, char** argv) {
   // max number of concurrent compactions.
   FLAGS_env->SetBackgroundThreads(FLAGS_max_background_compactions);
   FLAGS_env->SetBackgroundThreads(FLAGS_max_background_flushes,
-                                  rocksdb::Env::Priority::HIGH);
+                                  rocksdb3131::Env::Priority::HIGH);
 
   // Choose a location for the test database if none given with --db=<path>
   if (FLAGS_db.empty()) {
     std::string default_db_path;
-    rocksdb::Env::Default()->GetTestDirectory(&default_db_path);
+    rocksdb3131::Env::Default()->GetTestDirectory(&default_db_path);
     default_db_path += "/dbbench";
     FLAGS_db = default_db_path;
   }
@@ -3877,7 +3877,7 @@ int main(int argc, char** argv) {
     FLAGS_stats_interval = 1000;
   }
 
-  rocksdb::Benchmark benchmark;
+  rocksdb3131::Benchmark benchmark;
   benchmark.Run();
   return 0;
 }

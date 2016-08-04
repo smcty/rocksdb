@@ -10,7 +10,7 @@
 #include <set>
 #include <vector>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class ColumnFamilyData;
 
@@ -37,4 +37,4 @@ class FlushScheduler {
 #endif  // NDEBUG
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

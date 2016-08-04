@@ -6,10 +6,10 @@
 #ifndef ROCKSDB_LITE
 #include <memory>
 
-#include "rocksdb/utilities/table_properties_collectors.h"
+#include "rocksdb3131/utilities/table_properties_collectors.h"
 #include "utilities/table_properties_collectors/compact_on_deletion_collector.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 CompactOnDeletionCollector::CompactOnDeletionCollector(
     size_t sliding_window_size,
@@ -89,5 +89,5 @@ std::shared_ptr<TablePropertiesCollectorFactory>
       new CompactOnDeletionCollectorFactory(
           sliding_window_size, deletion_trigger));
 }
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // !ROCKSDB_LITE

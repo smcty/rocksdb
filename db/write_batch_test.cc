@@ -7,22 +7,22 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 
-#include "rocksdb/db.h"
+#include "rocksdb3131/db.h"
 
 #include <memory>
 #include "db/memtable.h"
 #include "db/column_family.h"
 #include "db/write_batch_internal.h"
 #include "db/writebuffer.h"
-#include "rocksdb/env.h"
-#include "rocksdb/memtablerep.h"
-#include "rocksdb/utilities/write_batch_with_index.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/memtablerep.h"
+#include "rocksdb3131/utilities/write_batch_with_index.h"
 #include "util/logging.h"
 #include "util/string_util.h"
 #include "util/testharness.h"
 #include "util/scoped_arena_iterator.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 static std::string PrintContents(WriteBatch* b) {
   InternalKeyComparator cmp(BytewiseComparator());
@@ -551,7 +551,7 @@ TEST_F(WriteBatchTest, SavePointTest) {
   ASSERT_EQ("", PrintContents(&batch2));
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

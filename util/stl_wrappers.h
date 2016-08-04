@@ -8,10 +8,10 @@
 #include "util/murmurhash.h"
 #include "util/coding.h"
 
-#include "rocksdb/memtablerep.h"
-#include "rocksdb/slice.h"
+#include "rocksdb3131/memtablerep.h"
+#include "rocksdb3131/slice.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace stl_wrappers {
   class Base {
    protected:

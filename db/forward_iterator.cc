@@ -14,13 +14,13 @@
 #include "db/db_impl.h"
 #include "db/db_iter.h"
 #include "db/column_family.h"
-#include "rocksdb/env.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/slice_transform.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/slice_transform.h"
 #include "table/merger.h"
 #include "db/dbformat.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // Usage:
 //     LevelIterator iter;
@@ -537,6 +537,6 @@ uint32_t ForwardIterator::FindFileInRange(
   return right;
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

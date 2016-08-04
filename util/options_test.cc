@@ -14,11 +14,11 @@
 #include <unordered_map>
 #include <inttypes.h>
 
-#include "rocksdb/cache.h"
-#include "rocksdb/convenience.h"
-#include "rocksdb/options.h"
-#include "rocksdb/table.h"
-#include "rocksdb/utilities/leveldb_options.h"
+#include "rocksdb3131/cache.h"
+#include "rocksdb3131/convenience.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/table.h"
+#include "rocksdb3131/utilities/leveldb_options.h"
 #include "table/block_based_table_factory.h"
 #include "util/random.h"
 #include "util/testharness.h"
@@ -31,7 +31,7 @@ using GFLAGS::ParseCommandLineFlags;
 DEFINE_bool(enable_print, false, "Print options generated to console.");
 #endif  // GFLAGS
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class OptionsTest : public testing::Test {};
 
@@ -704,7 +704,7 @@ TEST_F(OptionsTest, ConvertOptionsTest) {
   ASSERT_EQ(table_opt.filter_policy.get(), leveldb_opt.filter_policy);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

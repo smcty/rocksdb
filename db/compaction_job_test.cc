@@ -10,16 +10,16 @@
 #include "db/column_family.h"
 #include "db/version_set.h"
 #include "db/writebuffer.h"
-#include "rocksdb/cache.h"
-#include "rocksdb/options.h"
-#include "rocksdb/db.h"
+#include "rocksdb3131/cache.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/db.h"
 #include "util/file_reader_writer.h"
 #include "util/string_util.h"
 #include "util/testharness.h"
 #include "util/testutil.h"
 #include "table/mock_table.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 namespace {
 void VerifyInitializationOfCompactionJobStats(
@@ -252,7 +252,7 @@ TEST_F(CompactionJobTest, SimpleCorrupted) {
   mock_table_factory_->AssertLatestFile(expected_results);
 }
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

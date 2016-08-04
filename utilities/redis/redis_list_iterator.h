@@ -43,10 +43,10 @@
 #include <string>
 
 #include "redis_list_exception.h"
-#include "rocksdb/slice.h"
+#include "rocksdb3131/slice.h"
 #include "util/coding.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 /// An abstraction over the "list" concept.
 /// All operations may throw a RedisListException
@@ -306,5 +306,5 @@ class RedisListIterator {
   std::vector<char> result_;    // The output data
 };
 
-} // namespace rocksdb
+} // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

@@ -10,11 +10,11 @@
 
 #include "db/column_family.h"
 #include "db/version_edit.h"
-#include "rocksdb/listener.h"
-#include "rocksdb/table_properties.h"
+#include "rocksdb3131/listener.h"
+#include "rocksdb3131/table_properties.h"
 #include "util/event_logger.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class EventHelpers {
  public:
@@ -30,4 +30,4 @@ class EventHelpers {
       const std::vector<std::shared_ptr<EventListener>>& listeners);
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

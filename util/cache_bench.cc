@@ -19,9 +19,9 @@ int main() {
 #include <stdio.h>
 #include <gflags/gflags.h>
 
-#include "rocksdb/db.h"
-#include "rocksdb/cache.h"
-#include "rocksdb/env.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/cache.h"
+#include "rocksdb3131/env.h"
 #include "port/port.h"
 #include "util/mutexlock.h"
 #include "util/random.h"
@@ -46,7 +46,7 @@ DEFINE_int32(lookup_percent, 50,
 DEFINE_int32(erase_percent, 10,
              "Ratio of erase to total workload (expressed as a percentage)");
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class CacheBench;
 namespace {
@@ -148,7 +148,7 @@ class CacheBench {
   }
 
   bool Run() {
-    rocksdb::Env* env = rocksdb::Env::Default();
+    rocksdb3131::Env* env = rocksdb3131::Env::Default();
 
     PrintEnv();
     SharedState shared(this);
@@ -252,7 +252,7 @@ class CacheBench {
     printf("----------------------------\n");
   }
 };
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ParseCommandLineFlags(&argc, &argv, true);
@@ -262,7 +262,7 @@ int main(int argc, char** argv) {
     exit(1);
   }
 
-  rocksdb::CacheBench bench;
+  rocksdb3131::CacheBench bench;
   if (FLAGS_populate_cache) {
     bench.PopulateCache();
   }

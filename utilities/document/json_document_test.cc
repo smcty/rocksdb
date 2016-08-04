@@ -9,12 +9,12 @@
 #include <set>
 #include <string>
 
-#include "rocksdb/utilities/json_document.h"
+#include "rocksdb3131/utilities/json_document.h"
 
 #include "util/testutil.h"
 #include "util/testharness.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 namespace {
 void AssertField(const JSONDocument& json, const std::string& field) {
   ASSERT_TRUE(json.Contains(field));
@@ -323,7 +323,7 @@ TEST_F(JSONDocumentTest, OwnershipTest) {
   ASSERT_TRUE(!moved_from_non_owner.IsOwner());
 }
 
-}  //  namespace rocksdb
+}  //  namespace rocksdb3131
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

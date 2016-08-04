@@ -10,7 +10,7 @@
 #include <stdlib.h>
 
 #include "include/org_rocksdb_Snapshot.h"
-#include "rocksdb/db.h"
+#include "rocksdb3131/db.h"
 #include "rocksjni/portal.h"
 
 /*
@@ -20,7 +20,7 @@
  */
 jlong Java_org_rocksdb_Snapshot_getSequenceNumber(JNIEnv* env,
     jobject jobj, jlong jsnapshot_handle) {
-  auto* snapshot = reinterpret_cast<rocksdb::Snapshot*>(
+  auto* snapshot = reinterpret_cast<rocksdb3131::Snapshot*>(
       jsnapshot_handle);
   return snapshot->GetSequenceNumber();
 }

@@ -31,24 +31,24 @@
 #include "db/version_set.h"
 #include "db/write_batch_internal.h"
 #include "port/stack_trace.h"
-#include "rocksdb/cache.h"
-#include "rocksdb/compaction_filter.h"
-#include "rocksdb/convenience.h"
-#include "rocksdb/db.h"
-#include "rocksdb/delete_scheduler.h"
-#include "rocksdb/env.h"
-#include "rocksdb/experimental.h"
-#include "rocksdb/filter_policy.h"
-#include "rocksdb/perf_context.h"
-#include "rocksdb/slice.h"
-#include "rocksdb/slice_transform.h"
-#include "rocksdb/table.h"
-#include "rocksdb/options.h"
-#include "rocksdb/table_properties.h"
-#include "rocksdb/thread_status.h"
-#include "rocksdb/utilities/write_batch_with_index.h"
-#include "rocksdb/utilities/checkpoint.h"
-#include "rocksdb/utilities/optimistic_transaction_db.h"
+#include "rocksdb3131/cache.h"
+#include "rocksdb3131/compaction_filter.h"
+#include "rocksdb3131/convenience.h"
+#include "rocksdb3131/db.h"
+#include "rocksdb3131/delete_scheduler.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/experimental.h"
+#include "rocksdb3131/filter_policy.h"
+#include "rocksdb3131/perf_context.h"
+#include "rocksdb3131/slice.h"
+#include "rocksdb3131/slice_transform.h"
+#include "rocksdb3131/table.h"
+#include "rocksdb3131/options.h"
+#include "rocksdb3131/table_properties.h"
+#include "rocksdb3131/thread_status.h"
+#include "rocksdb3131/utilities/write_batch_with_index.h"
+#include "rocksdb3131/utilities/checkpoint.h"
+#include "rocksdb3131/utilities/optimistic_transaction_db.h"
 #include "table/block_based_table_factory.h"
 #include "table/mock_table.h"
 #include "table/plain_table_factory.h"
@@ -72,7 +72,7 @@
 #include "util/thread_status_util.h"
 #include "util/xfunc.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 static long TestGetTickerCount(const Options& options, Tickers ticker_type) {
   return options.statistics->getTickerCount(ticker_type);
@@ -342,7 +342,7 @@ TEST_F(DBTest, CompactedDB) {
 TEST_F(DBTest, IndexAndFilterBlocksOfNewTableAddedToCache) {
   Options options = CurrentOptions();
   options.create_if_missing = true;
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
   BlockBasedTableOptions table_options;
   table_options.cache_index_and_filter_blocks = true;
   table_options.filter_policy.reset(NewBloomFilterPolicy(20));
@@ -393,7 +393,7 @@ TEST_F(DBTest, IndexAndFilterBlocksOfNewTableAddedToCache) {
 TEST_F(DBTest, ParanoidFileChecks) {
   Options options = CurrentOptions();
   options.create_if_missing = true;
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
   options.level0_file_num_compaction_trigger = 2;
   options.paranoid_file_checks = true;
   BlockBasedTableOptions table_options;
@@ -743,7 +743,7 @@ TEST_F(DBTest, KeyMayExist) {
     anon::OptionsOverride options_override;
     options_override.filter_policy.reset(NewBloomFilterPolicy(20));
     Options options = CurrentOptions(options_override);
-    options.statistics = rocksdb::CreateDBStatistics();
+    options.statistics = rocksdb3131::CreateDBStatistics();
     CreateAndReopenWithCF({"pikachu"}, options);
 
     ASSERT_TRUE(!db_->KeyMayExist(ropts, handles_[1], "a", &value));
@@ -804,7 +804,7 @@ TEST_F(DBTest, NonBlockingIteration) {
   do {
     ReadOptions non_blocking_opts, regular_opts;
     Options options = CurrentOptions();
-    options.statistics = rocksdb::CreateDBStatistics();
+    options.statistics = rocksdb3131::CreateDBStatistics();
     non_blocking_opts.read_tier = kBlockCacheTier;
     CreateAndReopenWithCF({"pikachu"}, options);
     // write one kv to the database.
@@ -868,7 +868,7 @@ TEST_F(DBTest, ManagedNonBlockingIteration) {
   do {
     ReadOptions non_blocking_opts, regular_opts;
     Options options = CurrentOptions();
-    options.statistics = rocksdb::CreateDBStatistics();
+    options.statistics = rocksdb3131::CreateDBStatistics();
     non_blocking_opts.read_tier = kBlockCacheTier;
     non_blocking_opts.managed = true;
     CreateAndReopenWithCF({"pikachu"}, options);
@@ -971,7 +971,7 @@ TEST_F(DBTest, FilterDeletes) {
 TEST_F(DBTest, GetFilterByPrefixBloom) {
   Options options = last_options_;
   options.prefix_extractor.reset(NewFixedPrefixTransform(8));
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
   BlockBasedTableOptions bbto;
   bbto.filter_policy.reset(NewBloomFilterPolicy(10, false));
   bbto.whole_key_filtering = false;
@@ -1007,7 +1007,7 @@ TEST_F(DBTest, GetFilterByPrefixBloom) {
 TEST_F(DBTest, WholeKeyFilterProp) {
   Options options = last_options_;
   options.prefix_extractor.reset(NewFixedPrefixTransform(3));
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
 
   BlockBasedTableOptions bbto;
   bbto.filter_policy.reset(NewBloomFilterPolicy(10, false));
@@ -1431,7 +1431,7 @@ TEST_F(DBTest, IterReseek) {
   Options options = CurrentOptions(options_override);
   options.max_sequential_skip_in_iterations = 3;
   options.create_if_missing = true;
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
   DestroyAndReopen(options);
   CreateAndReopenWithCF({"pikachu"}, options);
 
@@ -2435,7 +2435,7 @@ TEST_F(DBTest, CompressedCache) {
   for (int iter = 0; iter < 4; iter++) {
     Options options;
     options.write_buffer_size = 64*1024;        // small write buffer
-    options.statistics = rocksdb::CreateDBStatistics();
+    options.statistics = rocksdb3131::CreateDBStatistics();
     options = CurrentOptions(options);
 
     BlockBasedTableOptions table_options;
@@ -3725,7 +3725,7 @@ TEST_F(DBTest, BloomFilter) {
 TEST_F(DBTest, BloomFilterRate) {
   while (ChangeFilterOptions()) {
     Options options = CurrentOptions();
-    options.statistics = rocksdb::CreateDBStatistics();
+    options.statistics = rocksdb3131::CreateDBStatistics();
     CreateAndReopenWithCF({"pikachu"}, options);
 
     const int maxKey = 10000;
@@ -3752,7 +3752,7 @@ TEST_F(DBTest, BloomFilterRate) {
 
 TEST_F(DBTest, BloomFilterCompatibility) {
   Options options = CurrentOptions();
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
   BlockBasedTableOptions table_options;
   table_options.filter_policy.reset(NewBloomFilterPolicy(10, true));
   options.table_factory.reset(NewBlockBasedTableFactory(table_options));
@@ -3781,7 +3781,7 @@ TEST_F(DBTest, BloomFilterCompatibility) {
 
 TEST_F(DBTest, BloomFilterReverseCompatibility) {
   Options options = CurrentOptions();
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
   BlockBasedTableOptions table_options;
   table_options.filter_policy.reset(NewBloomFilterPolicy(10, false));
   options.table_factory.reset(NewBlockBasedTableFactory(table_options));
@@ -3820,16 +3820,16 @@ class WrappedBloom : public FilterPolicy {
 
   const char* Name() const override { return "WrappedRocksDbFilterPolicy"; }
 
-  void CreateFilter(const rocksdb::Slice* keys, int n, std::string* dst)
+  void CreateFilter(const rocksdb3131::Slice* keys, int n, std::string* dst)
       const override {
-    std::unique_ptr<rocksdb::Slice[]> user_keys(new rocksdb::Slice[n]);
+    std::unique_ptr<rocksdb3131::Slice[]> user_keys(new rocksdb3131::Slice[n]);
     for (int i = 0; i < n; ++i) {
       user_keys[i] = convertKey(keys[i]);
     }
     return filter_->CreateFilter(user_keys.get(), n, dst);
   }
 
-  bool KeyMayMatch(const rocksdb::Slice& key, const rocksdb::Slice& filter)
+  bool KeyMayMatch(const rocksdb3131::Slice& key, const rocksdb3131::Slice& filter)
       const override {
     counter_++;
     return filter_->KeyMayMatch(convertKey(key), filter);
@@ -3841,7 +3841,7 @@ class WrappedBloom : public FilterPolicy {
   const FilterPolicy* filter_;
   mutable uint32_t counter_;
 
-  rocksdb::Slice convertKey(const rocksdb::Slice& key) const {
+  rocksdb3131::Slice convertKey(const rocksdb3131::Slice& key) const {
     return key;
   }
 };
@@ -3849,7 +3849,7 @@ class WrappedBloom : public FilterPolicy {
 
 TEST_F(DBTest, BloomFilterWrapper) {
   Options options = CurrentOptions();
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
 
   BlockBasedTableOptions table_options;
   WrappedBloom* policy = new WrappedBloom(10);
@@ -4905,7 +4905,7 @@ TEST_F(DBTest, GroupCommitTest) {
     Options options = CurrentOptions();
     options.env = env_;
     env_->log_write_slowdown_.store(100);
-    options.statistics = rocksdb::CreateDBStatistics();
+    options.statistics = rocksdb3131::CreateDBStatistics();
     Reopen(options);
 
     // Start threads
@@ -5137,7 +5137,7 @@ class ModelDB: public DB {
   virtual const DBOptions& GetDBOptions() const override { return options_; }
 
   using DB::Flush;
-  virtual Status Flush(const rocksdb::FlushOptions& options,
+  virtual Status Flush(const rocksdb3131::FlushOptions& options,
                        ColumnFamilyHandle* column_family) override {
     Status ret;
     return ret;
@@ -5168,7 +5168,7 @@ class ModelDB: public DB {
 
   virtual SequenceNumber GetLatestSequenceNumber() const override { return 0; }
   virtual Status GetUpdatesSince(
-      rocksdb::SequenceNumber, unique_ptr<rocksdb::TransactionLogIterator>*,
+      rocksdb3131::SequenceNumber, unique_ptr<rocksdb3131::TransactionLogIterator>*,
       const TransactionLogIterator::ReadOptions&
           read_options = TransactionLogIterator::ReadOptions()) override {
     return Status::NotSupported("Not supported in Model DB");
@@ -6046,10 +6046,10 @@ TEST_F(DBTest, DynamicMemtableOptions) {
   int count = 0;
   Random rnd(301);
 
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "DBImpl::DelayWrite:Wait",
       [&](void* arg) { sleeping_task_low.WakeUp(); });
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   while (!sleeping_task_low.WokenUp() && count < 256) {
     ASSERT_OK(Put(Key(count), RandomString(&rnd, 1024), WriteOptions()));
@@ -6107,7 +6107,7 @@ TEST_F(DBTest, DynamicMemtableOptions) {
 #endif
   sleeping_task_low.WaitUntilDone();
 
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
 }
 
 #if ROCKSDB_USING_THREAD_STATUS
@@ -6203,11 +6203,11 @@ TEST_F(DBTest, ThreadStatusFlush) {
   options.enable_thread_tracking = true;
   options = CurrentOptions(options);
 
-  rocksdb::SyncPoint::GetInstance()->LoadDependency({
+  rocksdb3131::SyncPoint::GetInstance()->LoadDependency({
       {"FlushJob::FlushJob()", "DBTest::ThreadStatusFlush:1"},
       {"DBTest::ThreadStatusFlush:2", "FlushJob::~FlushJob()"},
   });
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   CreateAndReopenWithCF({"pikachu"}, options);
   VerifyOperationCount(env_, ThreadStatus::OP_FLUSH, 0);
@@ -6225,7 +6225,7 @@ TEST_F(DBTest, ThreadStatusFlush) {
   VerifyOperationCount(env_, ThreadStatus::OP_FLUSH, 1);
   TEST_SYNC_POINT("DBTest::ThreadStatusFlush:2");
 
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
 }
 
 TEST_P(DBTestWithParam, ThreadStatusSingleCompaction) {
@@ -6248,15 +6248,15 @@ TEST_P(DBTestWithParam, ThreadStatusSingleCompaction) {
   options.level0_file_num_compaction_trigger = kNumL0Files;
   options.num_subcompactions = num_subcompactions_;
 
-  rocksdb::SyncPoint::GetInstance()->LoadDependency({
+  rocksdb3131::SyncPoint::GetInstance()->LoadDependency({
       {"DBTest::ThreadStatusSingleCompaction:0", "DBImpl::BGWorkCompaction"},
       {"CompactionJob::Run():Start", "DBTest::ThreadStatusSingleCompaction:1"},
       {"DBTest::ThreadStatusSingleCompaction:2", "CompactionJob::Run():End"},
   });
   for (int tests = 0; tests < 2; ++tests) {
     DestroyAndReopen(options);
-    rocksdb::SyncPoint::GetInstance()->ClearTrace();
-    rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+    rocksdb3131::SyncPoint::GetInstance()->ClearTrace();
+    rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
     Random rnd(301);
     // The Put Phase.
@@ -6288,7 +6288,7 @@ TEST_P(DBTestWithParam, ThreadStatusSingleCompaction) {
 
     // repeat the test with disabling thread tracking.
     options.enable_thread_tracking = false;
-    rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+    rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
   }
 }
 
@@ -6388,7 +6388,7 @@ TEST_P(DBTestWithParam, PreShutdownMultipleCompaction) {
 
   std::vector<ThreadStatus> thread_list;
   // Delay both flush and compaction
-  rocksdb::SyncPoint::GetInstance()->LoadDependency(
+  rocksdb3131::SyncPoint::GetInstance()->LoadDependency(
       {{"FlushJob::FlushJob()", "CompactionJob::Run():Start"},
        {"CompactionJob::Run():Start",
         "DBTest::PreShutdownMultipleCompaction:Preshutdown"},
@@ -6399,7 +6399,7 @@ TEST_P(DBTestWithParam, PreShutdownMultipleCompaction) {
        {"CompactionJob::Run():End",
         "DBTest::PreShutdownMultipleCompaction:VerifyPreshutdown"}});
 
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   // Make rocksdb busy
   int key = 0;
@@ -6477,7 +6477,7 @@ TEST_P(DBTestWithParam, PreShutdownCompactionMiddle) {
 
   std::vector<ThreadStatus> thread_list;
   // Delay both flush and compaction
-  rocksdb::SyncPoint::GetInstance()->LoadDependency(
+  rocksdb3131::SyncPoint::GetInstance()->LoadDependency(
       {{"DBTest::PreShutdownCompactionMiddle:Preshutdown",
         "CompactionJob::Run():Inprogress"},
         {"CompactionJob::Run():Start",
@@ -6486,7 +6486,7 @@ TEST_P(DBTestWithParam, PreShutdownCompactionMiddle) {
        {"CompactionJob::Run():End",
         "DBTest::PreShutdownCompactionMiddle:VerifyPreshutdown"}});
 
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   // Make rocksdb busy
   int key = 0;
@@ -6697,7 +6697,7 @@ TEST_F(DBTest, DynamicLevelCompressionPerLevel2) {
   std::atomic<int> num_zlib(0);
   std::atomic<int> num_lz4(0);
   std::atomic<int> num_no(0);
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "LevelCompactionPicker::PickCompaction:Return", [&](void* arg) {
         Compaction* compaction = reinterpret_cast<Compaction*>(arg);
         if (compaction->output_level() == 4) {
@@ -6705,21 +6705,21 @@ TEST_F(DBTest, DynamicLevelCompressionPerLevel2) {
           num_lz4.fetch_add(1);
         }
       });
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "FlushJob::WriteLevel0Table:output_compression", [&](void* arg) {
         auto* compression = reinterpret_cast<CompressionType*>(arg);
         ASSERT_TRUE(*compression == kNoCompression);
         num_no.fetch_add(1);
       });
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   for (int i = 0; i < 100; i++) {
     ASSERT_OK(Put(Key(keys[i]), RandomString(&rnd, 200)));
   }
   Flush();
   dbfull()->TEST_WaitForCompact();
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
-  rocksdb::SyncPoint::GetInstance()->ClearAllCallBacks();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->ClearAllCallBacks();
 
   ASSERT_EQ(NumTableFilesAtLevel(1), 0);
   ASSERT_EQ(NumTableFilesAtLevel(2), 0);
@@ -6732,7 +6732,7 @@ TEST_F(DBTest, DynamicLevelCompressionPerLevel2) {
   // After base level turn L4->L3, L3 becomes LZ4 and L4 becomes Zlib
   num_lz4.store(0);
   num_no.store(0);
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "LevelCompactionPicker::PickCompaction:Return", [&](void* arg) {
         Compaction* compaction = reinterpret_cast<Compaction*>(arg);
         if (compaction->output_level() == 4 && compaction->start_level() == 3) {
@@ -6743,13 +6743,13 @@ TEST_F(DBTest, DynamicLevelCompressionPerLevel2) {
           num_lz4.fetch_add(1);
         }
       });
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "FlushJob::WriteLevel0Table:output_compression", [&](void* arg) {
         auto* compression = reinterpret_cast<CompressionType*>(arg);
         ASSERT_TRUE(*compression == kNoCompression);
         num_no.fetch_add(1);
       });
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   for (int i = 101; i < 500; i++) {
     ASSERT_OK(Put(Key(keys[i]), RandomString(&rnd, 200)));
@@ -6759,8 +6759,8 @@ TEST_F(DBTest, DynamicLevelCompressionPerLevel2) {
     }
   }
 
-  rocksdb::SyncPoint::GetInstance()->ClearAllCallBacks();
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->ClearAllCallBacks();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
   ASSERT_EQ(NumTableFilesAtLevel(1), 0);
   ASSERT_EQ(NumTableFilesAtLevel(2), 0);
   ASSERT_GT(NumTableFilesAtLevel(3), 0);
@@ -6899,10 +6899,10 @@ TEST_P(DBTestWithParam, DynamicCompactionOptions) {
   env_->Schedule(&SleepingBackgroundTask::DoSleepTask, &sleeping_task_low,
                  Env::Priority::LOW);
 
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "DBImpl::DelayWrite:Wait",
       [&](void* arg) { sleeping_task_low.WakeUp(); });
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   ASSERT_EQ(NumTableFilesAtLevel(0), 0);
   int count = 0;
@@ -6982,7 +6982,7 @@ TEST_P(DBTestWithParam, DynamicCompactionOptions) {
   dbfull()->TEST_WaitForCompact();
   ASSERT_LT(NumTableFilesAtLevel(0), 4);
 
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
 }
 
 TEST_F(DBTest, FileCreationRandomFailure) {
@@ -7052,7 +7052,7 @@ TEST_F(DBTest, DynamicMiscOptions) {
   options.create_if_missing = true;
   options.max_sequential_skip_in_iterations = 16;
   options.compression = kNoCompression;
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
   DestroyAndReopen(options);
 
   auto assert_reseek_count = [this, &options](int key_start, int num_reseek) {
@@ -7174,7 +7174,7 @@ TEST_F(DBTest, OptimizeFiltersForHits) {
   bbto.whole_key_filtering = true;
   options.table_factory.reset(NewBlockBasedTableFactory(bbto));
   options.optimize_filters_for_hits = true;
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
   CreateAndReopenWithCF({"mypikachu"}, options);
 
   int numkeys = 200000;
@@ -7220,7 +7220,7 @@ TEST_F(DBTest, L0L1L2AndUpHitCounter) {
   options.max_write_buffer_number = 2;
   options.max_background_compactions = 8;
   options.max_background_flushes = 8;
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
   CreateAndReopenWithCF({"mypikachu"}, options);
 
   int numkeys = 20000;
@@ -7295,7 +7295,7 @@ TEST_F(DBTest, EncodeDecompressedBlockSizeTest) {
 TEST_F(DBTest, MutexWaitStats) {
   Options options = CurrentOptions();
   options.create_if_missing = true;
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
   CreateAndReopenWithCF({"pikachu"}, options);
   const int64_t kMutexWaitDelay = 100;
   ThreadStatusUtil::TEST_SetStateDelay(
@@ -7431,7 +7431,7 @@ TEST_F(DBTest, CloseSpeedup) {
   env_->DeleteDir(dbname_);
   DestroyAndReopen(options);
 
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
   env_->SetBackgroundThreads(1, Env::LOW);
   env_->SetBackgroundThreads(1, Env::HIGH);
   Random rnd(301);
@@ -7484,7 +7484,7 @@ TEST_F(DBTest, MergeTestTime) {
   this->env_->addon_time_.store(0);
   Options options;
   options = CurrentOptions(options);
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
   options.merge_operator.reset(new DelayedMergeOperator(this));
   DestroyAndReopen(options);
 
@@ -7524,7 +7524,7 @@ TEST_P(DBTestWithParam, MergeCompactionTimeTest) {
   Options options;
   options = CurrentOptions(options);
   options.compaction_filter_factory = std::make_shared<KeepFilterFactory>();
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
   options.merge_operator.reset(new DelayedMergeOperator(this));
   options.compaction_style = kCompactionStyleUniversal;
   options.num_subcompactions = num_subcompactions_;
@@ -7546,7 +7546,7 @@ TEST_P(DBTestWithParam, FilterCompactionTimeTest) {
       std::make_shared<DelayFilterFactory>(this);
   options.disable_auto_compactions = true;
   options.create_if_missing = true;
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
   options.num_subcompactions = num_subcompactions_;
   options = CurrentOptions(options);
   DestroyAndReopen(options);
@@ -7957,19 +7957,19 @@ TEST_F(DBTest, FlushesInParallelWithCompactRange) {
     }
 
     if (iter == 1) {
-    rocksdb::SyncPoint::GetInstance()->LoadDependency(
+    rocksdb3131::SyncPoint::GetInstance()->LoadDependency(
         {{"DBImpl::RunManualCompaction()::1",
           "DBTest::FlushesInParallelWithCompactRange:1"},
          {"DBTest::FlushesInParallelWithCompactRange:2",
           "DBImpl::RunManualCompaction()::2"}});
     } else {
-      rocksdb::SyncPoint::GetInstance()->LoadDependency(
+      rocksdb3131::SyncPoint::GetInstance()->LoadDependency(
           {{"CompactionJob::Run():Start",
             "DBTest::FlushesInParallelWithCompactRange:1"},
            {"DBTest::FlushesInParallelWithCompactRange:2",
             "CompactionJob::Run():End"}});
     }
-    rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+    rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
     std::vector<std::thread> threads;
     threads.emplace_back([&]() { Compact("a", "z"); });
@@ -7988,7 +7988,7 @@ TEST_F(DBTest, FlushesInParallelWithCompactRange) {
     for (auto& t : threads) {
       t.join();
     }
-    rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+    rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
   }
 }
 
@@ -8033,7 +8033,7 @@ TEST_F(DBTest, DelayedWriteRate) {
   ASSERT_LT(env_->addon_time_.load(), estimated_sleep_time * 1.1);
 
   env_->no_sleep_ = false;
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
 }
 
 TEST_F(DBTest, SoftLimit) {
@@ -8058,7 +8058,7 @@ TEST_F(DBTest, SoftLimit) {
   port::Mutex mut;
   port::CondVar cv(&mut);
   std::atomic<int> compaction_cnt(0);
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "VersionSet::LogAndApply:WriteManifest", [&](void* arg) {
         // Three flushes and the first compaction,
         // three flushes and the second compaction go through.
@@ -8070,9 +8070,9 @@ TEST_F(DBTest, SoftLimit) {
       });
 
   std::atomic<int> sleep_count(0);
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "DBImpl::DelayWrite:Sleep", [&](void* arg) { sleep_count.fetch_add(1); });
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   for (int i = 0; i < 3; i++) {
     Put(Key(i), std::string(5000, 'x'));
@@ -8153,7 +8153,7 @@ TEST_F(DBTest, SoftLimit) {
     Put(Key(i), std::string(100, 'x'));
   }
   ASSERT_EQ(sleep_count.load(), 0);
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
 }
 
 TEST_F(DBTest, FailWhenCompressionNotSupportedTest) {
@@ -8178,7 +8178,7 @@ TEST_F(DBTest, FailWhenCompressionNotSupportedTest) {
 
 TEST_F(DBTest, RowCache) {
   Options options = CurrentOptions();
-  options.statistics = rocksdb::CreateDBStatistics();
+  options.statistics = rocksdb3131::CreateDBStatistics();
   options.row_cache = NewLRUCache(8192);
   DestroyAndReopen(options);
 
@@ -8221,12 +8221,12 @@ TEST_F(DBTest, PrevAfterMerge) {
 }
 
 TEST_F(DBTest, DeletingOldWalAfterDrop) {
-  rocksdb::SyncPoint::GetInstance()->LoadDependency(
+  rocksdb3131::SyncPoint::GetInstance()->LoadDependency(
       { { "Test:AllowFlushes", "DBImpl::BGWorkFlush" },
         { "DBImpl::BGWorkFlush:done", "Test:WaitForFlush"} });
-  rocksdb::SyncPoint::GetInstance()->ClearTrace();
+  rocksdb3131::SyncPoint::GetInstance()->ClearTrace();
 
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
   Options options = CurrentOptions();
   options.max_total_wal_size = 8192;
   options.compression = kNoCompression;
@@ -8236,7 +8236,7 @@ TEST_F(DBTest, DeletingOldWalAfterDrop) {
   options.level0_stop_writes_trigger = (1<<30);
   options.disable_auto_compactions = true;
   DestroyAndReopen(options);
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   CreateColumnFamilies({"cf1", "cf2"}, options);
   ASSERT_OK(Put(0, "key1", DummyString(8192)));
@@ -8255,16 +8255,16 @@ TEST_F(DBTest, DeletingOldWalAfterDrop) {
 }
 
 TEST_F(DBTest, RateLimitedDelete) {
-  rocksdb::SyncPoint::GetInstance()->LoadDependency({
+  rocksdb3131::SyncPoint::GetInstance()->LoadDependency({
       {"DBTest::RateLimitedDelete:1",
        "DeleteSchedulerImpl::BackgroundEmptyTrash"},
   });
 
   std::vector<uint64_t> penalties;
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "DeleteSchedulerImpl::BackgroundEmptyTrash:Wait",
       [&](void* arg) { penalties.push_back(*(static_cast<int*>(arg))); });
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
 
   Options options = CurrentOptions();
   options.disable_auto_compactions = true;
@@ -8278,7 +8278,7 @@ TEST_F(DBTest, RateLimitedDelete) {
   ASSERT_OK(s);
 
   Destroy(last_options_);
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
   ASSERT_OK(TryReopen(options));
   // Create 4 files in L0
   for (char v = 'a'; v <= 'd'; v++) {
@@ -8317,7 +8317,7 @@ TEST_F(DBTest, RateLimitedDelete) {
   }
   ASSERT_GT(time_spent_deleting, expected_penlty * 0.9);
 
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
 }
 
 // Create a DB with 2 db_paths, and generate multiple files in the 2
@@ -8326,10 +8326,10 @@ TEST_F(DBTest, RateLimitedDelete) {
 // files in the second path were not.
 TEST_F(DBTest, DeleteSchedulerMultipleDBPaths) {
   int bg_delete_file = 0;
-  rocksdb::SyncPoint::GetInstance()->SetCallBack(
+  rocksdb3131::SyncPoint::GetInstance()->SetCallBack(
       "DeleteSchedulerImpl::DeleteTrashFile:DeleteFile",
       [&](void* arg) { bg_delete_file++; });
-  rocksdb::SyncPoint::GetInstance()->EnableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->EnableProcessing();
 
   Options options = CurrentOptions();
   options.disable_auto_compactions = true;
@@ -8389,7 +8389,7 @@ TEST_F(DBTest, DeleteSchedulerMultipleDBPaths) {
       ->TEST_WaitForEmptyTrash();
   ASSERT_EQ(bg_delete_file, 8);
 
-  rocksdb::SyncPoint::GetInstance()->DisableProcessing();
+  rocksdb3131::SyncPoint::GetInstance()->DisableProcessing();
 }
 
 TEST_F(DBTest, UnsupportedManualSync) {
@@ -8402,13 +8402,13 @@ TEST_F(DBTest, UnsupportedManualSync) {
 INSTANTIATE_TEST_CASE_P(DBTestWithParam, DBTestWithParam,
                         ::testing::Values(1, 4));
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif
 
 int main(int argc, char** argv) {
 #if !(defined NDEBUG) || !defined(OS_WIN)
-  rocksdb::port::InstallStackTraceHandler();
+  rocksdb3131::port::InstallStackTraceHandler();
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 #else

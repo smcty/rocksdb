@@ -9,7 +9,7 @@
 #undef FAILED
 #endif
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class LDBCommandExecuteResult {
 public:

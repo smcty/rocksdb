@@ -13,7 +13,7 @@
 #pragma once
 #include "util/allocator.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class Arena;
 class Logger;
@@ -44,4 +44,4 @@ class MemTableAllocator : public Allocator {
   void operator=(const MemTableAllocator&);
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

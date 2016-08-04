@@ -14,7 +14,7 @@
 #include <cstddef>
 #include <cerrno>
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class Logger;
 
@@ -29,4 +29,4 @@ class Allocator {
   virtual size_t BlockSize() const = 0;
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131

@@ -14,12 +14,12 @@
 #include <stdexcept>
 #include <vector>
 
-#include "rocksdb/utilities/geo_db.h"
-#include "rocksdb/utilities/stackable_db.h"
-#include "rocksdb/env.h"
-#include "rocksdb/status.h"
+#include "rocksdb3131/utilities/geo_db.h"
+#include "rocksdb3131/utilities/stackable_db.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/status.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 // A specific implementation of GeoDB
 
@@ -181,6 +181,6 @@ class GeoDBImpl : public GeoDB {
   static std::string MakeQuadKeyPrefix(std::string quadkey);
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE

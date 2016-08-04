@@ -15,12 +15,12 @@
 #include <vector>
 
 #include "db/dbformat.h"
-#include "rocksdb/env.h"
-#include "rocksdb/options.h"
+#include "rocksdb3131/env.h"
+#include "rocksdb3131/options.h"
 #include "table/table_reader.h"
 #include "util/file_reader_writer.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class Arena;
 class TableReader;
@@ -78,5 +78,5 @@ class CuckooTableReader: public TableReader {
       uint64_t max_num_buckets);
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 #endif  // ROCKSDB_LITE

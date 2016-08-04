@@ -6,10 +6,10 @@
 #pragma once
 #ifndef ROCKSDB_LITE
 
-#include "rocksdb/slice.h"
+#include "rocksdb3131/slice.h"
 #include "db/dbformat.h"
 
-namespace rocksdb {
+namespace rocksdb3131 {
 
 class WritableFile;
 struct ParsedInternalKey;
@@ -92,6 +92,6 @@ class PlainTableKeyDecoder {
                                bool* seekable = nullptr);
 };
 
-}  // namespace rocksdb
+}  // namespace rocksdb3131
 
 #endif  // ROCKSDB_LITE
