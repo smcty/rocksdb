@@ -66,7 +66,7 @@ enum CompressionType : char {
   kZSTDNotFinalCompression = 0x40,
 
   // kDisableCompressionOption is used to disable some compression options.
-  kDisableCompressionOption = 0xff,
+  kDisableCompressionOption = -1,
 };
 
 enum CompactionStyle : char {
